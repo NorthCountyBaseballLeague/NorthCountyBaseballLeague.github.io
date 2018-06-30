@@ -1,2 +1,0 @@
-# NorthCountyBaseballLeague.github.io
-Website
