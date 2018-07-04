@@ -4,20 +4,107 @@
         <meta charset="utf-8">
         <title>North County Baseball League Standings</title>
         <style>
-        
+            #table {
+                border-collapse: collapse;
+            }
+
+            th {
+                background-color: rgb(202, 202, 202);
+                border: 1px solid black;
+            }
+
+            td {
+                text-align: center;
+                border: 1px solid black;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            #no_border {
+                background-color:white;
+                border:0;
+            }
         </style>
     </head>
     <body>
 
     <h1>Standings</h1>
     
-    <h2 id="home"><a href="index.html">Home</a></h2>
+    <h3 id="home"><a href="index.html">Home</a></h3>
 
-    <h2 id="rosters"><a href="Rosters.html">Rosters</a></h2>
+    <h3 id="rosters"><a href="Rosters.html">Rosters</a></h3>
 
-    <h2 id="schedule"><a href="Schedule.html">Schedule</a></h2>
+    <h3 id="schedule"><a href="Schedule.html">Schedule</a></h3>
 
-        
+    <table id="table" cellpadding="5">
+        <thead>
+            <tr>
+                <th id="no_border"></th>
+                <th>W</th>
+                <th>L</th>
+                <th>PCT</th>
+                <th>GB</th>
+                <th>L10</th>
+                <th>Streak</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nationals</td>
+                <td>9</td>
+                <td>3</td>
+                <td>.750</td>
+                <td>-</td>
+                <td>7-2</td>
+                <td>W1</td>
+            </tr>
+            <tr>
+                <td>Leones</td>
+                <td>7</td>
+                <td>5</td>
+                <td>.583</td>
+                <td>2.0</td>
+                <td>5-4</td>
+                <td>W2</td>
+            </tr>
+            <tr>
+                <td>Toros</td>
+                <td>7</td>
+                <td>6</td>
+                <td>.538</td>
+                <td>2.5</td>
+                <td>4-6</td>
+                <td>L4</td>
+            </tr>
+            <tr>
+                <td>Saints</td>
+                <td>7</td>
+                <td>6</td>
+                <td>.538</td>
+                <td>2.5</td>
+                <td>6-4</td>
+                <td>W4</td>
+            </tr>
+            <tr>
+                <td>A's</td>
+                <td>6</td>
+                <td>6</td>
+                <td>.500</td>
+                <td>3.0</td>
+                <td>6-3</td>
+                <td>L1</td>
+            </tr>
+            <tr>
+                <td>Royals</td>
+                <td>1</td>
+                <td>11</td>
+                <td>.083</td>
+                <td>9.0</td>
+                <td>0-9</td>
+                <td>L10</td>
+            </tr>
+        </tbody>
+    </table>
     
     
     </body>
