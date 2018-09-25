@@ -33,3 +33,10 @@ var formatWinPercentage = function (winPct) {
 };
 
 calculateAllWinPercentages();
+
+// TODO: Add tests
+
+// TODO: Add functions to calculate the number of games behind
+// TODO: Add functions to calculate the wins and losses
+// TODO: Add functions to calculate the last 10 games record
+// TODO: Add functions to calculate the win/loss streak
