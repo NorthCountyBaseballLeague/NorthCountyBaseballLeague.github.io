@@ -1,4 +1,4 @@
-var calculateAllWinPercentages = function () {
+function calculateAllWinPercentages () {
     var winsEls = document.getElementsByClassName("wins");
     var lossesEls = document.getElementsByClassName("losses");
     var winPctsEls = document.getElementsByClassName("win-pct");
@@ -11,14 +11,14 @@ var calculateAllWinPercentages = function () {
     }
 };
 
-var calculateIndividualWinPercentage = function (wins, losses) {
+function calculateIndividualWinPercentage (wins, losses) {
     var winPct = wins / (wins + losses);
     var roundedWinPct = Math.round(winPct * 1000) / 1000;
 
     return formatWinPercentage(roundedWinPct);
 };
 
-var formatWinPercentage = function (winPct) {
+function formatWinPercentage (winPct) {
     var winPctStr = winPct.toString();
 
     if (winPctStr.length === 1) {
@@ -40,3 +40,9 @@ calculateAllWinPercentages();
 // TODO: Add functions to calculate the wins and losses
 // TODO: Add functions to calculate the last 10 games record
 // TODO: Add functions to calculate the win/loss streak
+
+module.exports = {
+    calculateAllWinPercentages,
+    calculateIndividualWinPercentage,
+    formatWinPercentage
+}
