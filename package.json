@@ -1,0 +1,15 @@
+{
+    "name": "ncbl_website",
+    "version": "0.2.0",
+    "description": "Website for the North County Baseball League",
+    "scripts": {
+        "test": "mocha test"
+    },
+    "author": "eli-magallanes",
+    "license": "MIT",
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "mocha": "^3.5.3",
+        "test": ">=0.0.5"
+    }
+}
