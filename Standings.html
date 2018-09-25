@@ -53,54 +53,54 @@
         <tbody>
             <tr>
                 <td>Leones</td>
-                <td>13</td>
-                <td>6</td>
-                <td>.684</td>
+                <td class="wins">13</td>
+                <td class ="losses">6</td>
+                <td class="win-pct"></td>
                 <td>-</td>
                 <td>8-2</td>
                 <td>L1</td>
             </tr>
             <tr>
                 <td>Toros</td>
-                <td>13</td>
-                <td>7</td>
-                <td>.650</td>
+                <td class="wins">13</td>
+                <td class ="losses">7</td>
+                <td class="win-pct"></td>
                 <td>0.5</td>
                 <td>5-5</td>
                 <td>W5</td>
             </tr>
             <tr>
                 <td>Nationals</td>
-                <td>12</td>
-                <td>7</td>
-                <td>.631</td>
+                <td class="wins">12</td>
+                <td class ="losses">7</td>
+                <td class="win-pct"></td>
                 <td>2.0</td>
                 <td>5-5</td>
                 <td>W1</td>
             </tr>
             <tr>
                 <td>Saints</td>
-                <td>11</td>
-                <td>9</td>
-                <td>.550</td>
+                <td class="wins">11</td>
+                <td class ="losses">9</td>
+                <td class="win-pct"></td>
                 <td>2.5</td>
                 <td>7-3</td>
                 <td>W3</td>
             </tr>
             <tr>
                 <td>A's</td>
-                <td>8</td>
-                <td>11</td>
-                <td>.421</td>
+                <td class="wins">8</td>
+                <td class ="losses">11</td>
+                <td class="win-pct"></td>
                 <td>5.0</td>
                 <td>4-6</td>
                 <td>L3</td>
             </tr>            
             <tr>
                 <td>Royals</td>
-                <td>1</td>
-                <td>18</td>
-                <td>.053</td>
+                <td class="wins">1</td>
+                <td class ="losses">18</td>
+                <td class="win-pct"></td>
                 <td>12.0</td>
                 <td>0-10</td>
                 <td>L17</td>
@@ -111,6 +111,40 @@
     
     </body>
     <script>
-    
+        var calculateWinPercentageForEachTeam = function () {
+            var winsEls = document.getElementsByClassName("wins");
+            var lossesEls = document.getElementsByClassName("losses");
+            var winPctsEls = document.getElementsByClassName("win-pct");
+
+            for (var i = 0; i < winsEls.length; i++) {
+                var wins = parseInt(winsEls[i].innerHTML);
+                var losses = parseInt(lossesEls[i].innerHTML);
+
+                winPctsEls[i].innerHTML = calculateIndividualWinPercentage(wins, losses);
+            }
+        };
+
+        var calculateIndividualWinPercentage = function (wins, losses) {
+            var winPct = wins / (wins + losses);
+            var roundedWinPct = Math.round(winPct * 1000) / 1000;
+
+            return formatWinPercentage(roundedWinPct);
+        };
+
+        var formatWinPercentage = function (winPct) {
+            var winPctStr = winPct.toString();
+
+            if (winPctStr.length === 1) {
+                winPctStr = winPctStr + ".";
+            }
+
+            while (winPctStr.length < 5) {
+                winPctStr = winPctStr + "0";
+            }
+
+            return winPctStr;
+        };
+
+        calculateWinPercentageForEachTeam();
     </script>
 </html>
