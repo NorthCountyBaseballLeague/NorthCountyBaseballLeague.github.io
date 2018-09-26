@@ -108,7 +108,13 @@
         </tbody>
     </table>
     
-    <script type="text/javascript" src="../js/Standings.js"></script>
-
     </body>
+    <script src="../js/Standings.js"></script>
+    <script>
+        var winsEls = document.getElementsByClassName("wins");
+        var lossesEls = document.getElementsByClassName("losses");
+        var winPctsEls = document.getElementsByClassName("win-pct");
+        
+        calculateAllWinPercentages(winsEls, lossesEls, winPctsEls);
+    </script>
 </html>

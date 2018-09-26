@@ -1,17 +1,17 @@
-function calculateAllWinPercentages () {
-    var winsEls = document.getElementsByClassName("wins");
-    var lossesEls = document.getElementsByClassName("losses");
-    var winPctsEls = document.getElementsByClassName("win-pct");
+function calculateAllWinPercentages (winsArray, lossesArray, winPctArray) {
+    for (var i = 0; i < winsArray.length; i++) {
+        var wins = parseInt(winsArray[i].innerHTML);
+        var losses = parseInt(lossesArray[i].innerHTML);
 
-    for (var i = 0; i < winsEls.length; i++) {
-        var wins = parseInt(winsEls[i].innerHTML);
-        var losses = parseInt(lossesEls[i].innerHTML);
-
-        winPctsEls[i].innerHTML = calculateIndividualWinPercentage(wins, losses);
+        winPctArray[i].innerHTML = calculateIndividualWinPercentage(wins, losses);
     }
 };
 
 function calculateIndividualWinPercentage (wins, losses) {
+    if (wins + losses === 0) {
+        return "";
+    }
+
     var winPct = wins / (wins + losses);
     var roundedWinPct = Math.round(winPct * 1000) / 1000;
 
@@ -31,10 +31,6 @@ function formatWinPercentage (winPct) {
 
     return winPctStr;
 };
-
-calculateAllWinPercentages();
-
-// TODO: Add tests
 
 // TODO: Add functions to calculate the number of games behind
 // TODO: Add functions to calculate the wins and losses
