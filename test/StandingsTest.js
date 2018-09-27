@@ -148,3 +148,37 @@ describe ("Tests for calculating all win percentages", function () {
         expect(winPctArray[5].innerHTML).to.equal("0.696");
     });
 });
+
+describe ("Test for formatting the number of games behind", function () {
+    it ('should format the games behind correctly when the team is in first', function () {
+        var gamesBehind = 0;
+
+        var gamesBehindStr = standings.formatGamesBehind(gamesBehind);
+
+        expect(gamesBehindStr).to.equal("-");
+    });
+    it ('should format the games behind correctly when the team has played one less game than the first place team', function () {
+        var gamesBehind = 2.5;
+
+        var gamesBehindStr = standings.formatGamesBehind(gamesBehind);
+
+        expect(gamesBehindStr).to.equal("2.5");
+    });
+    it ('should format the games behind correctly when the team has played the same number of games as the first place team', function () {
+        var gamesBehind = 5;
+
+        var gamesBehindStr = standings.formatGamesBehind(gamesBehind);
+
+        expect(gamesBehindStr).to.equal("5.0");
+    });
+    it ('should format the games behind correctly when the team is behind by double/triple digit games', function () {
+        var gamesBehind1 = 22;
+        var gamesBehind2 = 162;
+
+        var gamesBehindStr1 = standings.formatGamesBehind(gamesBehind1);
+        var gamesBehindStr2 = standings.formatGamesBehind(gamesBehind2);
+
+        expect(gamesBehindStr1).to.equal("22.0");
+        expect(gamesBehindStr2).to.equal("162.0");
+    });
+});
