@@ -1,12 +1,3 @@
-const as = "A's";
-const leones = "Leones";
-const nationals = "Nationals";
-const royals = "Royals";
-const saints = "Saints";
-const toros = "Toros";
-const pending = "Pending";
-const noWinner = "";
-
 function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr) {
     var winCounter = {
         "A's" : 0,
