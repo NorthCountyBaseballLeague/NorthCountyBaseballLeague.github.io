@@ -1,20 +1,6 @@
-function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr) {
-    var winCounter = {
-        "A's" : 0,
-        "Leones" : 0,
-        "Nationals" : 0,
-        "Royals" : 0,
-        "Saints" : 0,
-        "Toros" : 0
-    }
-    var lossCounter = {
-        "A's" : 0,
-        "Leones" : 0,
-        "Nationals" : 0,
-        "Royals" : 0,
-        "Saints" : 0,
-        "Toros" : 0
-    }
+function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr, teams) {
+    var winCounter = constructCounter(teams);
+    var lossCounter = constructCounter(teams);
 
     for (var i = 0; i < winnersArr.length; i++) {
         if (winnersArr[i].innerHTML === awayTeamArr[i].innerHTML) {
@@ -31,12 +17,17 @@ function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr) {
 
 };
 
-// function filterOutNoWinners(winnersArr) {
-//     for (var i = 0; i < winnersArr.length; i++) {
-//         if ()
-//     }
-// }
+function constructCounter(teams) {
+    var counter = {};
+
+    teams.forEach(team => {
+        counter[team] = 0;
+    });
+
+    return counter;
+};
 
 module.exports = {
-    calculateWinsAndLosses
+    calculateWinsAndLosses,
+    constructCounter
 }
