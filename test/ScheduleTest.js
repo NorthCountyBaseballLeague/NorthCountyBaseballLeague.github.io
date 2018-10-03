@@ -7,7 +7,7 @@ describe ("Schedule Test", function () {
             var winnersArray = [];
             var awayTeamArray = [];
             var homeTeamArray = [];
-            teams = ["team1", "team2"];
+            var teams = ["team1", "team2"];
 
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
@@ -16,6 +16,100 @@ describe ("Schedule Test", function () {
                     expect(winsAndLosses[i][team]).to.equal(0);
                 });
             }
+        });
+        it ('should calculate the correct number of wins and losses when the home team always wins', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var winnersArray = [team1, team2, team1, team2];
+            var awayTeamArray = [team2, team1, team2, team1];
+            var homeTeamArray = [team1, team2, team1, team2];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            teams.forEach(team => {
+                expect(winsAndLosses[0][team]).to.equal(2);
+                expect(winsAndLosses[1][team]).to.equal(2);
+            });
+        });
+        it ('should calculate the correct number of wins and losses when the away team always wins', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var winnersArray = [team2, team1, team2, team1];
+            var awayTeamArray = [team2, team1, team2, team1];
+            var homeTeamArray = [team1, team2, team1, team2];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            teams.forEach(team => {
+                expect(winsAndLosses[0][team]).to.equal(2);
+                expect(winsAndLosses[1][team]).to.equal(2);
+            });
+        });
+        it ('should calculate the correct number of wins and losses when the game is pending', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var pending = {
+                innerHTML : "pending"
+            };
+            var winnersArray = [pending, pending, pending, pending];
+            var awayTeamArray = [team2, team1, team2, team1];
+            var homeTeamArray = [team1, team2, team1, team2];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            teams.forEach(team => {
+                expect(winsAndLosses[0][team]).to.equal(0);
+                expect(winsAndLosses[1][team]).to.equal(0);
+            });
+        });
+        it ('should calculate the correct number of wins and losses for any number of teams', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var team3 = {
+                innerHTML : "team3"
+            };
+            var team4 = {
+                innerHTML : "team4"
+            };
+            var team5 = {
+                innerHTML : "team5"
+            };
+            var winnersArray = [team2, team1, team4, team3, team2, team5, team1, team1, team3, team2];
+            var awayTeamArray = [team2, team1, team3, team3, team2, team1, team2, team4, team3, team2];
+            var homeTeamArray = [team1, team5, team4, team2, team4, team5, team1, team1, team2, team5];
+            var teams = ["team1", "team2", "team3", "team4", "team5"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            expect(winsAndLosses[0]["team1"]).to.equal(3);
+            expect(winsAndLosses[1]["team1"]).to.equal(2);
+            expect(winsAndLosses[0]["team2"]).to.equal(3);
+            expect(winsAndLosses[1]["team2"]).to.equal(3);
+            expect(winsAndLosses[0]["team3"]).to.equal(2);
+            expect(winsAndLosses[1]["team3"]).to.equal(1);
+            expect(winsAndLosses[0]["team4"]).to.equal(1);
+            expect(winsAndLosses[1]["team4"]).to.equal(2);
+            expect(winsAndLosses[0]["team5"]).to.equal(1);
+            expect(winsAndLosses[1]["team5"]).to.equal(2);
         });
     });
 
