@@ -7,7 +7,7 @@ function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr, teams) {
             winCounter[awayTeamArr[i].innerHTML]++;
             lossCounter[homeTeamArr[i].innerHTML]++;
         }
-        else if (winnersArr[i].innerHTML === homeTeamArr[i].innerHTML) {
+        else if (winnersArr[i].innerHTML === homeTeamArr[i].innerHTML && homeTeamArr[i].innerHTML !== "") {
             winCounter[homeTeamArr[i].innerHTML]++;
             lossCounter[awayTeamArr[i].innerHTML]++;
         }

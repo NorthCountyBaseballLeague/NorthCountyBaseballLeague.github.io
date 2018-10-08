@@ -77,6 +77,28 @@ describe ("Schedule Test", function () {
                 expect(winsAndLosses[1][team]).to.equal(0);
             });
         });
+        it ('should calculate the correct number of wins and losses when a team has a bye', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var bye = {
+                innerHTML : ""
+            };
+            var winnersArray = [bye, bye];
+            var awayTeamArray = [team1, team2];
+            var homeTeamArray = [bye, bye];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            teams.forEach(team => {
+                expect(winsAndLosses[0][team]).to.equal(0);
+                expect(winsAndLosses[1][team]).to.equal(0);
+            });
+        });
         it ('should calculate the correct number of wins and losses for any number of teams', function () {
             var team1 = {
                 innerHTML : "team1"
