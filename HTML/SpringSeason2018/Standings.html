@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>North County Baseball League Standings</title>
+        <style>
+            #table {
+                border-collapse: collapse;
+            }
+
+            th {
+                background-color: rgb(202, 202, 202);
+                border: 1px solid black;
+            }
+
+            td {
+                text-align: center;
+                border: 1px solid black;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            #no_border {
+                background-color:white;
+                border:0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1><a href="../../index.html">North County Baseball League</a></h1>
+
+        <h2>Standings</h2>
+        
+        <h3 id="rosters"><a href="Rosters.html">Rosters</a></h3>
+
+        <h3 id="schedule"><a href="Schedule.html">Schedule</a></h3>
+
+        <h3 id="playoffs"><a href="Playoffs.html">Playoffs</a></h3>
+
+        <table id="table" cellpadding="5">
+            <thead>
+                <tr>
+                    <th id="no_border"></th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>PCT</th>
+                    <th>GB</th>
+                    <th>L10</th>
+                    <th>Streak</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Leones</td>
+                    <td class="wins">13</td>
+                    <td class ="losses">6</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>8-2</td>
+                    <td>L1</td>
+                </tr>
+                <tr>
+                    <td>Toros</td>
+                    <td class="wins">13</td>
+                    <td class ="losses">7</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>5-5</td>
+                    <td>W5</td>
+                </tr>
+                <tr>
+                    <td>Nationals</td>
+                    <td class="wins">12</td>
+                    <td class ="losses">7</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>5-5</td>
+                    <td>W1</td>
+                </tr>
+                <tr>
+                    <td>Saints</td>
+                    <td class="wins">11</td>
+                    <td class ="losses">9</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>7-3</td>
+                    <td>W3</td>
+                </tr>
+                <tr>
+                    <td>A's</td>
+                    <td class="wins">8</td>
+                    <td class ="losses">11</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>4-6</td>
+                    <td>L3</td>
+                </tr>            
+                <tr>
+                    <td>Royals</td>
+                    <td class="wins">1</td>
+                    <td class ="losses">18</td>
+                    <td class="win-pct"></td>
+                    <td class="games-behind"></td>
+                    <td>0-10</td>
+                    <td>L17</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </body>
+    <script src="../../js/Standings.js"></script>
+    <script>
+        var winsEls = document.getElementsByClassName("wins");
+        var lossesEls = document.getElementsByClassName("losses");
+        var winPctsEls = document.getElementsByClassName("win-pct");
+        var gamesBehindEls = document.getElementsByClassName("games-behind");
+
+        calculateAllWinPercentages(winsEls, lossesEls, winPctsEls);
+        calculateAllGamesBehind(winsEls, lossesEls, gamesBehindEls);
+    </script>
+</html>
