@@ -154,4 +154,33 @@ describe ("Schedule Test", function () {
             });
         });
     });
+
+    describe ("Tests for adding a delay to specific weeks", function () {
+        it ('should add a one week delay to each week', function () {
+            var date1 = {
+                innerHTML: '1/1/2018'
+            }
+            var date2 = {
+                innerHTML: '1/2/2018'
+            }
+            var date3 = {
+                innerHTML: '1/3/2018'
+            }
+            var date4 = {
+                innerHTML: '1/4/2018'
+            }
+            var date5 = {
+                innerHTML: '1/5/2018'
+            }
+            var datesArr = [date1, date2, date3, date4, date5];
+
+            schedule.addDelaysToWeeks(datesArr, '1/1/2018');
+
+            expect(date1.innerHTML).to.equal('1/8/2018');
+            expect(date2.innerHTML).to.equal('1/9/2018');
+            expect(date3.innerHTML).to.equal('1/10/2018');
+            expect(date4.innerHTML).to.equal('1/11/2018');
+            expect(date5.innerHTML).to.equal('1/12/2018');
+        });
+    });
 });

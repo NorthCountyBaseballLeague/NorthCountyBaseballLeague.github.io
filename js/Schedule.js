@@ -27,7 +27,32 @@ function constructCounter(teams) {
     return counter;
 };
 
+function addDelaysToWeeks(dateArr, dateToDelayFrom) {
+    var substringDateToDelayFrom = dateToDelayFrom.split('/');
+    var monthToDelayFrom = parseInt(substringDateToDelayFrom[0]);
+    var dayToDelayFrom = parseInt(substringDateToDelayFrom[1]);
+    var yearToDelayFrom = parseInt(substringDateToDelayFrom[2]);
+
+    for (var i = 0; i < dateArr.length; i++) {
+        var substringDate = dateArr[i].innerHTML.split('/');
+        var month = parseInt(substringDate[0]);
+        var day = parseInt(substringDate[1]);
+        var year = parseInt(substringDate[2]);
+
+        if (year >= yearToDelayFrom) {
+            if (month >= monthToDelayFrom) {
+                if (day >= dayToDelayFrom) {
+                    day += 7;
+                }
+            }
+        }
+
+        dateArr[i].innerHTML = month + '/' + day + '/' + year;
+    }
+}
+
 module.exports = {
     calculateWinsAndLosses,
-    constructCounter
+    constructCounter,
+    addDelaysToWeeks
 }
