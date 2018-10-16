@@ -62,10 +62,6 @@ function formatGamesBehind (gamesBehind) {
     return gamesBehindStr;
 };
 
-// TODO: Add functions to calculate the wins and losses
-// TODO: Add functions to calculate the last 10 games record
-// TODO: Add functions to calculate the win/loss streak
-
 module.exports = {
     calculateAllWinPercentages,
     calculateIndividualWinPercentage,

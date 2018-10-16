@@ -1,3 +1,5 @@
+const monthsWith31Days = [1, 3, 5, 7, 8, 10];
+
 function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr, teams) {
     var winCounter = constructCounter(teams);
     var lossCounter = constructCounter(teams);
@@ -39,17 +41,54 @@ function addDelaysToWeeks(dateArr, dateToDelayFrom) {
         var day = parseInt(substringDate[1]);
         var year = parseInt(substringDate[2]);
 
-        if (year >= yearToDelayFrom) {
-            if (month >= monthToDelayFrom) {
-                if (day >= dayToDelayFrom) {
-                    day += 7;
+        var isLaterYear = year > yearToDelayFrom;
+        var isLaterMonth = month > monthToDelayFrom && year === yearToDelayFrom;
+        var isLaterDay = day >= dayToDelayFrom && month === monthToDelayFrom && year === yearToDelayFrom;
+        var dateShouldBeDelayed = isLaterYear || isLaterMonth || isLaterDay;
+
+        if (dateShouldBeDelayed) {
+            day += 7;
+            if (month === 2) {
+                if (year % 4 === 0) {
+                    if (day > 29) {
+                        month++;
+                        day = day % 29;
+                    }
+                }
+                else {
+                    if (day > 28) {
+                        month++;
+                        day = day % 28;
+                    }
                 }
             }
-        }
+            else if (month === 12) {
+                if (day > 31) {
+                    month = 1;
+                    day = day % 31;
+                    year++;
+                }
+            }
+            else if (monthsWith31Days.includes(month)) {
+                if (day > 31) {
+                    month++;
+                    day = day % 31;
+                }
+            }
+            else {
+                if (day > 30) {
+                    month++;
+                    day = day % 30;
+                }
+            }
 
-        dateArr[i].innerHTML = month + '/' + day + '/' + year;
+            dateArr[i].innerHTML = month + '/' + day + '/' + year;
+        }
     }
 }
+
+// TODO: Add functions to calculate the last 10 games record
+// TODO: Add functions to calculate the win/loss streak
 
 module.exports = {
     calculateWinsAndLosses,
