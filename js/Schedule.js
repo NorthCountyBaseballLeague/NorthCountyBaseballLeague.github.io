@@ -1,17 +1,27 @@
 const monthsWith31Days = [1, 3, 5, 7, 8, 10];
+const oneWeek = 7;
+const January = 1;
+const February = 2;
+const December = 12;
+const daysInFebOnLeapYear = 29;
+const daysInFeb = 28;
+const daysInDecember = 31;
+const daysInMonthsWith31Days = 31;
+const daysInMonthsWith30Days = 30;
 
-function calculateWinsAndLosses (winnersArr, awayTeamArr, homeTeamArr, teams) {
+
+function calculateWinsAndLosses(winnerElements, awayTeamElements, homeTeamElements, teams) {
     var winCounter = constructCounter(teams);
     var lossCounter = constructCounter(teams);
 
-    for (var i = 0; i < winnersArr.length; i++) {
-        if (winnersArr[i].innerHTML === awayTeamArr[i].innerHTML) {
-            winCounter[awayTeamArr[i].innerHTML]++;
-            lossCounter[homeTeamArr[i].innerHTML]++;
+    for (var i = 0; i < winnerElements.length; i++) {
+        if (winnerElements[i].innerHTML === awayTeamElements[i].innerHTML) {
+            winCounter[awayTeamElements[i].innerHTML]++;
+            lossCounter[homeTeamElements[i].innerHTML]++;
         }
-        else if (winnersArr[i].innerHTML === homeTeamArr[i].innerHTML && homeTeamArr[i].innerHTML !== "") {
-            winCounter[homeTeamArr[i].innerHTML]++;
-            lossCounter[awayTeamArr[i].innerHTML]++;
+        else if (winnerElements[i].innerHTML === homeTeamElements[i].innerHTML && homeTeamElements[i].innerHTML !== "") {
+            winCounter[homeTeamElements[i].innerHTML]++;
+            lossCounter[awayTeamElements[i].innerHTML]++;
         }
     }
 
@@ -29,14 +39,14 @@ function constructCounter(teams) {
     return counter;
 };
 
-function addDelaysToWeeks(dateArr, dateToDelayFrom) {
+function addDelaysToWeeks(dateElements, dateToDelayFrom) {
     var substringDateToDelayFrom = dateToDelayFrom.split('/');
     var monthToDelayFrom = parseInt(substringDateToDelayFrom[0]);
     var dayToDelayFrom = parseInt(substringDateToDelayFrom[1]);
     var yearToDelayFrom = parseInt(substringDateToDelayFrom[2]);
 
-    for (var i = 0; i < dateArr.length; i++) {
-        var substringDate = dateArr[i].innerHTML.split('/');
+    for (var i = 0; i < dateElements.length; i++) {
+        var substringDate = dateElements[i].innerHTML.split('/');
         var month = parseInt(substringDate[0]);
         var day = parseInt(substringDate[1]);
         var year = parseInt(substringDate[2]);
@@ -46,46 +56,50 @@ function addDelaysToWeeks(dateArr, dateToDelayFrom) {
         var isLaterDay = day >= dayToDelayFrom && month === monthToDelayFrom && year === yearToDelayFrom;
         var dateShouldBeDelayed = isLaterYear || isLaterMonth || isLaterDay;
 
-        if (dateShouldBeDelayed) {
-            day += 7;
-            if (month === 2) {
-                if (year % 4 === 0) {
-                    if (day > 29) {
-                        month++;
-                        day = day % 29;
-                    }
-                }
-                else {
-                    if (day > 28) {
-                        month++;
-                        day = day % 28;
-                    }
-                }
-            }
-            else if (month === 12) {
-                if (day > 31) {
-                    month = 1;
-                    day = day % 31;
-                    year++;
-                }
-            }
-            else if (monthsWith31Days.includes(month)) {
-                if (day > 31) {
+        addDelayToDate(dateShouldBeDelayed, day, month, year, dateElements[i])
+    }
+};
+
+function addDelayToDate(dateShouldBeDelayed, day, month, year, dateElement) {
+    if (dateShouldBeDelayed) {
+        day += oneWeek;
+        if (month === February) {
+            if (year % 4 === 0) {
+                if (day > daysInFebOnLeapYear) {
                     month++;
-                    day = day % 31;
+                    day = day % daysInFebOnLeapYear;
                 }
             }
             else {
-                if (day > 30) {
+                if (day > daysInFeb) {
                     month++;
-                    day = day % 30;
+                    day = day % daysInFeb;
                 }
             }
-
-            dateArr[i].innerHTML = month + '/' + day + '/' + year;
         }
+        else if (month === December) {
+            if (day > daysInDecember) {
+                month = January;
+                day = day % daysInDecember;
+                year++;
+            }
+        }
+        else if (monthsWith31Days.includes(month)) {
+            if (day > daysInMonthsWith31Days) {
+                month++;
+                day = day % daysInMonthsWith31Days;
+            }
+        }
+        else {
+            if (day > daysInMonthsWith30Days) {
+                month++;
+                day = day % daysInMonthsWith30Days;
+            }
+        }
+
+        dateElement.innerHTML = month + '/' + day + '/' + year;
     }
-}
+};
 
 // TODO: Add functions to calculate the last 10 games record
 // TODO: Add functions to calculate the win/loss streak
