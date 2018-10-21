@@ -9,7 +9,7 @@ function calculateAllWinPercentages (winsArray, lossesArray, winPctArray) {
 
 function calculateIndividualWinPercentage (wins, losses) {
     if (wins + losses === 0) {
-        return "";
+        return "0.000";
     }
 
     var winPct = wins / (wins + losses);

@@ -49,7 +49,7 @@ describe ("Standings Test", function () {
 
             var winPct = standings.calculateIndividualWinPercentage(wins, losses);
 
-            expect(winPct).to.equal("");
+            expect(winPct).to.equal("0.000");
         });
         it ('should return the correct win percentage when a team has no wins', function () {
             var wins = 0;
@@ -141,7 +141,7 @@ describe ("Standings Test", function () {
 
             standings.calculateAllWinPercentages(winsArray, lossesArray, winPctArray);
 
-            expect(winPctArray[0].innerHTML).to.equal("");
+            expect(winPctArray[0].innerHTML).to.equal("0.000");
             expect(winPctArray[1].innerHTML).to.equal("1.000");
             expect(winPctArray[2].innerHTML).to.equal("0.000");
             expect(winPctArray[3].innerHTML).to.equal("0.500");

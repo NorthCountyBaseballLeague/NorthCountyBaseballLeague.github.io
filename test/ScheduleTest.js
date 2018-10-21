@@ -13,7 +13,7 @@ describe ("Schedule Test", function () {
 
             for (var i = 0; i < 2; i++) {
                 teams.forEach(team => {
-                    expect(winsAndLosses[i][team]).to.equal(0);
+                    expect(winsAndLosses[team][i]).to.equal(0);
                 });
             }
         });
@@ -32,8 +32,10 @@ describe ("Schedule Test", function () {
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
-                expect(winsAndLosses[0][team]).to.equal(2);
-                expect(winsAndLosses[1][team]).to.equal(2);
+                expect(winsAndLosses[team][0]).to.equal(2);
+                expect(winsAndLosses[team][1]).to.equal(2);
+                expect(winsAndLosses[team][2]).to.equal(2);
+                expect(winsAndLosses[team][3]).to.equal(2);
             });
         });
         it ('should calculate the correct number of wins and losses when the away team always wins', function () {
@@ -51,8 +53,10 @@ describe ("Schedule Test", function () {
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
-                expect(winsAndLosses[0][team]).to.equal(2);
-                expect(winsAndLosses[1][team]).to.equal(2);
+                expect(winsAndLosses[team][0]).to.equal(2);
+                expect(winsAndLosses[team][1]).to.equal(2);
+                expect(winsAndLosses[team][2]).to.equal(2);
+                expect(winsAndLosses[team][3]).to.equal(2);
             });
         });
         it ('should calculate the correct number of wins and losses when the game is pending', function () {
@@ -73,8 +77,10 @@ describe ("Schedule Test", function () {
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
-                expect(winsAndLosses[0][team]).to.equal(0);
-                expect(winsAndLosses[1][team]).to.equal(0);
+                expect(winsAndLosses[team][0]).to.equal(0);
+                expect(winsAndLosses[team][1]).to.equal(0);
+                expect(winsAndLosses[team][2]).to.equal(0);
+                expect(winsAndLosses[team][3]).to.equal(0);
             });
         });
         it ('should calculate the correct number of wins and losses when a team has a bye', function () {
@@ -95,8 +101,10 @@ describe ("Schedule Test", function () {
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
-                expect(winsAndLosses[0][team]).to.equal(0);
-                expect(winsAndLosses[1][team]).to.equal(0);
+                expect(winsAndLosses[team][0]).to.equal(0);
+                expect(winsAndLosses[team][1]).to.equal(0);
+                expect(winsAndLosses[team][2]).to.equal(0);
+                expect(winsAndLosses[team][3]).to.equal(0);
             });
         });
         it ('should calculate the correct number of wins and losses for any number of teams', function () {
@@ -122,16 +130,35 @@ describe ("Schedule Test", function () {
 
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
-            expect(winsAndLosses[0]["team1"]).to.equal(3);
-            expect(winsAndLosses[1]["team1"]).to.equal(2);
-            expect(winsAndLosses[0]["team2"]).to.equal(3);
-            expect(winsAndLosses[1]["team2"]).to.equal(3);
-            expect(winsAndLosses[0]["team3"]).to.equal(2);
-            expect(winsAndLosses[1]["team3"]).to.equal(1);
-            expect(winsAndLosses[0]["team4"]).to.equal(1);
-            expect(winsAndLosses[1]["team4"]).to.equal(2);
-            expect(winsAndLosses[0]["team5"]).to.equal(1);
-            expect(winsAndLosses[1]["team5"]).to.equal(2);
+            expect(winsAndLosses["team1"][0]).to.equal(3);
+            expect(winsAndLosses["team1"][1]).to.equal(2);
+            expect(winsAndLosses["team2"][0]).to.equal(3);
+            expect(winsAndLosses["team2"][1]).to.equal(3);
+            expect(winsAndLosses["team3"][0]).to.equal(2);
+            expect(winsAndLosses["team3"][1]).to.equal(1);
+            expect(winsAndLosses["team4"][0]).to.equal(1);
+            expect(winsAndLosses["team4"][1]).to.equal(2);
+            expect(winsAndLosses["team5"][0]).to.equal(1);
+            expect(winsAndLosses["team5"][1]).to.equal(2);
+        });
+        it ('should calculate the last 10 games record when more than 10 games have been played', function () {
+            var team1 = {
+                innerHTML : "team1"
+            };
+            var team2 = {
+                innerHTML : "team2"
+            };
+            var winnersArray = [team2, team1, team2, team2, team1, team1, team1, team1, team2, team2, team1];
+            var awayTeamArray = [team2, team2, team2, team2, team2, team2, team2, team2, team2, team2, team2];
+            var homeTeamArray = [team1, team1, team1, team1, team1, team1, team1, team1, team1, team1, team1];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            expect(winsAndLosses["team1"][2]).to.equal(6);
+            expect(winsAndLosses["team1"][3]).to.equal(4);
+            expect(winsAndLosses["team2"][2]).to.equal(4);
+            expect(winsAndLosses["team2"][3]).to.equal(6);
         });
     });
 
@@ -139,18 +166,22 @@ describe ("Schedule Test", function () {
         it ('should construct an empty object when there are no teams', function () {
             var teams = [];
 
-            var counter = schedule.constructCounter(teams);
+            var counter = schedule.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(0);
         });
         it ('should construct an object with values set to 0 when there are teams', function () {
             var teams = ["team1", "team2", "team3"];
 
-            var counter = schedule.constructCounter(teams);
+            var counter = schedule.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(3);
             teams.forEach(function (team) {
-                expect(counter[team]).to.equal(0);
+                expect(counter[team].length).to.equal(4);
+                expect(counter[team][0]).to.equal(0);
+                expect(counter[team][1]).to.equal(0);
+                expect(counter[team][2]).to.equal(0);
+                expect(counter[team][3]).to.equal(0);
             });
         });
     });
