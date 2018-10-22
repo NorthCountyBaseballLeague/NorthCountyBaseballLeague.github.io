@@ -4,7 +4,38 @@
         <meta charset="utf-8">
         <title>North County Baseball League</title>
         <style>
-        
+            table {
+                border-collapse: collapse;
+                display: none;
+                border-left: 3px solid black;
+            }
+
+            td {
+                text-align: center;
+                border-top:1px solid black;
+                border-bottom: 1px solid black;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            th {
+                background-color: rgb(202, 202, 202);
+                border-top:3px solid black;
+                border-bottom: 2px solid black;
+            }
+
+            .last_column {
+                border-right: 3px solid black;
+            }
+
+            .last_row {
+                border-bottom: 3px solid black;
+            }
+
+            .middle-column {
+                border-right: 1px solid black;
+            }
+
         </style>
     </head>
     <body>
@@ -21,10 +52,65 @@
 
         <!-- <h3 id="playoffs"><a href="Playoffs.html">Playoffs</a></h3> -->
 
-        <h4>10/21/18</h4>
+        <select id='date' name='date'>
+            <option value='Date'>Date</option>
+            <option value="10/21/18">10/21/18</option>
+        </select>
+
+        <br><br>
+
+        <table id='10/21/18' cellpadding='5'>
+            <thead>
+                <tr>
+                    <th>Visitors</th>
+                    <th></th>
+                    <th></th>
+                    <th class='last_column'>Home</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A's</td>
+                    <td class='middle-column'>4</td>
+                    <td>12</td>
+                    <td class='last_column'>Pauma</td>
+                </tr>
+                <tr>
+                    <td>Toros</td>
+                    <td class='middle-column'>8</td>
+                    <td>5</td>
+                    <td class='last_column'>Tomateros</td>
+                </tr>
+                <tr class='last_row'>
+                    <td>Nationals</td>
+                    <td class='middle-column'>4</td>
+                    <td>5</td>
+                    <td class='last_column'>Saints</td>
+                </tr>
+            </tbody>
+        </table>
 
     </body>
     <script>
-    
+
+        // Refactor out into their own file
+        // Add function to bold the winner of the game
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('select[name="date"]').onchange=changeEventHandler;
+        },false);
+
+        function changeEventHandler(event) {            
+            var tablesToHide = document.getElementsByTagName('table');
+            for (var i = 0; i < tablesToHide.length; i++) {
+                tablesToHide[i].style.display = 'none';
+            }
+
+            var tableToShow = document.getElementById(this.value);
+            if (tableToShow) {
+                tableToShow.style.display = 'block';
+            }
+        }
+
     </script>
 </html>
