@@ -115,7 +115,6 @@ function addDelayToDate(dateShouldBeDelayed, day, month, year, dateElement) {
     }
 };
 
-// TODO: Add functions to calculate the last 10 games record
 // TODO: Add functions to calculate the win/loss streak
 
 module.exports = {
