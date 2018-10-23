@@ -9,7 +9,6 @@ const daysInDecember = 31;
 const daysInMonthsWith31Days = 31;
 const daysInMonthsWith30Days = 30;
 
-
 function calculateWinsAndLosses(winnerElements, awayTeamElements, homeTeamElements, teams) {
     var recordCounter = constructRecordCounter(teams);
 
@@ -18,6 +17,7 @@ function calculateWinsAndLosses(winnerElements, awayTeamElements, homeTeamElemen
             recordCounter[awayTeamElements[i].innerHTML][0]++;
             recordCounter[homeTeamElements[i].innerHTML][1]++;
             
+            // Calculate last 10 games record
             if (recordCounter[awayTeamElements[i].innerHTML][2] + recordCounter[awayTeamElements[i].innerHTML][3] < 10) {
                 recordCounter[awayTeamElements[i].innerHTML][2]++;  
             }
@@ -25,17 +25,64 @@ function calculateWinsAndLosses(winnerElements, awayTeamElements, homeTeamElemen
             if (recordCounter[homeTeamElements[i].innerHTML][2] + recordCounter[homeTeamElements[i].innerHTML][3] < 10) {
                 recordCounter[homeTeamElements[i].innerHTML][3]++;
             }
+
+            // Calculate win/loss streak
+            if (recordCounter[awayTeamElements[i].innerHTML][4] === '') {
+                recordCounter[awayTeamElements[i].innerHTML][4] = 'W';
+                recordCounter[awayTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[awayTeamElements[i].innerHTML][4] === 'W') {
+                recordCounter[awayTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[awayTeamElements[i].innerHTML][4] === 'L') {
+                recordCounter[awayTeamElements[i].innerHTML][4] = 'L' + recordCounter[awayTeamElements[i].innerHTML][5];
+            }
+
+            if (recordCounter[homeTeamElements[i].innerHTML][4] === '') {
+                recordCounter[homeTeamElements[i].innerHTML][4] = 'L';
+                recordCounter[homeTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[homeTeamElements[i].innerHTML][4] === 'L') {
+                recordCounter[homeTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[homeTeamElements[i].innerHTML][4] === 'W') {
+                recordCounter[homeTeamElements[i].innerHTML][4] = 'W' + recordCounter[homeTeamElements[i].innerHTML][5];
+            }
         }
         else if (winnerElements[i].innerHTML === homeTeamElements[i].innerHTML && homeTeamElements[i].innerHTML !== "") {
             recordCounter[homeTeamElements[i].innerHTML][0]++;
             recordCounter[awayTeamElements[i].innerHTML][1]++;
             
+            // Calculate last 10 games record
             if (recordCounter[awayTeamElements[i].innerHTML][2] + recordCounter[awayTeamElements[i].innerHTML][3] < 10) {
                 recordCounter[awayTeamElements[i].innerHTML][3]++;  
             }
 
             if (recordCounter[homeTeamElements[i].innerHTML][2] + recordCounter[homeTeamElements[i].innerHTML][3] < 10) {
                 recordCounter[homeTeamElements[i].innerHTML][2]++;
+            }
+
+            // Calculate win/loss streak
+            if (recordCounter[awayTeamElements[i].innerHTML][4] === '') {
+                recordCounter[awayTeamElements[i].innerHTML][4] = 'L';
+                recordCounter[awayTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[awayTeamElements[i].innerHTML][4] === 'L') {
+                recordCounter[awayTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[awayTeamElements[i].innerHTML][4] === 'W') {
+                recordCounter[awayTeamElements[i].innerHTML][4] = 'W' + recordCounter[awayTeamElements[i].innerHTML][5];
+            }
+
+            if (recordCounter[homeTeamElements[i].innerHTML][4] === '') {
+                recordCounter[homeTeamElements[i].innerHTML][4] = 'W';
+                recordCounter[homeTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[homeTeamElements[i].innerHTML][4] === 'W') {
+                recordCounter[homeTeamElements[i].innerHTML][5]++;
+            }
+            else if (recordCounter[homeTeamElements[i].innerHTML][4] === 'L') {
+                recordCounter[homeTeamElements[i].innerHTML][4] = 'L' + recordCounter[homeTeamElements[i].innerHTML][5];
             }
         }
     }
@@ -47,7 +94,7 @@ function constructRecordCounter(teams) {
     var counter = {};
 
     teams.forEach(team => {
-        counter[team] = [0, 0, 0, 0];
+        counter[team] = [0, 0, 0, 0, '', 0];
     });
 
     return counter;

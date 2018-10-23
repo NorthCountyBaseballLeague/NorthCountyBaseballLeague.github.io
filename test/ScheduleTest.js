@@ -1,9 +1,9 @@
 var expect = require('chai').expect;
 var schedule = require('../js/Schedule');
 
-describe ("Schedule Test", function () {
-    describe ("Tests for calculating the number of wins and losses", function () {
-        it ('should calculate the correct number of wins and losses when nobody has played yet', function () {
+describe("Schedule Test", function () {
+    describe("Tests for calculating the number of wins and losses", function () {
+        it('should calculate the correct number of wins and losses when nobody has played yet', function () {
             var winnersArray = [];
             var awayTeamArray = [];
             var homeTeamArray = [];
@@ -11,18 +11,20 @@ describe ("Schedule Test", function () {
 
             var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
-            for (var i = 0; i < 2; i++) {
-                teams.forEach(team => {
+            teams.forEach(team => {
+                for (var i = 0; i < 4; i++) {
                     expect(winsAndLosses[team][i]).to.equal(0);
-                });
-            }
+                }
+                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][5]).to.equal(0);
+            });
         });
-        it ('should calculate the correct number of wins and losses when the home team always wins', function () {
+        it('should calculate the correct number of wins and losses when the home team always wins', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var winnersArray = [team1, team2, team1, team2];
             var awayTeamArray = [team2, team1, team2, team1];
@@ -38,12 +40,12 @@ describe ("Schedule Test", function () {
                 expect(winsAndLosses[team][3]).to.equal(2);
             });
         });
-        it ('should calculate the correct number of wins and losses when the away team always wins', function () {
+        it('should calculate the correct number of wins and losses when the away team always wins', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var winnersArray = [team2, team1, team2, team1];
             var awayTeamArray = [team2, team1, team2, team1];
@@ -59,15 +61,15 @@ describe ("Schedule Test", function () {
                 expect(winsAndLosses[team][3]).to.equal(2);
             });
         });
-        it ('should calculate the correct number of wins and losses when the game is pending', function () {
+        it('should calculate the correct number of wins and losses when the game is pending', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var pending = {
-                innerHTML : "pending"
+                innerHTML: "pending"
             };
             var winnersArray = [pending, pending, pending, pending];
             var awayTeamArray = [team2, team1, team2, team1];
@@ -81,17 +83,19 @@ describe ("Schedule Test", function () {
                 expect(winsAndLosses[team][1]).to.equal(0);
                 expect(winsAndLosses[team][2]).to.equal(0);
                 expect(winsAndLosses[team][3]).to.equal(0);
+                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
-        it ('should calculate the correct number of wins and losses when a team has a bye', function () {
+        it('should calculate the correct number of wins and losses when a team has a bye', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var bye = {
-                innerHTML : ""
+                innerHTML: ""
             };
             var winnersArray = [bye, bye];
             var awayTeamArray = [team1, team2];
@@ -105,23 +109,25 @@ describe ("Schedule Test", function () {
                 expect(winsAndLosses[team][1]).to.equal(0);
                 expect(winsAndLosses[team][2]).to.equal(0);
                 expect(winsAndLosses[team][3]).to.equal(0);
+                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
-        it ('should calculate the correct number of wins and losses for any number of teams', function () {
+        it('should calculate the correct number of wins and losses for any number of teams', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var team3 = {
-                innerHTML : "team3"
+                innerHTML: "team3"
             };
             var team4 = {
-                innerHTML : "team4"
+                innerHTML: "team4"
             };
             var team5 = {
-                innerHTML : "team5"
+                innerHTML: "team5"
             };
             var winnersArray = [team2, team1, team4, team3, team2, team5, team1, team1, team3, team2];
             var awayTeamArray = [team2, team1, team3, team3, team2, team1, team2, team4, team3, team2];
@@ -141,12 +147,12 @@ describe ("Schedule Test", function () {
             expect(winsAndLosses["team5"][0]).to.equal(1);
             expect(winsAndLosses["team5"][1]).to.equal(2);
         });
-        it ('should calculate the last 10 games record when more than 10 games have been played', function () {
+        it('should calculate the last 10 games record when more than 10 games have been played', function () {
             var team1 = {
-                innerHTML : "team1"
+                innerHTML: "team1"
             };
             var team2 = {
-                innerHTML : "team2"
+                innerHTML: "team2"
             };
             var winnersArray = [team2, team1, team2, team2, team1, team1, team1, team1, team2, team2, team1];
             var awayTeamArray = [team2, team2, team2, team2, team2, team2, team2, team2, team2, team2, team2];
@@ -160,34 +166,55 @@ describe ("Schedule Test", function () {
             expect(winsAndLosses["team2"][2]).to.equal(4);
             expect(winsAndLosses["team2"][3]).to.equal(6);
         });
+        it('should calculate the win/loss streak of each team', function () {
+            var team1 = {
+                innerHTML: "team1"
+            };
+            var team2 = {
+                innerHTML: "team2"
+            };
+            var winnersArray = [team2, team1, team2, team2, team1, team1, team1];
+            var awayTeamArray = [team2, team2, team2, team2, team2, team2, team2];
+            var homeTeamArray = [team1, team1, team1, team1, team1, team1, team1];
+            var teams = ["team1", "team2"];
+
+            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+
+            expect(winsAndLosses["team1"][4]).to.equal('W3');
+            expect(winsAndLosses["team1"][5]).to.equal(3);
+            expect(winsAndLosses["team2"][4]).to.equal('L3');
+            expect(winsAndLosses["team2"][5]).to.equal(3);
+        });
     });
 
-    describe ("Tests for constructing a counter for the number of wins/losses", function () {
-        it ('should construct an empty object when there are no teams', function () {
+    describe("Tests for constructing a counter for the number of wins/losses", function () {
+        it('should construct an empty object when there are no teams', function () {
             var teams = [];
 
             var counter = schedule.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(0);
         });
-        it ('should construct an object with values set to 0 when there are teams', function () {
+        it('should construct an object with values set to 0 when there are teams', function () {
             var teams = ["team1", "team2", "team3"];
 
             var counter = schedule.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(3);
             teams.forEach(function (team) {
-                expect(counter[team].length).to.equal(4);
+                expect(counter[team].length).to.equal(6);
                 expect(counter[team][0]).to.equal(0);
                 expect(counter[team][1]).to.equal(0);
                 expect(counter[team][2]).to.equal(0);
                 expect(counter[team][3]).to.equal(0);
+                expect(counter[team][4]).to.equal('');
+                expect(counter[team][5]).to.equal(0);
             });
         });
     });
 
-    describe ("Tests for adding a delay to specific weeks", function () {
-        it ('should add a one week delay to each week', function () {
+    describe("Tests for adding a delay to specific weeks", function () {
+        it('should add a one week delay to each week', function () {
             var date1 = {
                 innerHTML: '1/1/2018'
             }
@@ -213,7 +240,7 @@ describe ("Schedule Test", function () {
             expect(date4.innerHTML).to.equal('1/11/2018');
             expect(date5.innerHTML).to.equal('1/12/2018');
         });
-        it ('should add a week delay when the date comes at the end of a month', function () {
+        it('should add a week delay when the date comes at the end of a month', function () {
             var date1 = {
                 innerHTML: '1/31/2018'
             }
@@ -239,7 +266,7 @@ describe ("Schedule Test", function () {
             expect(date4.innerHTML).to.equal('5/7/2018');
             expect(date5.innerHTML).to.equal('7/1/2018');
         });
-        it ('should add a week delay when the date comes at the end of a year', function () {
+        it('should add a week delay when the date comes at the end of a year', function () {
             var date1 = {
                 innerHTML: '12/25/2018'
             }
@@ -258,7 +285,7 @@ describe ("Schedule Test", function () {
             expect(date2.innerHTML).to.equal('1/6/2019');
             expect(date3.innerHTML).to.equal('1/7/2019');
         });
-        it ('should not add a delay when the date comes before the date to delay from', function () {
+        it('should not add a delay when the date comes before the date to delay from', function () {
             var date1 = {
                 innerHTML: '12/25/2018'
             }
