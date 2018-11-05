@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
         <title>North County Baseball League</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
+            html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+            .w3-sidebar {
+                z-index: 3;
+                width: 250px;
+                top: 43px;
+                bottom: 0;
+                height: inherit;
+            }
+            .selected {
+                background-color: rgb(150, 150, 150);
+                color: black;
+            }
             #table {
                 border-collapse: collapse;
             }
@@ -67,115 +84,162 @@
     </head>
     <body>
 
-        <h1><a href="../../index.html">North County Baseball League</a></h1>
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="openSidebar()">
+                        <i class="fa fa-bars"></i>
+                </a>
+                <a href="../../index.html" class="w3-bar-item w3-button w3-theme-l1">North County Baseball League</a>
+                <a href="Rosters.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Rosters</a>
+                <a href="Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Schedule</a>
+                <a href="Standings.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Standings</a>
+                <a class="w3-bar-item w3-hide-small selected">Playoffs</a>
+            </div>
+        </div>
 
-        <h2>Playoffs</h2>
-        
-        <h3 id="rosters"><a href="Rosters.html">Rosters</a></h3>
-        
-        <h3 id="schedule"><a href="Schedule.html">Schedule</a></h3>
-        
-        <h3 id="standings"><a href="Standings.html">Standings</a></h3>
+        <!-- Sidebar -->
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+            <a href="javascript:void(0)" onclick="closeSidebar()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4 class="w3-bar-item"><b>Season</b></h4>
+            <a class="w3-bar-item w3-button w3-hover-black" href="../FallSeason2018/FallSeason2018.html">2018-2019 Fall Season</a>
+            <a class="w3-bar-item selected">2018 Spring Season</a>
+        </nav>
 
-        <table id="table" cellpadding="5">
-            <thead>
-                <tr>
-                    <th id="no_border"></th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Visitors</th>
-                    <th>Home</th>
-                    <th>Field</th>
-                    <th>Winner</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="top_round"></td>
-                    <td>9/9/2018</td>
-                    <td>9 AM</td>
-                    <td>Saints</td>
-                    <td>Leones</td>
-                    <td>Pauma</td>
-                    <td class="last_column">Saints</td>
-                </tr>
-                <tr>
-                    <td class="middle_rounds"></td>
-                    <td>9/16/2018</td>
-                    <td>9 AM</td>
-                    <td>Leones</td>
-                    <td>Saints</td>
-                    <td>Orange Glen H.S.</td>
-                    <td class="last_column">Saints</td>
-                </tr>
-                <tr>
-                    <td class="middle_rounds">Semi</td>
-                    <td class="date_break">9/16/2018</td>
-                    <td class="date_break">12:30 PM</td>
-                    <td class="date_break">Saints</td>
-                    <td class="date_break">Leones</td>
-                    <td class="date_break">Orange Glen H.S.</td>
-                    <td class="last_column_break">N/A</td>
-                </tr>
-                <tr>
-                    <td class="middle_rounds">Finals</td>
-                    <td>9/9/2018</td>
-                    <td>12:30 PM</td>
-                    <td>Nationals</td>
-                    <td>Toros</td>
-                    <td>Pauma</td>
-                    <td class="last_column">Toros</td>
-                </tr>
-                <tr>
-                    <td class="middle_rounds"></td>
-                    <td>9/16/2018</td>
-                    <td>9 AM</td>
-                    <td>Toros</td>
-                    <td>Nationals</td>
-                    <td>Pauma</td>
-                    <td class="last_column">Toros</td>
-                </tr>
-                <tr class="last_row">
-                    <td class="middle_rounds"></td>
-                    <td class="date_break">9/16/2018</td>
-                    <td class="date_break">12:30 PM</td>
-                    <td class="date_break">Nationals</td>
-                    <td class="date_break">Toros</td>
-                    <td class="date_break">Pauma</td>
-                    <td class="last_column_break">N/A</td>
-                </tr>
-                <tr>
-                    <td class="top_round"></td>
-                    <td>9/23/2018</td>
-                    <td>9 AM</td>
-                    <td>Toros</td>
-                    <td>Saints</td>
-                    <td>Orange Glen H.S.</td>
-                    <td class="last_column">Toros</td>
-                </tr>
-                <tr>
-                    <td class="middle_rounds">Finals</td>
-                    <td>9/30/2018</td>
-                    <td>9 AM</td>
-                    <td>Saints</td>
-                    <td>Toros</td>
-                    <td>Pauma</td>
-                    <td class="last_column">Toros</td>
-                </tr>
-                <tr class="last_row">
-                    <td class="middle_rounds"></td>
-                    <td class="date_break">9/30/2018</td>
-                    <td class="date_break">12:30 PM</td>
-                    <td class="date_break">Saints</td>
-                    <td class="date_break">Toros</td>
-                    <td class="date_break">Pauma</td>
-                    <td class="last_column_break">N/A</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large" onclick="closeSidebar()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+        <div class="w3-main" style="margin-left:250px">
+            <div class="w3-row w3-padding-64">
+                <div class="w3-container">
+                    <h1 class="w3-text-black">Playoffs</h1>
+                    <table id="table" cellpadding="5">
+                        <thead>
+                            <tr>
+                                <th id="no_border"></th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Visitors</th>
+                                <th>Home</th>
+                                <th>Field</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="top_round"></td>
+                                <td>9/9/2018</td>
+                                <td>9 AM</td>
+                                <td>Saints</td>
+                                <td>Leones</td>
+                                <td>Pauma</td>
+                                <td class="last_column">Saints</td>
+                            </tr>
+                            <tr>
+                                <td class="middle_rounds"></td>
+                                <td>9/16/2018</td>
+                                <td>9 AM</td>
+                                <td>Leones</td>
+                                <td>Saints</td>
+                                <td>Orange Glen H.S.</td>
+                                <td class="last_column">Saints</td>
+                            </tr>
+                            <tr>
+                                <td class="middle_rounds">Semi</td>
+                                <td class="date_break">9/16/2018</td>
+                                <td class="date_break">12:30 PM</td>
+                                <td class="date_break">Saints</td>
+                                <td class="date_break">Leones</td>
+                                <td class="date_break">Orange Glen H.S.</td>
+                                <td class="last_column_break">N/A</td>
+                            </tr>
+                            <tr>
+                                <td class="middle_rounds">Finals</td>
+                                <td>9/9/2018</td>
+                                <td>12:30 PM</td>
+                                <td>Nationals</td>
+                                <td>Toros</td>
+                                <td>Pauma</td>
+                                <td class="last_column">Toros</td>
+                            </tr>
+                            <tr>
+                                <td class="middle_rounds"></td>
+                                <td>9/16/2018</td>
+                                <td>9 AM</td>
+                                <td>Toros</td>
+                                <td>Nationals</td>
+                                <td>Pauma</td>
+                                <td class="last_column">Toros</td>
+                            </tr>
+                            <tr class="last_row">
+                                <td class="middle_rounds"></td>
+                                <td class="date_break">9/16/2018</td>
+                                <td class="date_break">12:30 PM</td>
+                                <td class="date_break">Nationals</td>
+                                <td class="date_break">Toros</td>
+                                <td class="date_break">Pauma</td>
+                                <td class="last_column_break">N/A</td>
+                            </tr>
+                            <tr>
+                                <td class="top_round"></td>
+                                <td>9/23/2018</td>
+                                <td>9 AM</td>
+                                <td>Toros</td>
+                                <td>Saints</td>
+                                <td>Orange Glen H.S.</td>
+                                <td class="last_column">Toros</td>
+                            </tr>
+                            <tr>
+                                <td class="middle_rounds">Finals</td>
+                                <td>9/30/2018</td>
+                                <td>9 AM</td>
+                                <td>Saints</td>
+                                <td>Toros</td>
+                                <td>Pauma</td>
+                                <td class="last_column">Toros</td>
+                            </tr>
+                            <tr class="last_row">
+                                <td class="middle_rounds"></td>
+                                <td class="date_break">9/30/2018</td>
+                                <td class="date_break">12:30 PM</td>
+                                <td class="date_break">Saints</td>
+                                <td class="date_break">Toros</td>
+                                <td class="date_break">Pauma</td>
+                                <td class="last_column_break">N/A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Get the Sidebar
+            var mySidebar = document.getElementById("mySidebar");
+
+            // Get the DIV with overlay effect
+            var overlayBg = document.getElementById("myOverlay");
+
+            // Toggle between showing and hiding the sidebar, and add overlay effect
+            function openSidebar() {
+                if (mySidebar.style.display === 'block') {
+                    mySidebar.style.display = 'none';
+                    overlayBg.style.display = "none";
+                } else {
+                    mySidebar.style.display = 'block';
+                    overlayBg.style.display = "block";
+                }
+            }
+
+            // Close the sidebar with the close button
+            function closeSidebar() {
+                mySidebar.style.display = "none";
+                overlayBg.style.display = "none";
+            }
+        </script>
 
     </body>
-    <script>
-    
-    </script>
 </html>
