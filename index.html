@@ -21,6 +21,10 @@
                 background-color: rgb(150, 150, 150);
                 color: black;
             }
+            .classic {
+                color: #0000EE;
+                font-size: 16px;
+            }
         </style>
     </head>
     <body>
@@ -28,25 +32,9 @@
         <!-- Navbar -->
         <div class="w3-top">
             <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="openSidebar()">
-                        <i class="fa fa-bars"></i>
-                </a>
                 <a class="w3-bar-item w3-theme-l1">NCBL</a>
-                <a href="HTML/FallSeason2018/Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Schedule</a>
-                <a href="HTML/FallSeason2018/Scores.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Scores</a>
-                <a href="HTML/FallSeason2018/Standings.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Standings</a>
             </div>
         </div>
-
-        <!-- Sidebar -->
-        <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
-            <a href="javascript:void(0)" onclick="closeSidebar()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-                <i class="fa fa-remove"></i>
-            </a>
-            <h4 class="w3-bar-item"><b>Season</b></h4>
-            <a class="w3-bar-item selected">2018-2019 Fall Season</a>
-            <a class="w3-bar-item w3-button w3-hover-black" href="HTML/SpringSeason2018/SpringSeason2018.html">2018 Spring Season</a>
-        </nav>
 
         <!-- Overlay effect when opening sidebar on small screens -->
         <div class="w3-overlay w3-hide-large" onclick="closeSidebar()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -56,7 +44,10 @@
             <div class="w3-row w3-padding-64">
                 <div class="w3-twothird w3-container">
                     <h1 class="w3-text-black">Welcome to the North County Baseball League</h1>
-                    <p></p>
+                    <br>
+                    <a class="classic" href="HTML/FallSeason2018/FallSeason2018.html">2018-2019 Fall Season</a>
+                    <br>
+                    <a class="classic" href="HTML/SpringSeason2018/SpringSeason2018.html">2018 Spring Season</a>
                 </div>
             </div>
         </div>
