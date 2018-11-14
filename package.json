@@ -2,16 +2,51 @@
     "name": "ncbl_website",
     "version": "0.2.0",
     "description": "Website for the North County Baseball League",
+    "main": "app.js",
     "scripts": {
-        "test": "mocha test"
+        "test": "mocha test",
+        "start": "set DEBUG=app,app:* & nodemon app.js",
+        "lint": "eslint app.js"
     },
     "author": "eli-magallanes",
     "license": "MIT",
+    "dependencies": {
+        "axios": "0.18.0",
+        "body-parser": "1.18.3",
+        "bootstrap": ">=4.1.2",
+        "chalk": "1.1.3",
+        "cookie-parser": "1.4.3",
+        "debug": ">=2.6.9",
+        "ejs": "2.6.1",
+        "express": "4.15.2",
+        "express-session": "1.15.6",
+        "jquery": "3.2.1",
+        "mongodb": "3.1.8",
+        "morgan": "1.8.1",
+        "nodemon": "1.18.4",
+        "passport": "0.4.0",
+        "passport-local": "1.0.0",
+        "pug": "2.0.0",
+        "xml2js": "0.4.19"
+    },
     "devDependencies": {
         "chai": "^4.1.2",
         "mocha": "^3.5.3",
         "test": ">=0.0.5",
         "growl": ">=1.10.0",
-        "debug": ">=2.6.9"
+        "eslint": "5.8.0",
+        "eslint-config-airbnb-base": "13.1.0",
+        "eslint-plugin-import": "2.14.0"
+    },
+    "nodemonConfig": {
+        "restartable": "rs",
+        "ignore": [
+            "node_modules/**/node_modules"
+        ],
+        "delay": "2500",
+        "env": {
+            "NODE_ENV": "development",
+            "PORT": 4000
+        }
     }
 }

@@ -1,4 +1,4 @@
-function calculateAllWinPercentages (winsArray, lossesArray, winPctArray) {
+function calculateAllWinPercentages(winsArray, lossesArray, winPctArray) {
     for (var i = 0; i < winsArray.length; i++) {
         var wins = parseInt(winsArray[i].innerHTML);
         var losses = parseInt(lossesArray[i].innerHTML);
@@ -7,7 +7,7 @@ function calculateAllWinPercentages (winsArray, lossesArray, winPctArray) {
     }
 };
 
-function calculateIndividualWinPercentage (wins, losses) {
+function calculateIndividualWinPercentage(wins, losses) {
     if (wins + losses === 0) {
         return "0.000";
     }
