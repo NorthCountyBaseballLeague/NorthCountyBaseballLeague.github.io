@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
     head
-        titleNorth County Baseball League
+        title North County Baseball League
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
@@ -28,5 +28,26 @@ html(lang="en")
                     br
                     a.classic(href="HTML/SpringSeason2018/SpringSeason2018.html") 2018 Spring Season
 
-        script
-            include sidebarController.js
+        script.
+            // Get the Sidebar
+            const mySidebar = document.getElementById('mySidebar');
+
+            // Get the DIV with overlay effect
+            const overlayBg = document.getElementById('myOverlay');
+
+            // Toggle between showing and hiding the sidebar, and add overlay effect
+            function openSidebar() {
+                if (mySidebar.style.display === 'block') {
+                    mySidebar.style.display = 'none';
+                    overlayBg.style.display = 'none';
+                } else {
+                    mySidebar.style.display = 'block';
+                    overlayBg.style.display = 'block';
+                }
+            }
+
+            // Close the sidebar with the close button
+            function closeSidebar() {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = 'none';
+            }
