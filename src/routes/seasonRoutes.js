@@ -1,16 +1,17 @@
 const express = require('express');
-// const bookController = require('../controllers/bookController');
 
 const seasonRouter = express.Router();
 
-function router(nav) {
+function router(sidebar, title) {
     seasonRouter.route('/')
         .get((req, res) => {
             res.render('seasonView', {
-                nav,
+                sidebar,
                 title
             });
         });
+
+    return seasonRouter;
 }
 
 module.exports = router;
