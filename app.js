@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
@@ -20,28 +20,13 @@ app.set('views', './src/views');
 app.set('view engine', 'pug');
 
 const seasons = [
-    { link: '/FallSeason2018', title: '2018-2019 Fall Season' },
-    { link: '/SpringSeason2018', title: '2018 Spring Season' }
+    { link: '/2018/Fall', title: '2018-2019 Fall Season' },
+    { link: '/2018/Spring', title: '2018 Spring Season' }
 ];
 
-const fall2018Sidebar = [
-    { link: '/schedule', title: 'Schedule' },
-    { link: '/scores', title: 'Scores' },
-    { link: '/standings', title: 'Standings' }
-];
+const seasonRouter = require('./src/routes/seasonRoutes');
 
-const spring2018Sidebar = [
-    { link: '/rosters', title: 'Rosters' },
-    { link: '/schedule', title: 'Schedule' },
-    { link: '/standings', title: 'Standings' },
-    { link: '/playoffs', title: 'Playoffs' }
-];
-
-const fall2018Router = require('./src/routes/seasonRoutes')(fall2018Sidebar, '2018-2019 Fall Season');
-const spring2018Router = require('./src/routes/seasonRoutes')(spring2018Sidebar, '2018 Spring Season');
-
-app.use('/FallSeason2018', fall2018Router);
-app.use('/SpringSeason2018', spring2018Router);
+app.use('/', seasonRouter);
 
 app.get('/', (req, res) => {
     res.render('index', { seasons });

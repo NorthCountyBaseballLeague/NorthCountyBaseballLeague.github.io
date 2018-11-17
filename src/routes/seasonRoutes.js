@@ -2,16 +2,35 @@ const express = require('express');
 
 const seasonRouter = express.Router();
 
-function router(sidebar, title) {
-    seasonRouter.route('/')
-        .get((req, res) => {
-            res.render('seasonView', {
-                sidebar,
-                title
-            });
-        });
+const fall2018Sidebar = [
+    { link: '/schedule', title: 'Schedule' },
+    { link: '/scores', title: 'Scores' },
+    { link: '/standings', title: 'Standings' }
+];
 
-    return seasonRouter;
-}
+const spring2018Sidebar = [
+    { link: '/rosters', title: 'Rosters' },
+    { link: '/schedule', title: 'Schedule' },
+    { link: '/standings', title: 'Standings' },
+    { link: '/playoffs', title: 'Playoffs' }
+];
 
-module.exports = router;
+const seasonDictionary = {
+    '2018Fall': {
+        sidebar: fall2018Sidebar,
+        title: '2018-2019 Fall Season'
+    },
+    '2018Spring': {
+        sidebar: spring2018Sidebar,
+        title: '2018 Spring Season'
+    }
+};
+
+seasonRouter.route('/:year/:season')
+    .get((req, res) => {
+        const { year, season } = req.params;
+        res.render('seasonView', seasonDictionary[year + season]);
+    });
+
+
+module.exports = seasonRouter;
