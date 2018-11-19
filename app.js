@@ -20,13 +20,13 @@ app.set('views', './src/views');
 app.set('view engine', 'pug');
 
 const seasons = [
-    { link: '/2018/Fall', title: '2018-2019 Fall Season' },
-    { link: '/2018/Spring', title: '2018 Spring Season' }
+    { link: '/2018/fall', title: '2018-2019 Fall Season' },
+    { link: '/2018/spring', title: '2018 Spring Season' }
 ];
 
-const seasonRouter = require('./src/routes/seasonRoutes');
+const router = require('./src/routes/routes');
 
-app.use('/', seasonRouter);
+app.use('/', router);
 
 app.get('/', (req, res) => {
     res.render('index', { seasons });
