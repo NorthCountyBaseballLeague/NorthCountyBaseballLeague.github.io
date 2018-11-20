@@ -18,35 +18,55 @@ const spring2018Sidebar = [
 const seasonDictionary = {
     '2018fall': {
         sidebar: fall2018Sidebar,
-        title: '2018-2019 Fall Season'
+        title: '2018-2019 Fall '
     },
     '2018spring': {
         sidebar: spring2018Sidebar,
-        title: '2018 Spring Season'
+        title: '2018 Spring '
     }
 };
 
 router.route('/:year/:season')
     .get((req, res) => {
         const { year, season } = req.params;
-        res.render('seasonView', seasonDictionary[year + season]);
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Season`;
+        res.render('seasonView', {
+            sidebar: curSeason.sidebar,
+            title
+        });
     });
 
 router.route('/:year/:season/schedule')
     .get((req, res) => {
         const { year, season } = req.params;
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Schedule`;
         res.render('scheduleView', {
-            sidebar: seasonDictionary[year + season].sidebar,
-            title: 'Schedule'
+            sidebar: curSeason.sidebar,
+            title
         });
     });
 
 router.route('/:year/:season/scores')
     .get((req, res) => {
         const { year, season } = req.params;
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Scores`;
         res.render('scoresView', {
-            sidebar: seasonDictionary[year + season].sidebar,
-            title: 'Scores'
+            sidebar: curSeason.sidebar,
+            title
+        });
+    });
+
+router.route('/:year/:season/standings')
+    .get((req, res) => {
+        const { year, season } = req.params;
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Standings`;
+        res.render('standingsView', {
+            sidebar: curSeason.sidebar,
+            title
         });
     });
 
