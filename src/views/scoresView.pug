@@ -38,177 +38,161 @@ html(lang="en")
                 .w3-twothird.w3-container
                     h1.w3-text-black= title
 
-                    <select id='date' name='date'>
-                        <option value='Date'>Date</option>
-                        <option value="10/21/18">10/21/18</option>
-                        <option value="10/28/18">10/28/18</option>
-                        <option value="11/4/18">11/4/18</option>
-                        <option value="11/11/18">11/11/18</option>
-                        <option value="11/18/18">11/18/18</option>
-                    </select>
+                    select#date(name='date')
+                        option(value='Date') Date
+                        option(value="10_21_18") 10/21/18
+                        option(value="10_28_18") 10/28/18
+                        option(value="11_4_18") 11/4/18
+                        option(value="11_11_18") 11/11/18
+                        option(value="11_18_18") 11/18/18
             
-                    <div></div>
-                    <br>
+                    div
+                    br
             
-                    <table id='10/21/18' cellpadding='5'>
-                        <thead>
-                            <tr>
-                                <th>Visitors</th>
-                                <th></th>
-                                <th></th>
-                                <th class='last_column'>Home</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>A's</td>
-                                <td class='middle-column'>4</td>
-                                <td>12</td>
-                                <td class='last_column'>Pauma</td>
-                            </tr>
-                            <tr>
-                                <td>Toros</td>
-                                <td class='middle-column'>8</td>
-                                <td>5</td>
-                                <td class='last_column'>Tomateros</td>
-                            </tr>
-                            <tr class='last_row'>
-                                <td>Nationals</td>
-                                <td class='middle-column'>4</td>
-                                <td>5</td>
-                                <td class='last_column'>Saints</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    table#10_21_18.scoresTables(cellpadding='5')
+                        thead
+                            tr
+                                th Visitors
+                                th
+                                th
+                                th.last_column Home
+                        tbody
+                            tr
+                                td A's
+                                td.middle-column 4
+                                td 12
+                                td.last_column Pauma
+                            tr
+                                td Toros
+                                td.middle-column 8
+                                td 5
+                                td.last_column Tomateros
+                            tr.last_row
+                                td Nationals
+                                td.middle-column 4
+                                td 5
+                                td.last_column Saints
             
-                    <table id='10/28/18' cellpadding='5'>
-                        <thead>
-                            <tr>
-                                <th>Visitors</th>
-                                <th></th>
-                                <th></th>
-                                <th class='last_column'>Home</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Pauma</td>
-                                <td class='middle-column'>8</td>
-                                <td>3</td>
-                                <td class='last_column'>Toros</td>
-                            </tr>
-                            <tr>
-                                <td>Nationals</td>
-                                <td class='middle-column'>11</td>
-                                <td>2</td>
-                                <td class='last_column'>Royals</td>
-                            </tr>
-                            <tr class='last_row'>
-                                <td>Saints</td>
-                                <td class='middle-column'>9</td>
-                                <td>8</td>
-                                <td class='last_column'>Tomateros</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    table#10_28_18.scoresTables(cellpadding='5')
+                        thead
+                            tr
+                                th Visitors
+                                th 
+                                th 
+                                th.last_column Home
+                        tbody
+                            tr
+                                td Pauma
+                                td.middle-column 8
+                                td 3
+                                td.last_column Toros
+                        
+                            tr
+                                td Nationals
+                                td.middle-column 11
+                                td 2
+                                td.last_column Royals
+                        
+                            tr.last_row
+                                td Saints
+                                td.middle-column 9
+                                td 8
+                                td.last_column Tomateros
+                        
+                        
+                    
             
-                    <table id='11/4/18' cellpadding='5'>
-                        <thead>
-                            <tr>
-                                <th>Visitors</th>
-                                <th></th>
-                                <th></th>
-                                <th class='last_column'>Home</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Pauma</td>
-                                <td class='middle-column'>10</td>
-                                <td>0</td>
-                                <td class='last_column'>Nationals</td>
-                            </tr>
-                            <tr>
-                                <td>Tomateros</td>
-                                <td class='middle-column'>7</td>
-                                <td>4</td>
-                                <td class='last_column'>A's</td>
-                            </tr>
-                            <tr class='last_row'>
-                                <td>Royals</td>
-                                <td class='middle-column'>7</td>
-                                <td>9</td>
-                                <td class='last_column'>Saints</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    table#11_4_18.scoresTables(cellpadding='5')
+                        thead
+                            tr
+                                th Visitors
+                                th 
+                                th 
+                                th.last_column Home
+                        
+                        
+                        tbody
+                            tr
+                                td Pauma
+                                td.middle-column 10
+                                td 0
+                                td.last_column Nationals
+                        
+                            tr
+                                td Tomateros
+                                td.middle-column 7
+                                td 4
+                                td.last_column A's
+                        
+                            tr.last_row
+                                td Royals
+                                td.middle-column 7
+                                td 9
+                                td.last_column Saints
+                        
+                        
+                    
 
-                    <table id='11/11/18' cellpadding='5'>
-                        <thead>
-                            <tr>
-                                <th>Visitors</th>
-                                <th></th>
-                                <th></th>
-                                <th class='last_column'>Home</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tomateros</td>
-                                <td class='middle-column'>0</td>
-                                <td>13</td>
-                                <td class='last_column'>Nationals</td>
-                            </tr>
-                            <tr>
-                                <td>A's</td>
-                                <td class='middle-column'>14</td>
-                                <td>1</td>
-                                <td class='last_column'>Royals</td>
-                            </tr>
-                            <tr class='last_row'>
-                                <td>Toros</td>
-                                <td class='middle-column'>8</td>
-                                <td>10</td>
-                                <td class='last_column'>Saints</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    table#11_11_18.scoresTables(cellpadding='5')
+                        thead
+                            tr
+                                th Visitors
+                                th 
+                                th 
+                                th.last_column Home
+                        
+                        
+                        tbody
+                            tr
+                                td Tomateros
+                                td.middle-column 0
+                                td 13
+                                td.last_column Nationals
+                        
+                            tr
+                                td A's
+                                td.middle-column 14
+                                td 1
+                                td.last_column Royals
+                        
+                            tr.last_row
+                                td Toros
+                                td.middle-column 8
+                                td 10
+                                td.last_column Saints
+                        
+                        
+                    
 
-                    <table id='11/18/18' cellpadding='5'>
-                        <thead>
-                            <tr>
-                                <th>Visitors</th>
-                                <th></th>
-                                <th></th>
-                                <th class='last_column'>Home</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Saints</td>
-                                <td class='middle-column'>2</td>
-                                <td>6</td>
-                                <td class='last_column'>Pauma</td>
-                            </tr>
-                            <tr>
-                                <td>Toros</td>
-                                <td class='middle-column'>13</td>
-                                <td>6</td>
-                                <td class='last_column'>A's</td>
-                            </tr>
-                            <tr class='last_row'>
-                                <td>Royals</td>
-                                <td class='middle-column'>0</td>
-                                <td>12</td>
-                                <td class='last_column'>Tomateros</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                    table#11_18_18.scoresTables(cellpadding='5')
+                        thead
+                            tr
+                                th Visitors
+                                th 
+                                th 
+                                th.last_column Home
+                        
+                        
+                        tbody
+                            tr
+                                td Saints
+                                td.middle-column 2
+                                td 6
+                                td.last_column Pauma
+                        
+                            tr
+                                td Toros
+                                td.middle-column 13
+                                td 6
+                                td.last_column A's
+                        
+                            tr.last_row
+                                td Royals
+                                td.middle-column 0
+                                td 12
+                                td.last_column Tomateros
 
-        <script>
+        script.
             // Get the Sidebar
             var mySidebar = document.getElementById("mySidebar");
 
@@ -231,11 +215,8 @@ html(lang="en")
                 mySidebar.style.display = "none";
                 overlayBg.style.display = "none";
             }
-        </script>
 
-    </body>
-
-    <script>
+    script.
 
         // Refactor out into their own file
         // Add function to bold the winner of the game
@@ -255,6 +236,3 @@ html(lang="en")
                 tableToShow.style.display = 'block';
             }
         }
-    
-    </script>
-</html>

@@ -33,7 +33,9 @@ td {
 
 th {
     background-color: rgb(202, 202, 202);
-    border:3px solid black;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-bottom: 3px solid black;
 }
 
 .no_border {
@@ -90,4 +92,10 @@ th {
 .scoresTables {
     display: none;
     border-left: 3px solid black;
+}
+
+.scoresTables th {
+    border-top:3px solid black;
+    border-bottom: 2px solid black;
+    border-left: 0;
 }
