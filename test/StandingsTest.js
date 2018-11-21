@@ -1,30 +1,30 @@
-var expect = require('chai').expect;
-var standings = require('../js/Standings');
+const { expect } = require('chai');
+const standings = require('../public/js/Standings');
 
-describe ("Standings Test", function () {
-    describe ("Tests for formatting the win percentage", function () {
-        it ('should format the win percentage correctly when a team has 0 wins', function () {
+describe("Standings Test", function () {
+    describe("Tests for formatting the win percentage", function () {
+        it('should format the win percentage correctly when a team has 0 wins', function () {
             var winPct = 0;
 
             var winPctStr = standings.formatWinPercentage(winPct);
 
             expect(winPctStr).to.equal("0.000");
         });
-        it ('should format the win percentage correctly when a team has 0 losses', function () {
+        it('should format the win percentage correctly when a team has 0 losses', function () {
             var winPct = 1;
 
             var winPctStr = standings.formatWinPercentage(winPct);
 
             expect(winPctStr).to.equal("1.000");
         });
-        it ('should format the win percentage correctly when a team has equal wins and losses', function () {
+        it('should format the win percentage correctly when a team has equal wins and losses', function () {
             var winPct = 0.5;
 
             var winPctStr = standings.formatWinPercentage(winPct);
 
             expect(winPctStr).to.equal("0.500");
         });
-        it ('should format the win percentage correctly when a team has unequal wins and losses', function () {
+        it('should format the win percentage correctly when a team has unequal wins and losses', function () {
             var winPct1 = 0.25;
             var winPct2 = 0.75;
             var winPct3 = 0.542;

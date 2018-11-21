@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-var schedule = require('../js/Schedule');
+const { expect } = require('chai');
+const schedule = require('../public/js/Schedule');
 
 describe("Schedule Test", function () {
     describe("Tests for calculating the number of wins and losses", function () {
