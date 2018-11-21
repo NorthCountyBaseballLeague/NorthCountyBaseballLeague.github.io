@@ -70,4 +70,15 @@ router.route('/:year/:season/standings')
         });
     });
 
+router.route('/:year/:season/rosters')
+    .get((req, res) => {
+        const { year, season } = req.params;
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Rosters`;
+        res.render('rostersView', {
+            sidebar: curSeason.sidebar,
+            title
+        });
+    });
+
 module.exports = router;
