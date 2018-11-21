@@ -24,7 +24,7 @@ html(lang="en")
             h4.w3-bar-item
                 b Menu
             each item in sidebar
-                if item.title == 'Schedule'
+                if item.title == 'Rosters'
                     a.w3-bar-item.selected= item.title
                 else
                     a.w3-bar-item.w3-button.w3-hover-black(href=item.link)= item.title

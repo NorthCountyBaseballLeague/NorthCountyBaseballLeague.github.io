@@ -81,4 +81,15 @@ router.route('/:year/:season/rosters')
         });
     });
 
+router.route('/:year/:season/playoffs')
+    .get((req, res) => {
+        const { year, season } = req.params;
+        const curSeason = seasonDictionary[year + season];
+        const title = `${curSeason.title} Playoffs`;
+        res.render('playoffsView', {
+            sidebar: curSeason.sidebar,
+            title
+        });
+    });
+
 module.exports = router;
