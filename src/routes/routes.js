@@ -44,7 +44,8 @@ router.route('/:year/:season/schedule')
         const title = `${curSeason.title} Schedule`;
         res.render('scheduleView', {
             sidebar: curSeason.sidebar,
-            title
+            title,
+            schedule: year + season
         });
     });
 
@@ -55,7 +56,8 @@ router.route('/:year/:season/scores')
         const title = `${curSeason.title} Scores`;
         res.render('scoresView', {
             sidebar: curSeason.sidebar,
-            title
+            title,
+            scores: year + season
         });
     });
 
@@ -66,7 +68,8 @@ router.route('/:year/:season/standings')
         const title = `${curSeason.title} Standings`;
         res.render('standingsView', {
             sidebar: curSeason.sidebar,
-            title
+            title,
+            standings: year + season
         });
     });
 
@@ -77,7 +80,8 @@ router.route('/:year/:season/rosters')
         const title = `${curSeason.title} Rosters`;
         res.render('rostersView', {
             sidebar: curSeason.sidebar,
-            title
+            title,
+            rosters: year + season
         });
     });
 
@@ -88,7 +92,8 @@ router.route('/:year/:season/playoffs')
         const title = `${curSeason.title} Playoffs`;
         res.render('playoffsView', {
             sidebar: curSeason.sidebar,
-            title
+            title,
+            playoffs: year + season
         });
     });
 
