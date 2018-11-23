@@ -124,7 +124,7 @@ th {
 .rostersTable th {
     background-color: rgb(255, 255, 255);
     border: 0;
-    text-align:left;
+    text-align: left;
 }
 
 .rostersTable td {
@@ -132,20 +132,38 @@ th {
     border: 0;
     padding: 0;
     white-space: nowrap;
+    font-size: 70%;
+}
+
+.rostersTable table th {
+    font-size: 90%;
 }
 
 #as {
-    padding-right:20px;
+    padding-right: 20px;
+    font-size: 50%;
 }
 
 #leones {
-    padding-right:84px;
+    padding-right: 84px;
+    font-size: 50%;
 }
 
 #royals {
-    padding-right:53px;
+    padding-right: 53px;
+    font-size: 50%;
+}
+
+#nationals {
+    font-size: 50%;
 }
 
 .saints {
     padding-right:20px;
+    padding-bottom: 0;
+    font-size: 50%;
+}
+
+#toros {
+    font-size: 50%;
 }
