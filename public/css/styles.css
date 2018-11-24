@@ -38,6 +38,10 @@ th {
     border-bottom: 3px solid black;
 }
 
+tbody {
+    border: 3px solid black;
+}
+
 .no_border {
     background-color:white;
     border:0;
