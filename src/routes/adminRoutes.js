@@ -6,6 +6,7 @@ const adminRouter = express.Router();
 const schedules = [
     {
         _id: '2018fall',
+        teams: ["A's", 'Nationals', 'Pauma', 'Royals', 'Saints', 'Tomateros', 'Toros'],
         schedule: [
             {
                 date: '10/21/2018',
@@ -459,6 +460,7 @@ const schedules = [
     },
     {
         _id: '2018spring',
+        teams: ["A's", 'Leones', 'Nationals', 'Royals', 'Saints', 'Toros'],
         schedule: [
             {
                 date: '3/18/2018',
