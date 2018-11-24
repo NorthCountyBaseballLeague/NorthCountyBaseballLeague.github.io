@@ -459,8 +459,496 @@ const schedules = [
     },
     {
         _id: '2018spring',
-        schedule: {
-        }
+        schedule: [
+            {
+                date: '3/18/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Toros',
+                field: 'Pauma',
+                winner: 'Toros'
+            },
+            {
+                date: '3/18/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Nationals'
+            },
+            {
+                date: '3/18/2018',
+                time: '10 AM',
+                visitors: 'Saints',
+                home: 'Leones',
+                field: 'Orange Glen',
+                winner: 'Leones'
+            },
+            {
+                date: '3/25/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '3/25/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Royals'
+            },
+            {
+                date: '3/25/2018',
+                time: '9 AM',
+                visitors: 'Toros',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Toros'
+            },
+            {
+                date: '4/8/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: 'Toros'
+            },
+            {
+                date: '4/8/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Leones',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '4/8/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: "A's",
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '4/15/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: "A's",
+                field: 'Pauma',
+                winner: 'Leones'
+            },
+            {
+                date: '4/15/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '4/15/2018',
+                time: '9 AM',
+                visitors: 'Nationals',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Nationals'
+            },
+            {
+                date: '4/22/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '4/22/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Toros',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '4/22/2018',
+                time: '9 AM',
+                visitors: 'Royals',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '4/29/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: "A's",
+                field: 'Pauma',
+                winner: "A's"
+            },
+            {
+                date: '4/29/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Nationals',
+                field: 'Valley Center',
+                winner: 'Pending'
+            },
+            {
+                date: '4/29/2018',
+                time: '9 AM',
+                visitors: 'Leones',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '5/6/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Leones',
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '5/6/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: "A's",
+                field: 'Valley Center',
+                winner: "A's"
+            },
+            {
+                date: '5/6/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Toros',
+                field: 'Orange Glen',
+                winner: 'Toros'
+            },
+            {
+                date: '5/20/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Toros',
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '5/20/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '5/20/2018',
+                time: '9 AM',
+                visitors: "A's",
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: "A's"
+            },
+            {
+                date: '5/27/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Leones',
+                field: 'Pauma',
+                winner: 'Pending'
+            },
+            {
+                date: '5/27/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Toros',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '5/27/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Nationals',
+                field: 'Orange Glen',
+                winner: 'Nationals'
+            },
+            {
+                date: '6/3/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: "A's",
+                field: 'Pauma',
+                winner: "A's"
+            },
+            {
+                date: '6/3/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Leones',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '6/3/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Royals',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '6/10/2018',
+                time: '11 AM',
+                visitors: 'ALL STAR GAME',
+                home: '',
+                field: 'Pauma',
+                winner: ''
+            },
+            {
+                date: '6/17/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Toros',
+                field: 'Pauma',
+                winner: "A's"
+            },
+            {
+                date: '6/17/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Nationals'
+            },
+            {
+                date: '6/17/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Leones',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '6/24/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: 'Leones'
+            },
+            {
+                date: '6/24/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: "A's"
+            },
+            {
+                date: '6/24/2018',
+                time: '1 PM',
+                visitors: 'Toros',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '7/1/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '7/1/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Leones',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '7/1/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: "A's",
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '7/8/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: "A's",
+                field: 'Pauma',
+                winner: 'Leones'
+            },
+            {
+                date: '7/8/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '7/8/2018',
+                time: '9 AM',
+                visitors: 'Nationals',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Nationals'
+            },
+            {
+                date: '7/15/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Nationals',
+                field: 'Pauma',
+                winner: "A's"
+            },
+            {
+                date: '7/15/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Toros',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '7/15/2018',
+                time: '9 AM',
+                visitors: 'Royals',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '7/22/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: "A's",
+                field: 'Pauma',
+                winner: 'Toros'
+            },
+            {
+                date: '7/22/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Nationals',
+                field: 'Valley Center',
+                winner: 'Nationals'
+            },
+            {
+                date: '7/22/2018',
+                time: '9 AM',
+                visitors: 'Leones',
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Leones'
+            },
+            {
+                date: '8/5/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Leones',
+                field: 'Pauma',
+                winner: 'Leones'
+            },
+            {
+                date: '8/5/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: "A's",
+                field: 'Valley Center',
+                winner: "A's"
+            },
+            {
+                date: '8/5/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Toros',
+                field: 'Orange Glen',
+                winner: 'Toros'
+            },
+            {
+                date: '8/12/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: 'Toros',
+                field: 'Pauma',
+                winner: 'Toros'
+            },
+            {
+                date: '8/12/2018',
+                time: '10 AM',
+                visitors: 'Leones',
+                home: 'Royals',
+                field: 'Valley Center',
+                winner: 'Leones'
+            },
+            {
+                date: '8/12/2018',
+                time: '9 AM',
+                visitors: "A's",
+                home: 'Saints',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '8/19/2018',
+                time: '10 AM',
+                visitors: "A's",
+                home: 'Leones',
+                field: 'Pauma',
+                winner: 'Leones'
+            },
+            {
+                date: '8/19/2018',
+                time: '10 AM',
+                visitors: 'Royals',
+                home: 'Toros',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '8/19/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Nationals',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            },
+            {
+                date: '8/26/2018',
+                time: '10 AM',
+                visitors: 'Nationals',
+                home: "A's",
+                field: 'Pauma',
+                winner: 'Nationals'
+            },
+            {
+                date: '8/26/2018',
+                time: '10 AM',
+                visitors: 'Toros',
+                home: 'Leones',
+                field: 'Valley Center',
+                winner: 'Toros'
+            },
+            {
+                date: '8/26/2018',
+                time: '9 AM',
+                visitors: 'Saints',
+                home: 'Royals',
+                field: 'Orange Glen',
+                winner: 'Saints'
+            }
+        ]
     }
 ];
 
