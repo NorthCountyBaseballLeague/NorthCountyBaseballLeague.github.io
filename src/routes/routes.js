@@ -27,6 +27,7 @@ const seasonDictionary = {
 };
 
 const scheduleController = require('../controllers/scheduleController')(seasonDictionary);
+const standingsController = require('../controllers/standingsController')(seasonDictionary);
 
 router.route('/:year/:season')
     .get((req, res) => {
@@ -55,16 +56,7 @@ router.route('/:year/:season/scores')
     });
 
 router.route('/:year/:season/standings')
-    .get((req, res) => {
-        const { year, season } = req.params;
-        const curSeason = seasonDictionary[year + season];
-        const title = `${curSeason.title} Standings`;
-        res.render('standingsView', {
-            sidebar: curSeason.sidebar,
-            title,
-            standings: year + season
-        });
-    });
+    .get(standingsController.getStandings);
 
 router.route('/:year/:season/rosters')
     .get((req, res) => {

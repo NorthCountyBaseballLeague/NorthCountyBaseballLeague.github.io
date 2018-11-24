@@ -37,7 +37,7 @@ function scheduleController(seasonDictionary) {
     }
 
     return {
-        getSchedule
+        getSchedule,
     };
 }
 

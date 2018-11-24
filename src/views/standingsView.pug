@@ -37,10 +37,26 @@ html(lang="en")
             .w3-row.w3-padding-64
                 .w3-twothird.w3-container
                     h1.w3-text-black= title
-                    if standings == '2018fall'
-                        include ./Standings/2018Fall
-                    else if standings == '2018spring'
-                        include ./Standings/2018Spring
+                    table.standingsTable(cellpadding="5")
+                        thead
+                            tr
+                                th.no_border
+                                th W
+                                th L
+                                th PCT
+                                th GB
+                                th L10
+                                th Streak
+                        tbody
+                            each team in teams
+                                tr
+                                    td= team
+                                    td= standings[team][0]
+                                    td= standings[team][1]
+                                    td= standings[team][6]
+                                    td= standings[team][7]
+                                    td= standings[team][8]
+                                    td= standings[team][4]
 
         script.
             // Get the Sidebar
@@ -65,14 +81,3 @@ html(lang="en")
                 mySidebar.style.display = "none";
                 overlayBg.style.display = "none";
             }
-
-
-    script(src="/js/Standings.js")
-    script.
-        var winsEls = document.getElementsByClassName("wins");
-        var lossesEls = document.getElementsByClassName("losses");
-        var winPctsEls = document.getElementsByClassName("win-pct");
-        var gamesBehindEls = document.getElementsByClassName("games-behind");
-
-        calculateAllWinPercentages(winsEls, lossesEls, winPctsEls);
-        calculateAllGamesBehind(winsEls, lossesEls, gamesBehindEls);
