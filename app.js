@@ -25,10 +25,12 @@ const seasons = [
 ];
 
 const router = require('./src/routes/routes');
+const adminRouter = require('./src/routes/adminRoutes')();
 
 app.use('/', router);
+app.use('/', adminRouter);
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('index', { seasons });
 });
 
