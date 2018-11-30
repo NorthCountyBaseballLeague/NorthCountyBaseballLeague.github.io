@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var schedule = require('../js/Schedule');
+var scheduleController = require('../controllers/scheduleController');
 
 describe("Schedule Test", function () {
     describe("Tests for calculating the number of wins and losses", function () {
@@ -9,7 +9,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
                 for (var i = 0; i < 4; i++) {
@@ -31,7 +31,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team2, team1, team2];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
                 expect(winsAndLosses[team][0]).to.equal(2);
@@ -52,7 +52,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team2, team1, team2];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
                 expect(winsAndLosses[team][0]).to.equal(2);
@@ -76,7 +76,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team2, team1, team2];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
                 expect(winsAndLosses[team][0]).to.equal(0);
@@ -102,7 +102,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [bye, bye];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             teams.forEach(team => {
                 expect(winsAndLosses[team][0]).to.equal(0);
@@ -134,7 +134,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team5, team4, team2, team4, team5, team1, team1, team2, team5];
             var teams = ["team1", "team2", "team3", "team4", "team5"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             expect(winsAndLosses["team1"][0]).to.equal(3);
             expect(winsAndLosses["team1"][1]).to.equal(2);
@@ -159,7 +159,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team1, team1, team1, team1, team1, team1, team1, team1, team1, team1];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             expect(winsAndLosses["team1"][2]).to.equal(6);
             expect(winsAndLosses["team1"][3]).to.equal(4);
@@ -178,7 +178,7 @@ describe("Schedule Test", function () {
             var homeTeamArray = [team1, team1, team1, team1, team1, team1, team1];
             var teams = ["team1", "team2"];
 
-            var winsAndLosses = schedule.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
+            var winsAndLosses = scheduleController.calculateWinsAndLosses(winnersArray, awayTeamArray, homeTeamArray, teams);
 
             expect(winsAndLosses["team1"][4]).to.equal('W3');
             expect(winsAndLosses["team1"][5]).to.equal(3);
@@ -191,14 +191,14 @@ describe("Schedule Test", function () {
         it('should construct an empty object when there are no teams', function () {
             var teams = [];
 
-            var counter = schedule.constructRecordCounter(teams);
+            var counter = scheduleController.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(0);
         });
         it('should construct an object with values set to 0 when there are teams', function () {
             var teams = ["team1", "team2", "team3"];
 
-            var counter = schedule.constructRecordCounter(teams);
+            var counter = scheduleController.constructRecordCounter(teams);
 
             expect(Object.keys(counter).length).to.equal(3);
             teams.forEach(function (team) {
@@ -232,7 +232,7 @@ describe("Schedule Test", function () {
             }
             var datesArr = [date1, date2, date3, date4, date5];
 
-            schedule.addDelaysToWeeks(datesArr, '1/1/2018');
+            scheduleController.addDelaysToWeeks(datesArr, '1/1/2018');
 
             expect(date1.innerHTML).to.equal('1/8/2018');
             expect(date2.innerHTML).to.equal('1/9/2018');
@@ -258,7 +258,7 @@ describe("Schedule Test", function () {
             }
             var datesArr = [date1, date2, date3, date4, date5];
 
-            schedule.addDelaysToWeeks(datesArr, '2/25/2016');
+            scheduleController.addDelaysToWeeks(datesArr, '2/25/2016');
 
             expect(date1.innerHTML).to.equal('2/7/2018');
             expect(date2.innerHTML).to.equal('3/7/2018');
@@ -279,7 +279,7 @@ describe("Schedule Test", function () {
 
             var datesArr = [date1, date2, date3];
 
-            schedule.addDelaysToWeeks(datesArr, '11/30/2018');
+            scheduleController.addDelaysToWeeks(datesArr, '11/30/2018');
 
             expect(date1.innerHTML).to.equal('1/1/2019');
             expect(date2.innerHTML).to.equal('1/6/2019');
@@ -297,7 +297,7 @@ describe("Schedule Test", function () {
             }
             var datesArr = [date1, date2, date3];
 
-            schedule.addDelaysToWeeks(datesArr, '2/20/2019');
+            scheduleController.addDelaysToWeeks(datesArr, '2/20/2019');
 
             expect(date1.innerHTML).to.equal('12/25/2018');
             expect(date2.innerHTML).to.equal('1/30/2019');
