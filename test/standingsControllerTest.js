@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var standingsController = require('../controllers/standingsController.js');
 
-describe ("Standings Test", function () {
+describe ("Standings Controller Test", function () {
     describe ("Tests for formatting the win percentage", function () {
         it ('should format the win percentage correctly when a team has 0 wins', function () {
             var winPct = 0;

@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var scheduleController = require('../controllers/scheduleController');
 
-describe("Schedule Test", function () {
+describe("Schedule Controller Test", function () {
     describe("Tests for calculating the number of wins and losses", function () {
         it('should calculate the correct number of wins and losses when nobody has played yet', function () {
             var winnersArray = [];
