@@ -169,7 +169,7 @@ const schedules = [
                 visitors: 'Nationals',
                 home: 'Toros',
                 field: 'Pauma',
-                winner: ''
+                winner: 'Toros'
             },
             {
                 date: '12/2/2018',
@@ -177,7 +177,7 @@ const schedules = [
                 visitors: 'Pauma',
                 home: 'Royals',
                 field: 'Valley Center',
-                winner: ''
+                winner: 'Pauma'
             },
             {
                 date: '12/2/2018',
@@ -185,7 +185,7 @@ const schedules = [
                 visitors: 'Saints',
                 home: "A's",
                 field: 'Orange Glen',
-                winner: ''
+                winner: 'Saints'
             },
             {
                 date: '12/2/2018',
@@ -948,3 +948,5 @@ const schedules = [
         ]
     }
 ];
+
+module.exports = schedules;

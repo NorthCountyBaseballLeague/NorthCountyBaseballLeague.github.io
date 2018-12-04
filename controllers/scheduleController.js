@@ -168,4 +168,4 @@ module.exports = {
     calculateWinsAndLosses,
     constructRecordCounter,
     addDelaysToWeeks,
-}
+};
