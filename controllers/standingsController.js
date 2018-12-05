@@ -1,71 +1,202 @@
-function calculateAllWinPercentages (winsArray, lossesArray, winPctArray) {
-    for (var i = 0; i < winsArray.length; i++) {
-        var wins = parseInt(winsArray[i].innerHTML);
-        var losses = parseInt(lossesArray[i].innerHTML);
+const schedules = require('../filebase/schedulesFilebase');
 
-        winPctArray[i].innerHTML = calculateIndividualWinPercentage(wins, losses);
-    }
-};
+function standingsController() {
+    function getStandings(year, season) {
+        const id = year + season;
 
-function calculateIndividualWinPercentage (wins, losses) {
-    if (wins + losses === 0) {
-        return "0.000";
-    }
+        const scheduleObject = schedules[id];
 
-    var winPct = wins / (wins + losses);
-    var roundedWinPct = Math.round(winPct * 1000) / 1000;
+        let standings = calculateWinsAndLosses(scheduleObject.schedule, scheduleObject.teams);
+        calculateAllWinPercentages(standings);
+        standings = sortStandings(standings);
+        calculateAllGamesBehind(standings);
+        formatLast10Games(standings);
+        const teams = Object.keys(standings);
 
-    return formatWinPercentage(roundedWinPct);
-};
-
-function formatWinPercentage (winPct) {
-    var winPctStr = winPct.toString();
-
-    if (winPctStr.length === 1) {
-        winPctStr = winPctStr + ".";
+        return { teams, standings };
     }
 
-    while (winPctStr.length < 5) {
-        winPctStr = winPctStr + "0";
+    function calculateWinsAndLosses(schedule, teams) {
+        const recordCounter = constructRecordCounter(teams);
+
+        for (let i = schedule.length - 1; i >= 0; i--) {
+            if (schedule[i].winner === schedule[i].visitors) {
+                recordCounter[schedule[i].visitors][0] += 1;
+                recordCounter[schedule[i].home][1] += 1;
+
+                // Calculate last 10 games record
+                if (recordCounter[schedule[i].visitors][2]
+                    + recordCounter[schedule[i].visitors][3] < 10) {
+                    recordCounter[schedule[i].visitors][2] += 1;
+                }
+
+                if (recordCounter[schedule[i].home][2]
+                    + recordCounter[schedule[i].home][3] < 10) {
+                    recordCounter[schedule[i].home][3] += 1;
+                }
+
+                // Calculate win/loss streak
+                if (recordCounter[schedule[i].visitors][4] === '') {
+                    recordCounter[schedule[i].visitors][4] = 'W';
+                    recordCounter[schedule[i].visitors][5] += 1;
+                } else if (recordCounter[schedule[i].visitors][4] === 'W') {
+                    recordCounter[schedule[i].visitors][5] += 1;
+                } else if (recordCounter[schedule[i].visitors][4] === 'L') {
+                    recordCounter[schedule[i].visitors][4] = `L${recordCounter[schedule[i].visitors][5]}`;
+                }
+
+                if (recordCounter[schedule[i].home][4] === '') {
+                    recordCounter[schedule[i].home][4] = 'L';
+                    recordCounter[schedule[i].home][5] += 1;
+                } else if (recordCounter[schedule[i].home][4] === 'L') {
+                    recordCounter[schedule[i].home][5] += 1;
+                } else if (recordCounter[schedule[i].home][4] === 'W') {
+                    recordCounter[schedule[i].home][4] = `W${recordCounter[schedule[i].home][5]}`;
+                }
+            } else if (schedule[i].winner === schedule[i].home && schedule[i].home !== '') {
+                if (recordCounter[schedule[i].home]) {
+                    recordCounter[schedule[i].home][0] += 1;
+                }
+                recordCounter[schedule[i].visitors][1] += 1;
+
+                // Calculate last 10 games record
+                if (recordCounter[schedule[i].visitors][2]
+                    + recordCounter[schedule[i].visitors][3] < 10) {
+                    recordCounter[schedule[i].visitors][3] += 1;
+                }
+
+                if (recordCounter[schedule[i].home][2]
+                    + recordCounter[schedule[i].home][3] < 10) {
+                    recordCounter[schedule[i].home][2] += 1;
+                }
+
+                // Calculate win/loss streak
+                if (recordCounter[schedule[i].visitors][4] === '') {
+                    recordCounter[schedule[i].visitors][4] = 'L';
+                    recordCounter[schedule[i].visitors][5] += 1;
+                } else if (recordCounter[schedule[i].visitors][4] === 'L') {
+                    recordCounter[schedule[i].visitors][5] += 1;
+                } else if (recordCounter[schedule[i].visitors][4] === 'W') {
+                    recordCounter[schedule[i].visitors][4] = `W${recordCounter[schedule[i].visitors][5]}`;
+                }
+
+                if (recordCounter[schedule[i].home][4] === '') {
+                    recordCounter[schedule[i].home][4] = 'W';
+                    recordCounter[schedule[i].home][5] += 1;
+                } else if (recordCounter[schedule[i].home][4] === 'W') {
+                    recordCounter[schedule[i].home][5] += 1;
+                } else if (recordCounter[schedule[i].home][4] === 'L') {
+                    recordCounter[schedule[i].home][4] = `L${recordCounter[schedule[i].home][5]}`;
+                }
+            }
+        }
+
+        formatWinStreak(recordCounter);
+
+        return recordCounter;
     }
 
-    return winPctStr;
-};
+    function constructRecordCounter(teams) {
+        const counter = {};
 
-function calculateAllGamesBehind (winsArray, lossesArray, gamesBehindArray) {
-    var wins = [];
-    var losses = [];
+        teams.forEach((team) => {
+            counter[team] = [0, 0, 0, 0, '', 0];
+        });
 
-    for (var i = 0; i < winsArray.length; i++) {
-        wins.push(parseInt(winsArray[i].innerHTML));
-        losses.push(parseInt(lossesArray[i].innerHTML));
-
-        var winDiff = wins[0] - wins[i];
-        var lossDiff = losses[i] - losses[0];
-        var gb = (winDiff + lossDiff) / 2;
-
-        gamesBehindArray[i].innerHTML = formatGamesBehind(gb);
+        return counter;
     }
 
-};
-
-function formatGamesBehind (gamesBehind) {
-    if (gamesBehind === 0) {
-        return "-";
-    }
-    
-    var gamesBehindStr = gamesBehind.toString();
-    if (!gamesBehindStr.includes(".")) {
-        gamesBehindStr += ".0";
+    function formatWinStreak(records) {
+        Object.keys(records).forEach((team) => {
+            if (records[team][4].length < 2) {
+                records[team][4] += records[team][5];
+            }
+        });
     }
 
-    return gamesBehindStr;
-};
+    function calculateAllWinPercentages(standings) {
+        Object.keys(standings).forEach((team) => {
+            const wins = standings[team][0];
+            const losses = standings[team][1];
 
-module.exports = {
-    calculateAllWinPercentages,
-    calculateIndividualWinPercentage,
-    formatWinPercentage,
-    calculateAllGamesBehind,
-    formatGamesBehind
+            standings[team].push(calculateIndividualWinPercentage(wins, losses));
+        });
+    }
+
+    function calculateIndividualWinPercentage(wins, losses) {
+        if (wins + losses === 0) {
+            return '0.000';
+        }
+
+        const winPct = wins / (wins + losses);
+        const roundedWinPct = Math.round(winPct * 1000) / 1000;
+
+        return formatWinPercentage(roundedWinPct);
+    }
+
+    function formatWinPercentage(winPct) {
+        let winPctStr = winPct.toString();
+
+        if (winPctStr.length === 1) {
+            winPctStr += '.';
+        }
+
+        while (winPctStr.length < 5) {
+            winPctStr += '0';
+        }
+
+        return winPctStr;
+    }
+
+    function sortStandings(standings) {
+        const newStandings = {};
+        Object.keys(standings).sort((a, b) => {
+            const winPctA = parseFloat(standings[a][6]);
+            const winPctB = parseFloat(standings[b][6]);
+            return winPctB - winPctA;
+        }).forEach((team) => {
+            newStandings[team] = standings[team];
+        });
+
+        return newStandings;
+    }
+
+    function calculateAllGamesBehind(standings) {
+        const firstPlaceWins = standings[Object.keys(standings)[0]][0];
+        const firstPlaceLosses = standings[Object.keys(standings)[0]][1];
+
+        Object.keys(standings).forEach((team) => {
+            const winDiff = firstPlaceWins - standings[team][0];
+            const lossDiff = standings[team][1] - firstPlaceLosses;
+            const gb = (winDiff + lossDiff) / 2;
+
+            standings[team].push(formatGamesBehind(gb));
+        });
+    }
+
+    function formatGamesBehind(gamesBehind) {
+        if (gamesBehind === 0) {
+            return '-';
+        }
+
+        let gamesBehindStr = gamesBehind.toString();
+        if (!gamesBehindStr.includes('.')) {
+            gamesBehindStr += '.0';
+        }
+
+        return gamesBehindStr;
+    }
+
+    function formatLast10Games(standings) {
+        Object.keys(standings).forEach((team) => {
+            const formattedLast10 = `${standings[team][2]}-${standings[team][3]}`
+            standings[team].push(formattedLast10);
+        });
+    }
+
+    return {
+        getStandings
+    };
 }
+
+module.exports = standingsController;
