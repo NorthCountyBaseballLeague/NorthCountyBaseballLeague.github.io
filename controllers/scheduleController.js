@@ -18,28 +18,28 @@ function scheduleController(schedulesFilebase) {
         return scheduleObject;
     }
 
-    function addDelaysToWeeks(dateElements, dateToDelayFrom) {
-        var substringDateToDelayFrom = dateToDelayFrom.split('/');
-        var monthToDelayFrom = parseInt(substringDateToDelayFrom[0]);
-        var dayToDelayFrom = parseInt(substringDateToDelayFrom[1]);
-        var yearToDelayFrom = parseInt(substringDateToDelayFrom[2]);
+    function addDelaysToWeeks(schedule, dateToDelayFrom) {
+        const substringDateToDelayFrom = dateToDelayFrom.split('/');
+        const monthToDelayFrom = parseInt(substringDateToDelayFrom[0]);
+        const dayToDelayFrom = parseInt(substringDateToDelayFrom[1]);
+        const yearToDelayFrom = parseInt(substringDateToDelayFrom[2]);
     
-        for (var i = 0; i < dateElements.length; i++) {
-            var substringDate = dateElements[i].innerHTML.split('/');
-            var month = parseInt(substringDate[0]);
-            var day = parseInt(substringDate[1]);
-            var year = parseInt(substringDate[2]);
+        schedule.forEach(game => {
+            const substringDate = game.date.split('/');
+            const month = parseInt(substringDate[0]);
+            const day = parseInt(substringDate[1]);
+            const year = parseInt(substringDate[2]);
     
-            var isLaterYear = year > yearToDelayFrom;
-            var isLaterMonth = month > monthToDelayFrom && year === yearToDelayFrom;
-            var isLaterDay = day >= dayToDelayFrom && month === monthToDelayFrom && year === yearToDelayFrom;
-            var dateShouldBeDelayed = isLaterYear || isLaterMonth || isLaterDay;
+            const isLaterYear = year > yearToDelayFrom;
+            const isLaterMonth = month > monthToDelayFrom && year === yearToDelayFrom;
+            const isLaterDay = day >= dayToDelayFrom && month === monthToDelayFrom && year === yearToDelayFrom;
+            const dateShouldBeDelayed = isLaterYear || isLaterMonth || isLaterDay;
     
-            addDelayToDate(dateShouldBeDelayed, day, month, year, dateElements[i])
-        }
+            addDelayToDate(dateShouldBeDelayed, day, month, year, game)
+        }) 
     };
     
-    function addDelayToDate(dateShouldBeDelayed, day, month, year, dateElement) {
+    function addDelayToDate(dateShouldBeDelayed, day, month, year, game) {
         if (dateShouldBeDelayed) {
             day += oneWeek;
             if (month === February) {
@@ -76,7 +76,7 @@ function scheduleController(schedulesFilebase) {
                 }
             }
     
-            dateElement.innerHTML = month + '/' + day + '/' + year;
+            game.date = month + '/' + day + '/' + year;
         }
     };
 
