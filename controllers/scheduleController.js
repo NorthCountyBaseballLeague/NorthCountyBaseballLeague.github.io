@@ -45,13 +45,13 @@ function scheduleController(schedulesFilebase) {
             if (month === February) {
                 if (year % 4 === 0) {
                     if (day > daysInFebOnLeapYear) {
-                        month++;
+                        month += 1;
                         day = day % daysInFebOnLeapYear;
                     }
                 }
                 else {
                     if (day > daysInFeb) {
-                        month++;
+                        month += 1;
                         day = day % daysInFeb;
                     }
                 }
@@ -60,18 +60,18 @@ function scheduleController(schedulesFilebase) {
                 if (day > daysInDecember) {
                     month = January;
                     day = day % daysInDecember;
-                    year++;
+                    year += 1;
                 }
             }
             else if (monthsWith31Days.includes(month)) {
                 if (day > daysInMonthsWith31Days) {
-                    month++;
+                    month += 1;
                     day = day % daysInMonthsWith31Days;
                 }
             }
             else {
                 if (day > daysInMonthsWith30Days) {
-                    month++;
+                    month += 1;
                     day = day % daysInMonthsWith30Days;
                 }
             }
