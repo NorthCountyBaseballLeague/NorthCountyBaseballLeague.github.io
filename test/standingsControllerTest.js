@@ -1,120 +1,160 @@
-var expect = require('chai').expect;
-var standingsController = require('../controllers/standingsController.js')();
+const expect = require('chai').expect;
+const standingsControllerConstructor = require('../controllers/standingsController.js');
+let standingsController;
 
-describe ("Standings Controller Test", function () {
+describe('Standings Controller Test', function () {
     describe('Tests for calculating the number of wins and losses', () => {
+        beforeEach(() => {
+            standingsController = standingsControllerConstructor();
+        });
+
         it('should calculate the correct number of wins and losses when nobody has played yet', () => {
-            const winnersArray = [];
-            const awayTeamArray = [];
-            const homeTeamArray = [];
+            const schedule = [];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(winnersArray,
-                awayTeamArray, homeTeamArray, teams);
+            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
 
             teams.forEach((team) => {
                 for (let i = 0; i < 4; i++) {
                     expect(winsAndLosses[team][i]).to.equal(0);
                 }
-                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][4]).to.equal('-');
                 expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
         it('should calculate the correct number of wins and losses when the home team always wins', () => {
-            const team1 = {
-                innerHTML: 'team1'
-            };
-            const team2 = {
-                innerHTML: 'team2'
-            };
-            const winnersArray = [team1, team2, team1, team2];
-            const awayTeamArray = [team2, team1, team2, team1];
-            const homeTeamArray = [team1, team2, team1, team2];
+            const schedule = [
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'team2'
+                }
+            ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(winnersArray,
-                awayTeamArray, homeTeamArray, teams);
+            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(2);
                 expect(winsAndLosses[team][1]).to.equal(2);
                 expect(winsAndLosses[team][2]).to.equal(2);
                 expect(winsAndLosses[team][3]).to.equal(2);
+                expect(winsAndLosses[team][5]).to.equal(1);
             });
+            expect(winsAndLosses['team1'][4]).to.equal('L1');
+            expect(winsAndLosses['team2'][4]).to.equal('W1');
         });
         it('should calculate the correct number of wins and losses when the away team always wins', () => {
-            const team1 = {
-                innerHTML: 'team1'
-            };
-            const team2 = {
-                innerHTML: 'team2'
-            };
-            const winnersArray = [team2, team1, team2, team1];
-            const awayTeamArray = [team2, team1, team2, team1];
-            const homeTeamArray = [team1, team2, team1, team2];
+            const schedule = [
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'team1'
+                }
+            ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(winnersArray,
-                awayTeamArray, homeTeamArray, teams);
+            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(2);
                 expect(winsAndLosses[team][1]).to.equal(2);
                 expect(winsAndLosses[team][2]).to.equal(2);
                 expect(winsAndLosses[team][3]).to.equal(2);
+                expect(winsAndLosses[team][5]).to.equal(1);
             });
+            expect(winsAndLosses['team1'][4]).to.equal('W1');
+            expect(winsAndLosses['team2'][4]).to.equal('L1');
         });
         it('should calculate the correct number of wins and losses when the game is pending', () => {
-            const team1 = {
-                innerHTML: 'team1'
-            };
-            const team2 = {
-                innerHTML: 'team2'
-            };
-            const pending = {
-                innerHTML: 'pending'
-            };
-            const winnersArray = [pending, pending, pending, pending];
-            const awayTeamArray = [team2, team1, team2, team1];
-            const homeTeamArray = [team1, team2, team1, team2];
+            const schedule = [
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'pending'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'pending'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'pending'
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    winner: 'pending'
+                }
+            ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(winnersArray, 
-                awayTeamArray, homeTeamArray, teams);
+            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(0);
                 expect(winsAndLosses[team][1]).to.equal(0);
                 expect(winsAndLosses[team][2]).to.equal(0);
                 expect(winsAndLosses[team][3]).to.equal(0);
-                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][4]).to.equal('-');
                 expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
-        it('should calculate the correct number of wins and losses when a team has a bye', () => {
-            const team1 = {
-                innerHTML: 'team1'
-            };
-            const team2 = {
-                innerHTML: 'team2'
-            };
-            const bye = {
-                innerHTML: ''
-            };
-            const winnersArray = [bye, bye];
-            const awayTeamArray = [team1, team2];
-            const homeTeamArray = [bye, bye];
+        it.only('should calculate the correct number of wins and losses when a team has a bye', () => {
+            const schedule = [
+                {
+                    visitors: 'team1',
+                    home: '',
+                    winner: ''
+                },
+                {
+                    visitors: 'team2',
+                    home: '',
+                    winner: ''
+                }
+            ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(winnersArray, 
-                awayTeamArray, homeTeamArray, teams);
+            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(0);
                 expect(winsAndLosses[team][1]).to.equal(0);
                 expect(winsAndLosses[team][2]).to.equal(0);
                 expect(winsAndLosses[team][3]).to.equal(0);
-                expect(winsAndLosses[team][4]).to.equal('');
+                expect(winsAndLosses[team][4]).to.equal('-');
                 expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
@@ -201,53 +241,27 @@ describe ("Standings Controller Test", function () {
         });
     });
 
-    describe('Tests for constructing a counter for the number of wins/losses', () => {
-        it('should construct an empty object when there are no teams', () => {
-            const teams = [];
-
-            const counter = standingsController.constructRecordCounter(teams);
-
-            expect(Object.keys(counter).length).to.equal(0);
-        });
-        it('should construct an object with values set to 0 when there are teams', () => {
-            const teams = ['team1', 'team2', 'team3'];
-
-            const counter = standingsController.constructRecordCounter(teams);
-
-            expect(Object.keys(counter).length).to.equal(3);
-            teams.forEach((team) => {
-                expect(counter[team].length).to.equal(6);
-                expect(counter[team][0]).to.equal(0);
-                expect(counter[team][1]).to.equal(0);
-                expect(counter[team][2]).to.equal(0);
-                expect(counter[team][3]).to.equal(0);
-                expect(counter[team][4]).to.equal('');
-                expect(counter[team][5]).to.equal(0);
-            });
-        });
-    });
-
-    describe ("Tests for formatting the win percentage", function () {
+    describe ('Tests for formatting the win percentage', function () {
         it ('should format the win percentage correctly when a team has 0 wins', function () {
             var winPct = 0;
 
             var winPctStr = standingsController.formatWinPercentage(winPct);
 
-            expect(winPctStr).to.equal("0.000");
+            expect(winPctStr).to.equal('0.000');
         });
         it ('should format the win percentage correctly when a team has 0 losses', function () {
             var winPct = 1;
 
             var winPctStr = standingsController.formatWinPercentage(winPct);
 
-            expect(winPctStr).to.equal("1.000");
+            expect(winPctStr).to.equal('1.000');
         });
         it ('should format the win percentage correctly when a team has equal wins and losses', function () {
             var winPct = 0.5;
 
             var winPctStr = standingsController.formatWinPercentage(winPct);
 
-            expect(winPctStr).to.equal("0.500");
+            expect(winPctStr).to.equal('0.500');
         });
         it ('should format the win percentage correctly when a team has unequal wins and losses', function () {
             var winPct1 = 0.25;
@@ -260,21 +274,21 @@ describe ("Standings Controller Test", function () {
             var winPctStr3 = standingsController.formatWinPercentage(winPct3);
             var winPctStr4 = standingsController.formatWinPercentage(winPct4);
 
-            expect(winPctStr1).to.equal("0.250");
-            expect(winPctStr2).to.equal("0.750");
-            expect(winPctStr3).to.equal("0.542");
-            expect(winPctStr4).to.equal("0.017");
+            expect(winPctStr1).to.equal('0.250');
+            expect(winPctStr2).to.equal('0.750');
+            expect(winPctStr3).to.equal('0.542');
+            expect(winPctStr4).to.equal('0.017');
         });
     });
 
-    describe("Tests for calculating individual win percentage", function () {
+    describe('Tests for calculating individual win percentage', function () {
         it ('should return the correct win percentage when a team has not played any games', function () {
             var wins = 0;
             var losses = 0;
 
             var winPct = standingsController.calculateIndividualWinPercentage(wins, losses);
 
-            expect(winPct).to.equal("0.000");
+            expect(winPct).to.equal('0.000');
         });
         it ('should return the correct win percentage when a team has no wins', function () {
             var wins = 0;
@@ -282,7 +296,7 @@ describe ("Standings Controller Test", function () {
 
             var winPct = standingsController.calculateIndividualWinPercentage(wins, losses);
 
-            expect(winPct).to.equal("0.000");
+            expect(winPct).to.equal('0.000');
         });
         it ('should return the correct win percentage when a team has no losses', function () {
             var wins = 8;
@@ -290,7 +304,7 @@ describe ("Standings Controller Test", function () {
 
             var winPct = standingsController.calculateIndividualWinPercentage(wins, losses);
 
-            expect(winPct).to.equal("1.000");
+            expect(winPct).to.equal('1.000');
         });
         it ('should return the correct win percentage when a team has equal number of wins and losses', function () {
             var wins = 5;
@@ -298,7 +312,7 @@ describe ("Standings Controller Test", function () {
 
             var winPct = standingsController.calculateIndividualWinPercentage(wins, losses);
 
-            expect(winPct).to.equal("0.500");
+            expect(winPct).to.equal('0.500');
         });
         it ('should return the correct win percentage when a team has unequal wins and losses', function () {
             var wins1 = 12;
@@ -315,50 +329,50 @@ describe ("Standings Controller Test", function () {
             var winPct3 = standingsController.calculateIndividualWinPercentage(wins3, losses3);
             var winPct4 = standingsController.calculateIndividualWinPercentage(wins4, losses4);
 
-            expect(winPct1).to.equal("0.480");
-            expect(winPct2).to.equal("0.700");
-            expect(winPct3).to.equal("0.200");
-            expect(winPct4).to.equal("0.182");
+            expect(winPct1).to.equal('0.480');
+            expect(winPct2).to.equal('0.700');
+            expect(winPct3).to.equal('0.200');
+            expect(winPct4).to.equal('0.182');
         });
     });
 
-    describe ("Tests for calculating all win percentages", function () {
+    describe ('Tests for calculating all win percentages', function () {
         it ('should set the innerHTML for win percentage elements to the correct win percentage', function () {
             var wins1 = {
-                innerHTML: "0"
+                innerHTML: '0'
             };
             var wins2 = {
-                innerHTML: "5"
+                innerHTML: '5'
             };
             var wins3 = {
-                innerHTML: "0"
+                innerHTML: '0'
             };
             var wins4 = {
-                innerHTML: "10"
+                innerHTML: '10'
             };
             var wins5 = {
-                innerHTML: "9"
+                innerHTML: '9'
             };
             var wins6 = {
-                innerHTML: "16"
+                innerHTML: '16'
             };
             var losses1 = {
-                innerHTML: "0"
+                innerHTML: '0'
             };
             var losses2 = {
-                innerHTML: "0"
+                innerHTML: '0'
             };
             var losses3 = {
-                innerHTML: "6"
+                innerHTML: '6'
             };
             var losses4 = {
-                innerHTML: "10"
+                innerHTML: '10'
             };
             var losses5 = {
-                innerHTML: "13"
+                innerHTML: '13'
             };
             var losses6 = {
-                innerHTML: "7"
+                innerHTML: '7'
             };
             var winsArray = [wins1, wins2, wins3, wins4, wins5, wins6];
             var lossesArray = [losses1, losses2, losses3, losses4, losses5, losses6];
@@ -366,36 +380,36 @@ describe ("Standings Controller Test", function () {
 
             standingsController.calculateAllWinPercentages(winsArray, lossesArray, winPctArray);
 
-            expect(winPctArray[0].innerHTML).to.equal("0.000");
-            expect(winPctArray[1].innerHTML).to.equal("1.000");
-            expect(winPctArray[2].innerHTML).to.equal("0.000");
-            expect(winPctArray[3].innerHTML).to.equal("0.500");
-            expect(winPctArray[4].innerHTML).to.equal("0.409");
-            expect(winPctArray[5].innerHTML).to.equal("0.696");
+            expect(winPctArray[0].innerHTML).to.equal('0.000');
+            expect(winPctArray[1].innerHTML).to.equal('1.000');
+            expect(winPctArray[2].innerHTML).to.equal('0.000');
+            expect(winPctArray[3].innerHTML).to.equal('0.500');
+            expect(winPctArray[4].innerHTML).to.equal('0.409');
+            expect(winPctArray[5].innerHTML).to.equal('0.696');
         });
     });
 
-    describe ("Test for formatting the number of games behind", function () {
+    describe ('Test for formatting the number of games behind', function () {
         it ('should format the games behind correctly when the team is in first', function () {
             var gamesBehind = 0;
 
             var gamesBehindStr = standingsController.formatGamesBehind(gamesBehind);
 
-            expect(gamesBehindStr).to.equal("-");
+            expect(gamesBehindStr).to.equal('-');
         });
         it ('should format the games behind correctly when the team has played one less game than the first place team', function () {
             var gamesBehind = 2.5;
 
             var gamesBehindStr = standingsController.formatGamesBehind(gamesBehind);
 
-            expect(gamesBehindStr).to.equal("2.5");
+            expect(gamesBehindStr).to.equal('2.5');
         });
         it ('should format the games behind correctly when the team has played the same number of games as the first place team', function () {
             var gamesBehind = 5;
 
             var gamesBehindStr = standingsController.formatGamesBehind(gamesBehind);
 
-            expect(gamesBehindStr).to.equal("5.0");
+            expect(gamesBehindStr).to.equal('5.0');
         });
         it ('should format the games behind correctly when the team is behind by double/triple digit games', function () {
             var gamesBehind1 = 22;
@@ -404,8 +418,8 @@ describe ("Standings Controller Test", function () {
             var gamesBehindStr1 = standingsController.formatGamesBehind(gamesBehind1);
             var gamesBehindStr2 = standingsController.formatGamesBehind(gamesBehind2);
 
-            expect(gamesBehindStr1).to.equal("22.0");
-            expect(gamesBehindStr2).to.equal("162.0");
+            expect(gamesBehindStr1).to.equal('22.0');
+            expect(gamesBehindStr2).to.equal('162.0');
         });
     });
 });
