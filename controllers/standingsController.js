@@ -106,7 +106,10 @@ function standingsController(schedulesFilebase) {
 
     function formatWinStreak(records) {
         Object.keys(records).forEach((team) => {
-            if (records[team][4].length < 2) {
+            if (records[team][4].length === 0) {
+                records[team][4] = '-';
+            }
+            else if (records[team][4].length === 1) {
                 records[team][4] += records[team][5];
             }
         });
@@ -193,7 +196,12 @@ function standingsController(schedulesFilebase) {
     }
 
     return {
-        getStandings
+        getStandings,
+        calculateWinsAndLosses,
+        calculateAllWinPercentages,
+        sortStandings,
+        calculateAllGamesBehind,
+        formatLast10Games
     };
 }
 
