@@ -1,6 +1,5 @@
-const schedules = [
-    {
-        _id: '2018fall',
+const schedules = {
+    '2018fall': {
         teams: ["A's", 'Nationals', 'Pauma', 'Royals', 'Saints', 'Tomateros', 'Toros'],
         schedule: [
             {
@@ -453,8 +452,7 @@ const schedules = [
             }
         ]
     },
-    {
-        _id: '2018spring',
+    '2018spring': {
         teams: ["A's", 'Leones', 'Nationals', 'Royals', 'Saints', 'Toros'],
         schedule: [
             {
@@ -947,6 +945,6 @@ const schedules = [
             }
         ]
     }
-];
+};
 
 module.exports = schedules;
