@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const scheduleControllerConstructor = require('../controllers/scheduleController');
 
-describe.only('Schedule Controller Test', () => {
+describe('Schedule Controller Test', () => {
     describe('Tests for adding a delay to specific weeks', () => {
         beforeEach(() => {
             scheduleController = scheduleControllerConstructor();
