@@ -1,5 +1,3 @@
-const schedules = require('../filebase/schedulesFilebase');
-
 const monthsWith31Days = [1, 3, 5, 7, 8, 10];
 const oneWeek = 7;
 const January = 1;
@@ -11,11 +9,11 @@ const daysInDecember = 31;
 const daysInMonthsWith31Days = 31;
 const daysInMonthsWith30Days = 30;
 
-function scheduleController() {
+function scheduleController(schedulesFilebase) {
     function getSchedule(year, season) {
         const id = year + season;
 
-        const scheduleObject = schedules[id];
+        const scheduleObject = schedulesFilebase[id];
 
         return scheduleObject;
     }

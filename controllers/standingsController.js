@@ -1,10 +1,8 @@
-const schedules = require('../filebase/schedulesFilebase');
-
-function standingsController() {
+function standingsController(schedulesFilebase) {
     function getStandings(year, season) {
         const id = year + season;
 
-        const scheduleObject = schedules[id];
+        const scheduleObject = schedulesFilebase[id];
 
         let standings = calculateWinsAndLosses(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
