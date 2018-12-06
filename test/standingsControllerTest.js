@@ -132,7 +132,7 @@ describe('Standings Controller Test', function () {
                 expect(winsAndLosses[team][5]).to.equal(0);
             });
         });
-        it.only('should calculate the correct number of wins and losses when a team has a bye', () => {
+        it('should calculate the correct number of wins and losses when a team has a bye', () => {
             const schedule = [
                 {
                     visitors: 'team1',
