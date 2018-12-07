@@ -3,6 +3,78 @@ const standingsControllerConstructor = require('../controllers/standingsControll
 let standingsController;
 
 describe('Standings Controller Test', () => {
+    describe('getStandings', () => {
+        beforeEach(() => {
+            const schedulesFilebase = {
+                '15hello': {
+                    teams: ['team1', 'team2'],
+                    schedule: [
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team2'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team2'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team2'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team2'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team2'
+                        },
+                        {
+                            visitors: 'team2',
+                            home: 'team1',
+                            winner: 'team1'
+                        }
+                    ]
+                }
+            };
+            standingsController = standingsControllerConstructor(schedulesFilebase);
+        });
+
+        it('should calculate the correct number of wins and losses when nobody has played yet', () => {
+
+        });
+    });
+
     describe('calculateWinsAndLosses', () => {
         beforeEach(() => {
             standingsController = standingsControllerConstructor();
