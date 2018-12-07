@@ -3,7 +3,7 @@ const scheduleControllerConstructor = require('../controllers/scheduleController
 let scheduleController;
 
 describe('Schedule Controller Test', () => {
-    describe('Tests for adding a delay to specific weeks', () => {
+    describe('addDelaysToWeeks', () => {
         beforeEach(() => {
             scheduleController = scheduleControllerConstructor();
         });
