@@ -381,11 +381,26 @@ describe('Standings Controller Test', () => {
         });
 
         it ('should format the games behind correctly when the team is in first', () => {
-            let standings = {};
+            let standings = {
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team2': [13, 6, 0, 0, 0, 0, '0.684'],
+                'team3': [12, 7, 0, 0, 0, 0, '0.632'],
+                'team4': [1, 18, 0, 0, 0, 0, '0.053'],
+                'team5': [11, 9, 0, 0, 0, 0, '0.550'],
+                'team6': [13, 7, 0, 0, 0, 0, '0.650']
+            };
+            const expectedStandings = {
+                'team2': [13, 6, 0, 0, 0, 0, '0.684'],
+                'team6': [13, 7, 0, 0, 0, 0, '0.650'],
+                'team3': [12, 7, 0, 0, 0, 0, '0.632'],
+                'team5': [11, 9, 0, 0, 0, 0, '0.550'],
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team4': [1, 18, 0, 0, 0, 0, '0.053']
+            };
 
             standings = standingsController.sortStandings(standings);
-
             
+            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
         });
     });
 
@@ -412,6 +427,34 @@ describe('Standings Controller Test', () => {
             expect(standings['team4'][2]).to.equal('12.0');
             expect(standings['team5'][2]).to.equal('2.5');
             expect(standings['team6'][2]).to.equal('0.5');
+        });
+    });
+
+    describe('formatLast10Games', () => {
+        beforeEach(() => {
+            standingsController = standingsControllerConstructor();
+        });
+
+        it ('should format the games behind correctly when the team is in first', () => {
+            let standings = {
+                'team1': [8, 11, 4, 6],
+                'team2': [13, 6, 8, 2],
+                'team3': [12, 7, 5, 5],
+                'team4': [1, 18, 0, 10],
+                'team5': [11, 9, 10, 0],
+                'team6': [13, 7, 0, 0],
+                'team7': [13, 7, 3, 2]
+            };
+
+            standingsController.formatLast10Games(standings);
+            
+            expect(standings['team1'][4]).to.equal('4-6');
+            expect(standings['team2'][4]).to.equal('8-2');
+            expect(standings['team3'][4]).to.equal('5-5');
+            expect(standings['team4'][4]).to.equal('0-10');
+            expect(standings['team5'][4]).to.equal('10-0');
+            expect(standings['team6'][4]).to.equal('0-0');
+            expect(standings['team7'][4]).to.equal('3-2');
         });
     });
 });
