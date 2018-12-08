@@ -4,6 +4,10 @@ function standingsController(schedulesFilebase) {
 
         const scheduleObject = schedulesFilebase[id];
 
+        if(!scheduleObject) {
+            return {};
+        }
+
         let standings = calculateWinsAndLosses(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
         standings = sortStandings(standings);

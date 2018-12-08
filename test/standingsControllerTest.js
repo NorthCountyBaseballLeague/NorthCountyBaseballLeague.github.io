@@ -70,8 +70,25 @@ describe('Standings Controller Test', () => {
             standingsController = standingsControllerConstructor(schedulesFilebase);
         });
 
-        it('should calculate the correct number of wins and losses when nobody has played yet', () => {
+        it('should get the entire standings with everything calculated and the order of the teams', () => {
+            const expectedStandings = {
+                'team1': [6, 5, 6, 4, 'W1', 1, '0.545', '-', '6-4'],
+                'team2': [5, 6, 4, 6, 'L1', 1, '0.455', '1.0', '4-6']
+            };
+            
+            const { teams, standings } = standingsController.getStandings('15', 'hello');
 
+            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
+            expect(teams[0]).to.equal('team1');
+            expect(teams[1]).to.equal('team2');
+        });
+        
+        it('should return an empty object when the season does not exist in the filebase', () => {
+            const expected = {};
+            
+            const result = standingsController.getStandings('20', 'hellno');
+
+            expect(JSON.stringify(result)).to.equal(JSON.stringify(expected));
         });
     });
 
