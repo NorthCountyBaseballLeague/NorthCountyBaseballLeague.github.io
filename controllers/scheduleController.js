@@ -15,6 +15,10 @@ function scheduleController(schedulesFilebase) {
 
         const scheduleObject = schedulesFilebase[id];
 
+        if (!scheduleObject) {
+            return {};
+        }
+
         return scheduleObject;
     }
 

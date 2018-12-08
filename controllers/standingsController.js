@@ -4,7 +4,7 @@ function standingsController(schedulesFilebase) {
 
         const scheduleObject = schedulesFilebase[id];
 
-        if(!scheduleObject) {
+        if (!scheduleObject) {
             return {};
         }
 

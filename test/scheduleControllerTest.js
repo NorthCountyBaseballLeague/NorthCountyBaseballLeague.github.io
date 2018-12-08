@@ -3,6 +3,92 @@ const scheduleControllerConstructor = require('../controllers/scheduleController
 let scheduleController;
 
 describe('Schedule Controller Test', () => {
+    describe('getSchedule', () => {
+        let schedule;
+
+        beforeEach(() => {
+            schedule = [
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team2'
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    winner: 'team1'
+                }
+            ];
+        
+            const schedulesFilebase = {
+                '15hello': {
+                    teams: ['team1', 'team2'],
+                    schedule
+                }
+            };
+            scheduleController = scheduleControllerConstructor(schedulesFilebase);
+        });
+
+        it('should get the entire standings with everything calculated and the order of the teams', () => {
+            const schedule = scheduleController.getSchedule('15', 'hello');
+
+            expect(JSON.stringify(schedule)).to.equal(JSON.stringify(schedule));
+        });
+        
+        it('should return an empty object when the season does not exist in the filebase', () => {
+            const expected = {};
+            
+            const result = scheduleController.getSchedule('20', 'hellno');
+
+            expect(JSON.stringify(result)).to.equal(JSON.stringify(expected));
+        });
+    });
+
     describe('addDelaysToWeeks', () => {
         beforeEach(() => {
             scheduleController = scheduleControllerConstructor();
