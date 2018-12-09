@@ -10,16 +10,14 @@ const daysInMonthsWith31Days = 31;
 const daysInMonthsWith30Days = 30;
 
 function scheduleController(schedulesFilebase) {
-    function getSchedule(year, season) {
-        const id = year + season;
-
-        const scheduleObject = schedulesFilebase[id];
+    function getSchedule(season) {
+        const scheduleObject = schedulesFilebase[season];
 
         if (!scheduleObject) {
             return {};
         }
 
-        return scheduleObject;
+        return scheduleObject.schedule;
     }
 
     function addDelaysToWeeks(schedule, dateToDelayFrom) {

@@ -76,7 +76,7 @@ describe('Standings Controller Test', () => {
                 'team2': [5, 6, 4, 6, 'L1', 1, '0.455', '1.0', '4-6']
             };
             
-            const { teams, standings } = standingsController.getStandings('15', 'hello');
+            const { teams, standings } = standingsController.getStandings('15hello');
 
             expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
             expect(teams[0]).to.equal('team1');
@@ -86,7 +86,7 @@ describe('Standings Controller Test', () => {
         it('should return an empty object when the season does not exist in the filebase', () => {
             const expected = {};
             
-            const result = standingsController.getStandings('20', 'hellno');
+            const result = standingsController.getStandings('20hellno');
 
             expect(JSON.stringify(result)).to.equal(JSON.stringify(expected));
         });

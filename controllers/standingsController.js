@@ -1,8 +1,6 @@
 function standingsController(schedulesFilebase) {
-    function getStandings(year, season) {
-        const id = year + season;
-
-        const scheduleObject = schedulesFilebase[id];
+    function getStandings(season) {
+        const scheduleObject = schedulesFilebase[season];
 
         if (!scheduleObject) {
             return {};
