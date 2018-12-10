@@ -21,7 +21,7 @@
                 background-color: rgb(150, 150, 150);
                 color: black;
             }
-            #table {
+            table {
                 border-collapse: collapse;
             }
 
@@ -118,7 +118,7 @@
             <div class="w3-row w3-padding-64">
                 <div class="w3-twothird w3-container">
                     <h1 class="w3-text-black">2018-2019 Fall Schedule</h1>
-                    <table id="table" cellpadding="5">
+                    <table cellpadding="5">
                         <thead>
                             <tr>
                                 <th id="no_border"></th>
@@ -130,8 +130,8 @@
                                 <th>Winner</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id='schedule-body'>
+                            <!-- <tr>
                                 <td class="top_round"></td>
                                 <td class="date">10/21/2018</td>
                                 <td>9 AM</td>
@@ -634,7 +634,7 @@
                                 <td class="home"></td>
                                 <td></td>
                                 <td class="last_column winner"></td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -667,20 +667,17 @@
         </script>
 
     </body>
-    <script src="../../controllers/scheduleController.js"></script>
+    <script src='../../filebase/schedulesFilebase.js'></script>
+    <script src='../../controllers/scheduleController.js'></script>
     <script>
-        const schedules = require('../filebase/schedulesFilebase');
-        
-        /* Calculate wins and losses */
-        // var winnerEls = document.getElementsByClassName("winner");
-        // var homeTeamEls = document.getElementsByClassName("home");
-        // var awayTeamEls = document.getElementsByClassName("away");
-        // var winsAndLosses = calculateWinsAndLosses(winnerEls, awayTeamEls, homeTeamEls, teams);
-        // console.log(winsAndLosses);
+        scheduleController = scheduleController(schedules);
+        const schedule = scheduleController.getSchedule('2018fall');
 
-        /* Add a delay */
-        // var dateEls = document.getElementsByClassName('date');
-        // addDelaysToWeeks(dateEls, '');
+        /* If a delay needs to be added, add it here
+        scheduleController.addDelaysToWeeks(schedule, dateToDelayFrom);
+        */
 
+        const scheduleTable = document.getElementById('schedule-body');
+        scheduleController.buildSchedule(schedule, scheduleTable);
     </script>
 </html>

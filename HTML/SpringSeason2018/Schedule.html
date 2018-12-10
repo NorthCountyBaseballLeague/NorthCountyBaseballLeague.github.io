@@ -21,7 +21,7 @@
                 background-color: rgb(150, 150, 150);
                 color: black;
             }
-            #table {
+            table {
                 border-collapse: collapse;
             }
 
@@ -119,7 +119,7 @@
             <div class="w3-row w3-padding-64">
                 <div class="w3-container">
                     <h1 class="w3-text-black">2018 Spring Schedule</h1>
-                    <table id="table" cellpadding="5">
+                    <table cellpadding="5">
                         <thead>
                             <tr>
                                 <th id="no_border"></th>
@@ -131,8 +131,8 @@
                                 <th>Winner</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id='schedule-body'>
+                            <!-- <tr>
                                 <td class="top_round"></td>
                                 <td>3/18/2018</td>
                                 <td>10 AM</td>
@@ -680,7 +680,7 @@
                                 <td class="home">Leones</td>
                                 <td>Valley Center</td>
                                 <td class="last_column winner">Toros</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -713,15 +713,59 @@
         </script>
 
     </body>
-    <script src="../../controllers/scheduleController.js"></script>
+    <script src='../../filebase/schedulesFilebase.js'></script>
+    <script src='../../controllers/scheduleController.js'></script>
     <script>
-        const schedules = require('../filebase/schedulesFilebase');
-        
-        // var winnerEls = document.getElementsByClassName("winner");
-        // var homeTeamEls = document.getElementsByClassName("home");
-        // var awayTeamEls = document.getElementsByClassName("away");
+        scheduleController = scheduleController(schedules);
+        const schedule = scheduleController.getSchedule('2018spring');
+        const scheduleTable = document.getElementById('schedule-body');
 
-        // var winsAndLosses = calculateWinsAndLosses(winnerEls, awayTeamEls, homeTeamEls, teams);
-        // console.log(winsAndLosses);
+        /* If a delay needs to be added, add it here
+        scheduleController.addDelaysToWeeks(schedule, dateToDelayFrom);
+        */
+
+        const firstGame = {
+            
+        };
+
+        for(let i = 0; i < schedule.length; i++) {
+            const curGame = schedule[i];
+
+            const row = document.createElement('tr');
+
+            const round = document.createElement('td');
+            const date = document.createElement('td');
+            const time = document.createElement('td');
+            const visitors = document.createElement('td');
+            const home = document.createElement('td');
+            const field = document.createElement('td');
+            const winner = document.createElement('td');
+
+            const roundText = document.createTextNode('');
+            const dateText = document.createTextNode(curGame.date);
+            const timeText = document.createTextNode(curGame.time);
+            const visitorsText = document.createTextNode(curGame.visitors);
+            const homeText = document.createTextNode(curGame.home);
+            const fieldText = document.createTextNode(curGame.field);
+            const winnerText = document.createTextNode(curGame.winner);
+            
+            round.appendChild(roundText);
+            date.appendChild(dateText);
+            time.appendChild(timeText);
+            visitors.appendChild(visitorsText);
+            home.appendChild(homeText);
+            field.appendChild(fieldText);
+            winner.appendChild(winnerText);
+
+            row.appendChild(round);
+            row.appendChild(date);
+            row.appendChild(time);
+            row.appendChild(visitors);
+            row.appendChild(home);
+            row.appendChild(field);
+            row.appendChild(winner);
+
+            scheduleTable.appendChild(row);
+        }
     </script>
 </html>

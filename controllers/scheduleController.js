@@ -82,9 +82,52 @@ function scheduleController(schedulesFilebase) {
         }
     };
 
+    function buildSchedule(schedule, scheduleTable) {
+        for(let i = 0; i < schedule.length; i++) {
+            const curGame = schedule[i];
+
+            const row = document.createElement('tr');
+
+            const round = document.createElement('td');
+            const date = document.createElement('td');
+            const time = document.createElement('td');
+            const visitors = document.createElement('td');
+            const home = document.createElement('td');
+            const field = document.createElement('td');
+            const winner = document.createElement('td');
+
+            const roundText = document.createTextNode('');
+            const dateText = document.createTextNode(curGame.date);
+            const timeText = document.createTextNode(curGame.time);
+            const visitorsText = document.createTextNode(curGame.visitors);
+            const homeText = document.createTextNode(curGame.home);
+            const fieldText = document.createTextNode(curGame.field);
+            const winnerText = document.createTextNode(curGame.winner);
+            
+            round.appendChild(roundText);
+            date.appendChild(dateText);
+            time.appendChild(timeText);
+            visitors.appendChild(visitorsText);
+            home.appendChild(homeText);
+            field.appendChild(fieldText);
+            winner.appendChild(winnerText);
+
+            row.appendChild(round);
+            row.appendChild(date);
+            row.appendChild(time);
+            row.appendChild(visitors);
+            row.appendChild(home);
+            row.appendChild(field);
+            row.appendChild(winner);
+
+            scheduleTable.appendChild(row);
+        }       
+    };
+
     return {
         getSchedule,
-        addDelaysToWeeks
+        addDelaysToWeeks,
+        buildSchedule
     };
 }
 
