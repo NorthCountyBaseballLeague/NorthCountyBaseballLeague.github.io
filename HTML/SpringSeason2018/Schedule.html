@@ -17,17 +17,18 @@
                 bottom: 0;
                 height: inherit;
             }
+
             .selected {
                 background-color: rgb(150, 150, 150);
                 color: black;
             }
+
             table {
                 border-collapse: collapse;
             }
 
             td {
                 text-align: center;
-                border-top:1px solid black;
                 border-bottom: 1px solid black;
                 padding-left: 25px;
                 padding-right: 25px;
@@ -44,42 +45,26 @@
                 border:0;
             }
 
-            .date_break {
-                border-bottom: 2px solid black;
+            .new-week {
+                border-top: 2px solid black;
             }
 
-            .top_round {
+            .new-round {
                 border-top: 3px solid black;
-                border-left: 3px solid black;
-                border-right: 3px solid black;
-                border-bottom: 0px;
-            }
-            
-            .middle_rounds {
-                border-top: 0px;
-                border-left: 3px solid black;
-                border-right: 3px solid black;
-                border-bottom: 0px;
             }
 
-            .bottom_round {
-                border-top: 0px;
+            .round-column {
                 border-left: 3px solid black;
                 border-right: 3px solid black;
-                border-bottom: 3px solid black;
+                border-bottom: 0;
             }
 
-            .last_row {
-                border-bottom: 3px solid black;
-            }
-
-            .last_column {
+            .winner-column {
                 border-right: 3px solid black
             }
 
-            .last_column_break {
-                border-right: 3px solid black;
-                border-bottom: 2px solid black;
+            .final-row {
+                border-bottom: 3px solid black;
             }
 
             #all_star_game {
@@ -725,10 +710,12 @@
         */
 
         const firstGame = {
-            
+            visitors: schedule[0].visitors,
+            home: schedule[0].home
         };
+        let prevDate;
 
-        for(let i = 0; i < schedule.length; i++) {
+        for (let i = 0; i < schedule.length; i++) {
             const curGame = schedule[i];
 
             const row = document.createElement('tr');
@@ -740,6 +727,32 @@
             const home = document.createElement('td');
             const field = document.createElement('td');
             const winner = document.createElement('td');
+
+            round.classList.add('round-column');
+            winner.classList.add('winner-column');
+
+            if (isFirstGameInRound(firstGame, curGame.visitors, curGame.home)) {
+                round.classList.add('new-round');
+                date.classList.add('new-round');
+                time.classList.add('new-round');
+                visitors.classList.add('new-round');
+                home.classList.add('new-round');
+                field.classList.add('new-round');
+                winner.classList.add('new-round');
+            }
+            else if(!isNewWeek(prevDate, curGame.date)) {
+                date.classList.add('new-week');
+                time.classList.add('new-week');
+                visitors.classList.add('new-week');
+                home.classList.add('new-week');
+                field.classList.add('new-week');
+                winner.classList.add('new-week');
+            }
+            // else if (isLastWeek()){
+
+            // }
+
+            prevDate = curGame.date;
 
             const roundText = document.createTextNode('');
             const dateText = document.createTextNode(curGame.date);
@@ -767,5 +780,19 @@
 
             scheduleTable.appendChild(row);
         }
+
+        function isFirstGameInRound(firstGame, visitors, home) {
+            const doesVisitorHomeTeamMatch = visitors === firstGame.visitors || visitors === firstGame.home;
+            const doesHomeTeamMatch = home === firstGame.home || home === firstGame.visitors;
+            if (doesVisitorHomeTeamMatch && doesHomeTeamMatch) {
+                return true;
+            }
+            return false;
+        }
+
+        function isNewWeek(prevDate, curDate) {
+            return prevDate === curDate;
+        }
+
     </script>
 </html>
