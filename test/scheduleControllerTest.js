@@ -184,4 +184,17 @@ describe('Schedule Controller Test', () => {
             expect(game3.date).to.equal('2/5/2019');
         });
     });
+
+    describe('buildSchedule', () => {
+        let schedule;
+        let scheduleTable;
+        let document;
+        beforeEach(() => {
+            scheduleController = scheduleControllerConstructor();
+        });
+
+        it('should create one row and add the correct classes and text to the elements', function() {
+            scheduleController.buildSchedule(schedule, scheduleTable, document);
+        });
+    });
 });

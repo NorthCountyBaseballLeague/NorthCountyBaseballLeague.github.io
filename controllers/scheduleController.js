@@ -83,10 +83,13 @@ function scheduleController(schedulesFilebase) {
     };
 
     function buildSchedule(schedule, scheduleTable, document) {
+        const firstGameVisitors = schedule && schedule[0] ? schedule[0].visitors : null;
+        const firstGameHome = schedule && schedule[0] ? schedule[0].home : null;
+
         const firstGameInRound = {
             index: 0,
-            visitors: schedule[0].visitors,
-            home: schedule[0].home
+            visitors: firstGameVisitors,
+            home: firstGameHome
         };
         let prevDate;
         const roundsArray = [];
