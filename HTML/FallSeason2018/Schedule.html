@@ -90,12 +90,12 @@
     <script>
         scheduleController = scheduleController(schedules);
         const schedule = scheduleController.getSchedule('2018fall');
-        const scheduleTable = document.getElementById('schedule-body');
+        const scheduleBody = document.getElementById('schedule-body');
 
         /* If a delay needs to be added, add it here
         scheduleController.addDelaysToWeeks(schedule, dateToDelayFrom);
         */
 
-        scheduleController.buildSchedule(schedule, scheduleTable, document);
+        scheduleController.buildSchedule(schedule, scheduleBody, document);
     </script>
 </html>

@@ -82,7 +82,7 @@ function scheduleController(schedulesFilebase) {
         }
     };
 
-    function buildSchedule(schedule, scheduleTable, document) {
+    function buildSchedule(schedule, scheduleBody, document) {
         const firstGameVisitors = schedule && schedule[0] ? schedule[0].visitors : null;
         const firstGameHome = schedule && schedule[0] ? schedule[0].home : null;
 
@@ -139,7 +139,7 @@ function scheduleController(schedulesFilebase) {
                 field.classList.add('new-round');
                 winner.classList.add('new-round');
             }
-            else if(!isNewWeek(prevDate, curGame.date)) {
+            else if(isNewWeek(prevDate, curGame.date)) {
                 date.classList.add('new-week');
                 time.classList.add('new-week');
                 visitors.classList.add('new-week');
@@ -186,7 +186,7 @@ function scheduleController(schedulesFilebase) {
             row.appendChild(field);
             row.appendChild(winner);
 
-            scheduleTable.appendChild(row);
+            scheduleBody.appendChild(row);
         }
     };
 
@@ -201,7 +201,7 @@ function scheduleController(schedulesFilebase) {
     };
 
     function isNewWeek(prevDate, curDate) {
-        return prevDate === curDate;
+        return prevDate !== curDate;
     };
 
     function isLastWeek(index, schedule) {

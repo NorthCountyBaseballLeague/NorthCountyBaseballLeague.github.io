@@ -3,16 +3,20 @@
     "version": "0.2.0",
     "description": "Website for the North County Baseball League",
     "scripts": {
-        "test": "mocha test"
+        "test": "mocha test test/approvals"
     },
     "author": "eli-magallanes",
     "license": "MIT",
     "devDependencies": {
+        "approvals": "^3.0.2",
         "chai": "^4.1.2",
-        "mocha": "^3.5.3",
-        "test": ">=0.0.5",
         "eslint": "5.8.0",
         "eslint-config-airbnb-base": "13.1.0",
-        "eslint-plugin-import": "2.14.0"
+        "eslint-plugin-import": "2.14.0",
+        "mocha": "^3.5.3",
+        "test": ">=0.0.5"
+    },
+    "dependencies": {
+        "npm": "^6.5.0"
     }
 }
