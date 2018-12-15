@@ -197,13 +197,57 @@ function standingsController(schedulesFilebase) {
         });
     }
 
+    function buildStandings(teams, standings, standingsBody, document) {
+        for (let i = 0; i < teams.length; i++) {
+            const curTeam = teams[i];
+            const curTeamStandings = standings[curTeam];
+
+            const row = document.createElement('tr');
+
+            const team = document.createElement('td');
+            const wins = document.createElement('td');
+            const losses = document.createElement('td');
+            const winPct = document.createElement('td');
+            const gamesBehind = document.createElement('td');
+            const lastTen = document.createElement('td');
+            const streak = document.createElement('td');
+
+            const teamText = document.createTextNode(curTeam);
+            const winsText = document.createTextNode(curTeamStandings[0]);
+            const lossesText = document.createTextNode(curTeamStandings[1]);
+            const winPctText = document.createTextNode(curTeamStandings[6]);
+            const gamesBehindText = document.createTextNode(curTeamStandings[7]);
+            const lastTenText = document.createTextNode(curTeamStandings[8]);
+            const streakText = document.createTextNode(curTeamStandings[4]);
+            
+            team.appendChild(teamText);
+            wins.appendChild(winsText);
+            losses.appendChild(lossesText);
+            winPct.appendChild(winPctText);
+            gamesBehind.appendChild(gamesBehindText);
+            lastTen.appendChild(lastTenText);
+            streak.appendChild(streakText);
+
+            row.appendChild(team);
+            row.appendChild(wins);
+            row.appendChild(losses);
+            row.appendChild(winPct);
+            row.appendChild(gamesBehind);
+            row.appendChild(lastTen);
+            row.appendChild(streak);
+
+            standingsBody.appendChild(row);
+        }
+    }
+
     return {
         getStandings,
         calculateWinsAndLosses,
         calculateAllWinPercentages,
         sortStandings,
         calculateAllGamesBehind,
-        formatLast10Games
+        formatLast10Games,
+        buildStandings
     };
 }
 
