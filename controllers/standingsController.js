@@ -1,3 +1,13 @@
+const winsIndex = 0;
+const lossesIndex = 1;
+const last10WinsIndex = 2;
+const last10LossesIndex = 3;
+const streakIndex = 4;
+const streakCountIndex = 5;
+const winPctIndex = 6;
+const gamesBehindIndex = 7;
+const last10Index = 8;
+
 function standingsController(schedulesFilebase) {
     function getStandings(season) {
         const scheduleObject = schedulesFilebase[season];
@@ -20,73 +30,58 @@ function standingsController(schedulesFilebase) {
         const recordCounter = constructRecordCounter(teams);
 
         for (let i = schedule.length - 1; i >= 0; i--) {
-            if (schedule[i].winner === schedule[i].visitors) {
-                recordCounter[schedule[i].visitors][0] += 1;
-                recordCounter[schedule[i].home][1] += 1;
+            const visitorsWon = schedule[i].winner === schedule[i].visitors;
+            const homeWon = schedule[i].winner === schedule[i].home && schedule[i].home !== '';
+            
+            if (visitorsWon) {
+                recordCounter[schedule[i].visitors][winsIndex] += 1;
+                recordCounter[schedule[i].home][lossesIndex] += 1;
 
-                // Calculate last 10 games record
-                if (recordCounter[schedule[i].visitors][2]
-                    + recordCounter[schedule[i].visitors][3] < 10) {
-                    recordCounter[schedule[i].visitors][2] += 1;
-                }
-
-                if (recordCounter[schedule[i].home][2]
-                    + recordCounter[schedule[i].home][3] < 10) {
-                    recordCounter[schedule[i].home][3] += 1;
-                }
+                calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
 
                 // Calculate win/loss streak
-                if (recordCounter[schedule[i].visitors][4] === '') {
-                    recordCounter[schedule[i].visitors][4] = 'W';
-                    recordCounter[schedule[i].visitors][5] += 1;
-                } else if (recordCounter[schedule[i].visitors][4] === 'W') {
-                    recordCounter[schedule[i].visitors][5] += 1;
-                } else if (recordCounter[schedule[i].visitors][4] === 'L') {
-                    recordCounter[schedule[i].visitors][4] = `L${recordCounter[schedule[i].visitors][5]}`;
+                if (recordCounter[schedule[i].visitors][streakIndex] === '') {
+                    recordCounter[schedule[i].visitors][streakIndex] = 'W';
+                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'W') {
+                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'L') {
+                    recordCounter[schedule[i].visitors][streakIndex] = `L${recordCounter[schedule[i].visitors][streakCountIndex]}`;
                 }
 
-                if (recordCounter[schedule[i].home][4] === '') {
-                    recordCounter[schedule[i].home][4] = 'L';
-                    recordCounter[schedule[i].home][5] += 1;
-                } else if (recordCounter[schedule[i].home][4] === 'L') {
-                    recordCounter[schedule[i].home][5] += 1;
-                } else if (recordCounter[schedule[i].home][4] === 'W') {
-                    recordCounter[schedule[i].home][4] = `W${recordCounter[schedule[i].home][5]}`;
+                if (recordCounter[schedule[i].home][streakIndex] === '') {
+                    recordCounter[schedule[i].home][streakIndex] = 'L';
+                    recordCounter[schedule[i].home][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].home][streakIndex] === 'L') {
+                    recordCounter[schedule[i].home][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].home][streakIndex] === 'W') {
+                    recordCounter[schedule[i].home][streakIndex] = `W${recordCounter[schedule[i].home][streakCountIndex]}`;
                 }
-            } else if (schedule[i].winner === schedule[i].home && schedule[i].home !== '') {
+            } else if (homeWon) {
                 if (recordCounter[schedule[i].home]) {
-                    recordCounter[schedule[i].home][0] += 1;
+                    recordCounter[schedule[i].home][winsIndex] += 1;
                 }
-                recordCounter[schedule[i].visitors][1] += 1;
+                recordCounter[schedule[i].visitors][lossesIndex] += 1;
 
-                // Calculate last 10 games record
-                if (recordCounter[schedule[i].visitors][2]
-                    + recordCounter[schedule[i].visitors][3] < 10) {
-                    recordCounter[schedule[i].visitors][3] += 1;
-                }
-
-                if (recordCounter[schedule[i].home][2]
-                    + recordCounter[schedule[i].home][3] < 10) {
-                    recordCounter[schedule[i].home][2] += 1;
-                }
+                calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
 
                 // Calculate win/loss streak
-                if (recordCounter[schedule[i].visitors][4] === '') {
-                    recordCounter[schedule[i].visitors][4] = 'L';
-                    recordCounter[schedule[i].visitors][5] += 1;
-                } else if (recordCounter[schedule[i].visitors][4] === 'L') {
-                    recordCounter[schedule[i].visitors][5] += 1;
-                } else if (recordCounter[schedule[i].visitors][4] === 'W') {
-                    recordCounter[schedule[i].visitors][4] = `W${recordCounter[schedule[i].visitors][5]}`;
+                if (recordCounter[schedule[i].visitors][streakIndex] === '') {
+                    recordCounter[schedule[i].visitors][streakIndex] = 'L';
+                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'L') {
+                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'W') {
+                    recordCounter[schedule[i].visitors][streakIndex] = `W${recordCounter[schedule[i].visitors][streakCountIndex]}`;
                 }
 
-                if (recordCounter[schedule[i].home][4] === '') {
-                    recordCounter[schedule[i].home][4] = 'W';
-                    recordCounter[schedule[i].home][5] += 1;
-                } else if (recordCounter[schedule[i].home][4] === 'W') {
-                    recordCounter[schedule[i].home][5] += 1;
-                } else if (recordCounter[schedule[i].home][4] === 'L') {
-                    recordCounter[schedule[i].home][4] = `L${recordCounter[schedule[i].home][5]}`;
+                if (recordCounter[schedule[i].home][streakIndex] === '') {
+                    recordCounter[schedule[i].home][streakIndex] = 'W';
+                    recordCounter[schedule[i].home][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].home][streakIndex] === 'W') {
+                    recordCounter[schedule[i].home][streakCountIndex] += 1;
+                } else if (recordCounter[schedule[i].home][streakIndex] === 'L') {
+                    recordCounter[schedule[i].home][streakIndex] = `L${recordCounter[schedule[i].home][streakCountIndex]}`;
                 }
             }
         }
@@ -106,21 +101,42 @@ function standingsController(schedulesFilebase) {
         return counter;
     }
 
+    function calculateLast10GamesRecord(visitors, home, visitorsWon) {
+        const last10Only = 10;
+        if (visitors[last10WinsIndex] + visitors[last10LossesIndex] < last10Only) {
+            if (visitorsWon) {
+                visitors[last10WinsIndex] += 1;
+            }
+            else {
+                visitors[last10LossesIndex] += 1;
+            }
+        }
+
+        if (home[last10WinsIndex] + home[last10LossesIndex] < last10Only) {
+            if (visitorsWon) {
+                home[last10LossesIndex] += 1;
+            }
+            else {
+                home[last10WinsIndex] += 1;
+            }
+        }
+    }
+
     function formatWinStreak(records) {
         Object.keys(records).forEach((team) => {
-            if (records[team][4].length === 0) {
-                records[team][4] = '-';
+            if (records[team][streakIndex].length === 0) {
+                records[team][streakIndex] = '-';
             }
-            else if (records[team][4].length === 1) {
-                records[team][4] += records[team][5];
+            else if (records[team][streakIndex].length === 1) {
+                records[team][streakIndex] += records[team][streakCountIndex];
             }
         });
     }
 
     function calculateAllWinPercentages(standings) {
         Object.keys(standings).forEach((team) => {
-            const wins = standings[team][0];
-            const losses = standings[team][1];
+            const wins = standings[team][winsIndex];
+            const losses = standings[team][lossesIndex];
 
             standings[team].push(calculateIndividualWinPercentage(wins, losses));
         });
@@ -138,13 +154,14 @@ function standingsController(schedulesFilebase) {
     }
 
     function formatWinPercentage(winPct) {
+        const expectWinPctStringLength = 5;
         let winPctStr = winPct.toString();
 
         if (winPctStr.length === 1) {
             winPctStr += '.';
         }
 
-        while (winPctStr.length < 5) {
+        while (winPctStr.length < expectWinPctStringLength) {
             winPctStr += '0';
         }
 
@@ -154,8 +171,8 @@ function standingsController(schedulesFilebase) {
     function sortStandings(standings) {
         const newStandings = {};
         Object.keys(standings).sort((a, b) => {
-            const winPctA = parseFloat(standings[a][6]);
-            const winPctB = parseFloat(standings[b][6]);
+            const winPctA = parseFloat(standings[a][winPctIndex]);
+            const winPctB = parseFloat(standings[b][winPctIndex]);
             return winPctB - winPctA;
         }).forEach((team) => {
             newStandings[team] = standings[team];
@@ -165,12 +182,12 @@ function standingsController(schedulesFilebase) {
     }
 
     function calculateAllGamesBehind(standings) {
-        const firstPlaceWins = standings[Object.keys(standings)[0]][0];
-        const firstPlaceLosses = standings[Object.keys(standings)[0]][1];
+        const firstPlaceWins = standings[Object.keys(standings)[0]][winsIndex];
+        const firstPlaceLosses = standings[Object.keys(standings)[0]][lossesIndex];
 
         Object.keys(standings).forEach((team) => {
-            const winDiff = firstPlaceWins - standings[team][0];
-            const lossDiff = standings[team][1] - firstPlaceLosses;
+            const winDiff = firstPlaceWins - standings[team][winsIndex];
+            const lossDiff = standings[team][lossesIndex] - firstPlaceLosses;
             const gb = (winDiff + lossDiff) / 2;
 
             standings[team].push(formatGamesBehind(gb));
@@ -192,7 +209,7 @@ function standingsController(schedulesFilebase) {
 
     function formatLast10Games(standings) {
         Object.keys(standings).forEach((team) => {
-            const formattedLast10 = `${standings[team][2]}-${standings[team][3]}`
+            const formattedLast10 = `${standings[team][last10WinsIndex]}-${standings[team][last10LossesIndex]}`
             standings[team].push(formattedLast10);
         });
     }
@@ -213,19 +230,19 @@ function standingsController(schedulesFilebase) {
             const streak = document.createElement('td');
 
             const teamText = document.createTextNode(curTeam);
-            const winsText = document.createTextNode(curTeamStandings[0]);
-            const lossesText = document.createTextNode(curTeamStandings[1]);
-            const winPctText = document.createTextNode(curTeamStandings[6]);
-            const gamesBehindText = document.createTextNode(curTeamStandings[7]);
-            const lastTenText = document.createTextNode(curTeamStandings[8]);
-            const streakText = document.createTextNode(curTeamStandings[4]);
+            const winsText = document.createTextNode(curTeamStandings[winsIndex]);
+            const lossesText = document.createTextNode(curTeamStandings[lossesIndex]);
+            const winPctText = document.createTextNode(curTeamStandings[winPctIndex]);
+            const gamesBehindText = document.createTextNode(curTeamStandings[gamesBehindIndex]);
+            const last10Text = document.createTextNode(curTeamStandings[last10Index]);
+            const streakText = document.createTextNode(curTeamStandings[streakIndex]);
             
             team.appendChild(teamText);
             wins.appendChild(winsText);
             losses.appendChild(lossesText);
             winPct.appendChild(winPctText);
             gamesBehind.appendChild(gamesBehindText);
-            lastTen.appendChild(lastTenText);
+            lastTen.appendChild(last10Text);
             streak.appendChild(streakText);
 
             row.appendChild(team);
