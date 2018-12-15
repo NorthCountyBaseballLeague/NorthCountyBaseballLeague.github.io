@@ -38,51 +38,13 @@ function standingsController(schedulesFilebase) {
                 recordCounter[schedule[i].home][lossesIndex] += 1;
 
                 calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
-
-                // Calculate win/loss streak
-                if (recordCounter[schedule[i].visitors][streakIndex] === '') {
-                    recordCounter[schedule[i].visitors][streakIndex] = 'W';
-                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'W') {
-                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'L') {
-                    recordCounter[schedule[i].visitors][streakIndex] = `L${recordCounter[schedule[i].visitors][streakCountIndex]}`;
-                }
-
-                if (recordCounter[schedule[i].home][streakIndex] === '') {
-                    recordCounter[schedule[i].home][streakIndex] = 'L';
-                    recordCounter[schedule[i].home][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].home][streakIndex] === 'L') {
-                    recordCounter[schedule[i].home][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].home][streakIndex] === 'W') {
-                    recordCounter[schedule[i].home][streakIndex] = `W${recordCounter[schedule[i].home][streakCountIndex]}`;
-                }
+                calculateStreak(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
             } else if (homeWon) {
-                if (recordCounter[schedule[i].home]) {
-                    recordCounter[schedule[i].home][winsIndex] += 1;
-                }
+                recordCounter[schedule[i].home][winsIndex] += 1;
                 recordCounter[schedule[i].visitors][lossesIndex] += 1;
 
                 calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
-
-                // Calculate win/loss streak
-                if (recordCounter[schedule[i].visitors][streakIndex] === '') {
-                    recordCounter[schedule[i].visitors][streakIndex] = 'L';
-                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'L') {
-                    recordCounter[schedule[i].visitors][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].visitors][streakIndex] === 'W') {
-                    recordCounter[schedule[i].visitors][streakIndex] = `W${recordCounter[schedule[i].visitors][streakCountIndex]}`;
-                }
-
-                if (recordCounter[schedule[i].home][streakIndex] === '') {
-                    recordCounter[schedule[i].home][streakIndex] = 'W';
-                    recordCounter[schedule[i].home][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].home][streakIndex] === 'W') {
-                    recordCounter[schedule[i].home][streakCountIndex] += 1;
-                } else if (recordCounter[schedule[i].home][streakIndex] === 'L') {
-                    recordCounter[schedule[i].home][streakIndex] = `L${recordCounter[schedule[i].home][streakCountIndex]}`;
-                }
+                calculateStreak(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
             }
         }
 
@@ -121,6 +83,40 @@ function standingsController(schedulesFilebase) {
             }
         }
     }
+
+    function calculateStreak(visitors, home, visitorsWon) {
+        const winCheck = 'W';
+        const lossCheck = 'L';
+        let visitorsCheck;
+        let homeCheck;
+
+        if(visitorsWon) {
+            visitorsCheck = winCheck;
+            homeCheck = lossCheck;
+        } else {
+            visitorsCheck = lossCheck;
+            homeCheck = winCheck;
+        }
+
+        if (visitors[streakIndex] === '') {
+            visitors[streakIndex] = visitorsCheck;
+            visitors[streakCountIndex] += 1;
+        } else if (visitors[streakIndex] === visitorsCheck) {
+            visitors[streakCountIndex] += 1;
+        } else if (visitors[streakIndex] === homeCheck) {
+            visitors[streakIndex] = homeCheck + visitors[streakCountIndex];
+        }
+
+        if (home[streakIndex] === '') {
+            home[streakIndex] = homeCheck;
+            home[streakCountIndex] += 1;
+        } else if (home[streakIndex] === homeCheck) {
+            home[streakCountIndex] += 1;
+        } else if (home[streakIndex] === visitorsCheck) {
+            home[streakIndex] = visitorsCheck + home[streakCountIndex];
+        }
+    }
+
 
     function formatWinStreak(records) {
         Object.keys(records).forEach((team) => {
