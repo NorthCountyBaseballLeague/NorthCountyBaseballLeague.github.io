@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgb(202, 202, 202);
+    border: 1px solid black;
+}
+
+td {
+    text-align: center;
+    border: 1px solid black;
+    padding-left: 25px;
+    padding-right: 25px;
+    white-space: nowrap;
+}
+
+#no_border {
+    background-color:white;
+    border:0;
+}
