@@ -55,62 +55,7 @@
                                 <th>Streak</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Leones</td>
-                                <td class="wins">13</td>
-                                <td class ="losses">6</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>8-2</td>
-                                <td>L1</td>
-                            </tr>
-                            <tr>
-                                <td>Toros</td>
-                                <td class="wins">13</td>
-                                <td class ="losses">7</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>6-4</td>
-                                <td>W5</td>
-                            </tr>
-                            <tr>
-                                <td>Nationals</td>
-                                <td class="wins">12</td>
-                                <td class ="losses">7</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>5-5</td>
-                                <td>W1</td>
-                            </tr>
-                            <tr>
-                                <td>Saints</td>
-                                <td class="wins">11</td>
-                                <td class ="losses">9</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>7-3</td>
-                                <td>W3</td>
-                            </tr>
-                            <tr>
-                                <td>A's</td>
-                                <td class="wins">8</td>
-                                <td class ="losses">11</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>4-6</td>
-                                <td>L3</td>
-                            </tr>            
-                            <tr>
-                                <td>Royals</td>
-                                <td class="wins">1</td>
-                                <td class ="losses">18</td>
-                                <td class="win-pct"></td>
-                                <td class="games-behind"></td>
-                                <td>0-10</td>
-                                <td>L17</td>
-                            </tr>
-                        </tbody>
+                        <tbody id='standings-body'></tbody>
                     </table>
                 </div>
             </div>
@@ -143,16 +88,52 @@
 
     </body>
 
-    <script src="../../controllers/standingsController.js"></script>
+    <script src='../../filebase/schedulesFilebase.js'></script>
+    <script src='../../controllers/standingsController.js'></script>
     <script>
-        const schedules = require('../filebase/schedulesFilebase');
+        standingsController = standingsController(schedules);
+        const { teams, standings } = standingsController.getStandings('2018spring');
+        const standingsBody = document.getElementById('standings-body');
 
-        var winsEls = document.getElementsByClassName("wins");
-        var lossesEls = document.getElementsByClassName("losses");
-        var winPctsEls = document.getElementsByClassName("win-pct");
-        var gamesBehindEls = document.getElementsByClassName("games-behind");
+        for (let i = 0; i < teams.length; i++) {
+            const curTeam = teams[i];
+            const curTeamStandings = standings[curTeam];
 
-        calculateAllWinPercentages(winsEls, lossesEls, winPctsEls);
-        calculateAllGamesBehind(winsEls, lossesEls, gamesBehindEls);
+            const row = document.createElement('tr');
+
+            const team = document.createElement('td');
+            const wins = document.createElement('td');
+            const losses = document.createElement('td');
+            const winPct = document.createElement('td');
+            const gamesBehind = document.createElement('td');
+            const lastTen = document.createElement('td');
+            const streak = document.createElement('td');
+
+            const teamText = document.createTextNode(curTeam);
+            const winsText = document.createTextNode(curTeamStandings[0]);
+            const lossesText = document.createTextNode(curTeamStandings[1]);
+            const winPctText = document.createTextNode(curTeamStandings[6]);
+            const gamesBehindText = document.createTextNode(curTeamStandings[7]);
+            const lastTenText = document.createTextNode(curTeamStandings[8]);
+            const streakText = document.createTextNode(curTeamStandings[4]);
+            
+            team.appendChild(teamText);
+            wins.appendChild(winsText);
+            losses.appendChild(lossesText);
+            winPct.appendChild(winPctText);
+            gamesBehind.appendChild(gamesBehindText);
+            lastTen.appendChild(lastTenText);
+            streak.appendChild(streakText);
+
+            row.appendChild(team);
+            row.appendChild(wins);
+            row.appendChild(losses);
+            row.appendChild(winPct);
+            row.appendChild(gamesBehind);
+            row.appendChild(lastTen);
+            row.appendChild(streak);
+
+            standingsBody.appendChild(row);
+        }
     </script>
 </html>
