@@ -1,0 +1,161 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "text": "team1"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": 6
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": 5
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "0.545"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "-"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "6-4"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "W1"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        }
+      ],
+      "classList": {
+        "classes": []
+      }
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "text": "team2"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": 5
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": 6
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "0.455"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "1.0"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "4-6"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        },
+        {
+          "children": [
+            {
+              "text": "L1"
+            }
+          ],
+          "classList": {
+            "classes": []
+          }
+        }
+      ],
+      "classList": {
+        "classes": []
+      }
+    }
+  ],
+  "classList": {
+    "classes": []
+  }
+}
