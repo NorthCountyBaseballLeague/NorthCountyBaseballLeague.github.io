@@ -16,7 +16,7 @@ function standingsController(schedulesFilebase) {
             return {};
         }
 
-        let standings = calculateWinsAndLosses(scheduleObject.schedule, scheduleObject.teams);
+        let standings = calculateWinsLossesAndStreak(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
         standings = sortStandings(standings);
         calculateAllGamesBehind(standings);
@@ -26,30 +26,21 @@ function standingsController(schedulesFilebase) {
         return { teams, standings };
     }
 
-    function calculateWinsAndLosses(schedule, teams) {
+    function calculateWinsLossesAndStreak(schedule, teams) {
         const recordCounter = constructRecordCounter(teams);
 
         for (let i = schedule.length - 1; i >= 0; i--) {
             const visitorsWon = schedule[i].winner === schedule[i].visitors;
             const homeWon = schedule[i].winner === schedule[i].home && schedule[i].home !== '';
             
-            if (visitorsWon) {
-                recordCounter[schedule[i].visitors][winsIndex] += 1;
-                recordCounter[schedule[i].home][lossesIndex] += 1;
-
-                calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
-                calculateStreak(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
-            } else if (homeWon) {
-                recordCounter[schedule[i].home][winsIndex] += 1;
-                recordCounter[schedule[i].visitors][lossesIndex] += 1;
-
-                calculateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
-                calculateStreak(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
+            if (visitorsWon || homeWon) {
+                incrementWinsAndLosses(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon)
+                updateLast10GamesRecord(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
+                updateStreak(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon);
             }
         }
 
         formatWinStreak(recordCounter);
-
         return recordCounter;
     }
 
@@ -63,7 +54,17 @@ function standingsController(schedulesFilebase) {
         return counter;
     }
 
-    function calculateLast10GamesRecord(visitors, home, visitorsWon) {
+    function incrementWinsAndLosses(visitors, home, visitorsWon) {
+        if(visitorsWon) {
+            visitors[winsIndex] += 1;
+            home[lossesIndex] += 1;
+        } else {
+            home[winsIndex] += 1;
+            visitors[lossesIndex] += 1;
+        }
+    }
+
+    function updateLast10GamesRecord(visitors, home, visitorsWon) {
         const last10Only = 10;
         if (visitors[last10WinsIndex] + visitors[last10LossesIndex] < last10Only) {
             if (visitorsWon) {
@@ -84,7 +85,7 @@ function standingsController(schedulesFilebase) {
         }
     }
 
-    function calculateStreak(visitors, home, visitorsWon) {
+    function updateStreak(visitors, home, visitorsWon) {
         const winCheck = 'W';
         const lossCheck = 'L';
         let visitorsCheck;
@@ -116,7 +117,6 @@ function standingsController(schedulesFilebase) {
             home[streakIndex] = visitorsCheck + home[streakCountIndex];
         }
     }
-
 
     function formatWinStreak(records) {
         Object.keys(records).forEach((team) => {
@@ -255,7 +255,7 @@ function standingsController(schedulesFilebase) {
 
     return {
         getStandings,
-        calculateWinsAndLosses,
+        calculateWinsLossesAndStreak,
         calculateAllWinPercentages,
         sortStandings,
         calculateAllGamesBehind,

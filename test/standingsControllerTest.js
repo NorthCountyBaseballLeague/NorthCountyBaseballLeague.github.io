@@ -92,7 +92,7 @@ describe('Standings Controller Test', () => {
         });
     });
 
-    describe('calculateWinsAndLosses', () => {
+    describe('calculateWinsLossesAndStreak', () => {
         beforeEach(() => {
             standingsController = standingsControllerConstructor();
         });
@@ -101,7 +101,7 @@ describe('Standings Controller Test', () => {
             const schedule = [];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             teams.forEach((team) => {
                 for (let i = 0; i < 4; i++) {
@@ -137,7 +137,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(2);
@@ -175,7 +175,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(2);
@@ -213,7 +213,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(0);
@@ -240,7 +240,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             teams.forEach((team) => {
                 expect(winsAndLosses[team][0]).to.equal(0);
@@ -307,7 +307,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2', 'team3', 'team4', 'team5'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             expect(winsAndLosses['team1'][0]).to.equal(3);
             expect(winsAndLosses['team1'][1]).to.equal(2);
@@ -381,7 +381,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             expect(winsAndLosses['team1'][2]).to.equal(6);
             expect(winsAndLosses['team1'][3]).to.equal(4);
@@ -429,7 +429,7 @@ describe('Standings Controller Test', () => {
             ];
             const teams = ['team1', 'team2'];
 
-            const winsAndLosses = standingsController.calculateWinsAndLosses(schedule, teams);
+            const winsAndLosses = standingsController.calculateWinsLossesAndStreak(schedule, teams);
 
             expect(winsAndLosses['team1'][4]).to.equal('W3');
             expect(winsAndLosses['team1'][5]).to.equal(3);
