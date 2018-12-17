@@ -232,7 +232,7 @@ const schedules = {
                 visitors: 'Pauma',
                 home: "A's",
                 field: 'Pauma',
-                winner: ''
+                winner: 'Pauma'
             },
             {
                 date: '12/16/2018',
@@ -240,7 +240,7 @@ const schedules = {
                 visitors: 'Tomateros',
                 home: 'Toros',
                 field: 'Pauma',
-                winner: ''
+                winner: 'Toros'
             },
             {
                 date: '12/16/2018',
@@ -248,7 +248,7 @@ const schedules = {
                 visitors: 'Saints',
                 home: 'Nationals',
                 field: 'Orange Glen',
-                winner: ''
+                winner: 'Nationals'
             },
             {
                 date: '12/16/2018',
