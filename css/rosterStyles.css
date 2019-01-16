@@ -1,0 +1,22 @@
+.team {
+    font-size: 26px;
+    text-decoration: underline;
+}
+th {
+    text-align:left;
+}
+td {
+    white-space: nowrap;
+}
+#as {
+    padding-right:20px;
+}
+#leones {
+    padding-right:84px;
+}
+#royals {
+    padding-right:53px;
+}
+.saints {
+    padding-right:20px;
+}
