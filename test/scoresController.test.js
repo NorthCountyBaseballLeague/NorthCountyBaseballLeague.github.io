@@ -2,8 +2,8 @@ const { expect } = require('chai');
 const scoresControllerConstructor = require('../controllers/scoresController');
 let scoresController;
 
-describe('Scores Controller Test', () => {
-    describe('getScores', function() {
+describe.only('Scores Controller Test', () => {
+    describe('getScoresByTeams', function() {
         let schedule;
 
         beforeEach(function() {
@@ -15,41 +15,53 @@ describe('Scores Controller Test', () => {
                     homeScore: 1
                 },
                 {
-                    visitors: 'team2',
-                    home: 'team1',
-                    visitorsScore: 3,
-                    homeScore: 10                
+                    visitors: 'team1',
+                    home: 'team2',
+                    visitorsScore: 10,
+                    homeScore: 3            
                 },
                 {
                     visitors: 'team2',
-                    home: 'team1',
-                    visitorsScore: 0,
-                    homeScore: 7
-                },
-                {
-                    visitors: 'team2',
-                    home: 'team1',
-                    visitorsScore: 9,
-                    homeScore: 4
+                    home: 'team1'
                 },
             ];
-        
-            const schedulesFilebase = {
-                '15hello': {
-                    teams: ['team1', 'team2'],
-                    schedule
-                }
-            };
 
-            scoresController = scoresControllerConstructor(schedulesFilebase);
+            scoresController = scoresControllerConstructor(schedule);
         });
 
-        it('should return an empty object when the season does not exist in the filebase', function() {
-            const expected = {};
+        it('should return an empty array when the two teams have not played each other', function() {
+            const expected = [];
             
-            const result = scoresController.getScores('20hellno');
+            const result = scoresController.getScoresByTeams('team3', 'team4');
 
-            expect(JSON.stringify(result)).to.equal(JSON.stringify(expected));
+            expect(result.length).to.equal(expected.length);
+            for(let i = 0; i < result.length; i++) {
+                expect(JSON.stringify(result[i])).to.equal(JSON.stringify(expected[i]));
+            }
         });
+
+        it('should return an array of all the scores that the teams played each other', function() {
+            const expected = [
+                {
+                    'team1': schedule[0].homeScore,
+                    'team2': schedule[0].visitorsScore
+                },
+                {
+                    'team1': schedule[1].visitorsScore,
+                    'team2': schedule[1].homeScore
+                },
+            ];
+            
+            const result = scoresController.getScoresByTeams('team1', 'team2');
+
+            expect(result.length).to.equal(expected.length);
+            for(let i = 0; i < result.length; i++) {
+                expect(JSON.stringify(result[i])).to.equal(JSON.stringify(expected[i]));
+            }        
+        });
+    });
+
+    describe('getWinner', () => {
+
     });
 });

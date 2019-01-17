@@ -16,6 +16,8 @@ function standingsController(schedulesFilebase) {
             return {};
         }
 
+        // Create scoresController here!!!
+
         let standings = calculateWinsLossesAndStreak(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
         standings = sortStandings(standings);
@@ -166,10 +168,10 @@ function standingsController(schedulesFilebase) {
 
     function sortStandings(standings) {
         const newStandings = {};
-        Object.keys(standings).sort((a, b) => {
-            const winPctA = parseFloat(standings[a][winPctIndex]);
-            const winPctB = parseFloat(standings[b][winPctIndex]);
-            return winPctB - winPctA;
+        Object.keys(standings).sort((team1, team2) => {
+            const team1WinPct = parseFloat(standings[team1][winPctIndex]);
+            const Team2WinPct = parseFloat(standings[team2][winPctIndex]);
+            return Team2WinPct - team1WinPct;
         }).forEach((team) => {
             newStandings[team] = standings[team];
         });
