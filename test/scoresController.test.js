@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const scoresControllerConstructor = require('../controllers/scoresController');
 let scoresController;
 
-describe.only('Scores Controller Test', () => {
+describe('Scores Controller Test', () => {
     describe('getScoresByTeams', function() {
         let schedule;
 
