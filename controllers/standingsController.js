@@ -8,16 +8,14 @@ const winPctIndex = 6;
 const gamesBehindIndex = 7;
 const last10Index = 8;
 
-function standingsController(schedulesFilebase) {
+function standingsController(schedulesFilebase, scoresController) {
     function getStandings(season) {
         const scheduleObject = schedulesFilebase[season];
 
         if (!scheduleObject) {
             return {};
         }
-
-        // Create scoresController here!!!
-
+        
         let standings = calculateWinsLossesAndStreak(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
         standings = sortStandings(standings);
