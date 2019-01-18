@@ -61,7 +61,29 @@ describe('Scores Controller Test', () => {
         });
     });
 
-    describe('getWinner', () => {
+    describe('didTeam1Win', () => {
+        beforeEach(() => {
+            scoresController = scoresControllerConstructor();
+        });
+
+        it('should return true when team1 won the game', () => {
+            const team1Score = 12;
+            const team2Score = 3;
+
+            const result = scoresController.didTeam1Win(team1Score, team2Score);
+
+            expect(result).to.equal(true);
+        });
+
+        it('should return false when team2 won the game', () => {
+            const team1Score = 5;
+            const team2Score = 7;
+
+            const result = scoresController.didTeam1Win(team1Score, team2Score);
+
+            expect(result).to.equal(false);
+        });
+    });
 
     });
 });

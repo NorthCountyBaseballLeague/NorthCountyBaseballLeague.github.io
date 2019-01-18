@@ -23,8 +23,14 @@ function scoresController(schedule) {
         return scoresArray;
     }
 
+
+    function didTeam1Win(team1Score, team2Score) {
+        return team1Score > team2Score;
+    }
+
     return {
-        getScoresByTeams
+        getScoresByTeams,
+        didTeam1Win
     };
 }
 
