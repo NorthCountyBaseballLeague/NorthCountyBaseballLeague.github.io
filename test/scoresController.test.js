@@ -85,5 +85,58 @@ describe('Scores Controller Test', () => {
         });
     });
 
+    describe('teamWithMoreWins', () => {
+        let scoresArray;
+
+        beforeEach(function() {
+            scoresArray = [
+                {
+                    'team1': 1,
+                    'team2': 5
+                },
+                {
+                    'team1': 4,
+                    'team2': 3
+                },
+                {
+                    'team1': 2,
+                    'team2': 4
+                }
+            ];
+
+            scoresController = scoresControllerConstructor();
+        });
+
+        it('should return to team that has more wins in an array', () => {
+            const expected = 'team2';
+
+            const result = scoresController.teamWithMoreWins(scoresArray);
+
+            expect(result).to.equal(expected);
+        });
+
+        it('should return the team with the most runs when each team has the same amount of wins', () => {
+            scoresArray.push({
+                'team1': 5,
+                'team2': 4
+            })
+            const expected = 'team2';
+
+            const result = scoresController.teamWithMoreWins(scoresArray);
+
+            expect(result).to.equal(expected);
+        });
+
+        it('should return the first team when each team has the same amount of wins and total runs', () => {
+            scoresArray.push({
+                'team1': 5,
+                'team2': 0
+            })
+            const expected = 'team1';
+
+            const result = scoresController.teamWithMoreWins(scoresArray);
+
+            expect(result).to.equal(expected);
+        });
     });
 });
