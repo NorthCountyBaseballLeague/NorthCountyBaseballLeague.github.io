@@ -168,8 +168,15 @@ function standingsController(schedulesFilebase, scoresController) {
         const newStandings = {};
         Object.keys(standings).sort((team1, team2) => {
             const team1WinPct = parseFloat(standings[team1][winPctIndex]);
-            const Team2WinPct = parseFloat(standings[team2][winPctIndex]);
-            return Team2WinPct - team1WinPct;
+            const team2WinPct = parseFloat(standings[team2][winPctIndex]);
+            if(team1WinPct === team2WinPct) {
+                const scoresArray = scoresController.getScoresByTeams(team1, team2);
+                const teamWithMoreWins = scoresController.getTeamWithMoreWins(scoresArray);
+                return teamWithMoreWins === team2 ? 1 : -1;
+            }
+            else {
+                return team2WinPct - team1WinPct;
+            }
         }).forEach((team) => {
             newStandings[team] = standings[team];
         });

@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const standingsControllerConstructor = require('../controllers/standingsController.js');
 let standingsController;
+const scoresControllerConstructor = require('../controllers/scoresController');
 
 describe('Standings Controller Test', () => {
     describe('getStandings', () => {
@@ -465,6 +466,7 @@ describe('Standings Controller Test', () => {
     });
 
     describe('sortStandings', () => {
+        let scoresController;
         beforeEach(() => {
             const schedule = [
                 {
@@ -476,7 +478,7 @@ describe('Standings Controller Test', () => {
                 {
                     visitors: 'team1',
                     home: 'team2',
-                    visitorsScore: 10,
+                    visitorsScore: 7,
                     homeScore: 3            
                 },
                 {
@@ -486,9 +488,9 @@ describe('Standings Controller Test', () => {
                     homeScore: 4
                 }
             ];
-            const scoresController = {
-                schedule: schedule
-            };
+
+            scoresController = scoresControllerConstructor();
+            scoresController.schedule = schedule;
 
             standingsController = standingsControllerConstructor(null, scoresController);
         });
@@ -519,11 +521,53 @@ describe('Standings Controller Test', () => {
         it ('should sort the standings correctly when two teams have the same record', () => {
             let standings = {
                 'team1': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team2': [13, 6, 0, 0, 0, 0, '0.421']
+                'team2': [8, 11, 0, 0, 0, 0, '0.421']
             };
             const expectedStandings = {
                 'team2': [8, 11, 0, 0, 0, 0, '0.421'],
                 'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+            };
+
+            standings = standingsController.sortStandings(standings);
+            
+            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
+        });
+
+        it ('should sort the standings correctly when two teams have the same record but different runs', () => {
+            scoresController.schedule.push({
+                visitors: 'team1',
+                home: 'team2',
+                visitorsScore: 1,
+                homeScore: 0  
+            });
+            let standings = {
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team2': [8, 11, 0, 0, 0, 0, '0.421']
+            };
+            const expectedStandings = {
+                'team2': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+            };
+
+            standings = standingsController.sortStandings(standings);
+            
+            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
+        });
+
+        it ('should sort the standings correctly when two teams have the same record and same runs', () => {
+            scoresController.schedule.push({
+                visitors: 'team1',
+                home: 'team2',
+                visitorsScore: 2,
+                homeScore: 0  
+            });
+            let standings = {
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team2': [8, 11, 0, 0, 0, 0, '0.421']
+            };
+            const expectedStandings = {
+                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team2': [8, 11, 0, 0, 0, 0, '0.421'],
             };
 
             standings = standingsController.sortStandings(standings);

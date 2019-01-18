@@ -14,7 +14,7 @@ function scoresController(schedulesFilebase) {
         let scoresArray = [];
 
         this.schedule.forEach(game => {
-            if (!game.visitorsScore || !game.homeScore) {
+            if (!game.visitorsScore && !game.homeScore) {
                 return;
             }
 
@@ -34,7 +34,7 @@ function scoresController(schedulesFilebase) {
         return scoresArray;
     }
 
-    function teamWithMoreWins(scoresArray) {
+    function getTeamWithMoreWins(scoresArray) {
         const team1 = Object.keys(scoresArray[0])[0];
         const team2 = Object.keys(scoresArray[0])[1];
         let team1Wins = 0;
@@ -60,12 +60,7 @@ function scoresController(schedulesFilebase) {
         const team2HasMoreWins = team1Wins < team2Wins;
         const team2HasBetterScore = equalAmountOfWins && totalTeam1Score < totalTeam2Score;
 
-        if(team2HasMoreWins || team2HasBetterScore) {
-            return team2;
-        }
-        else {
-            return team1;
-        }
+        return (team2HasMoreWins || team2HasBetterScore) ? team2 : team1;
     }
 
     function didTeam1Win(team1Score, team2Score) {
@@ -75,7 +70,7 @@ function scoresController(schedulesFilebase) {
     return {
         getScores,
         getScoresByTeams,
-        teamWithMoreWins,
+        getTeamWithMoreWins,
         didTeam1Win
     };
 }

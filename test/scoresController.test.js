@@ -139,7 +139,7 @@ describe('Scores Controller Test', () => {
         });
     });
 
-    describe('teamWithMoreWins', () => {
+    describe('getTeamWithMoreWins', () => {
         let scoresArray;
 
         beforeEach(function() {
@@ -164,7 +164,7 @@ describe('Scores Controller Test', () => {
         it('should return to team that has more wins in an array', () => {
             const expected = 'team2';
 
-            const result = scoresController.teamWithMoreWins(scoresArray);
+            const result = scoresController.getTeamWithMoreWins(scoresArray);
 
             expect(result).to.equal(expected);
         });
@@ -176,7 +176,7 @@ describe('Scores Controller Test', () => {
             })
             const expected = 'team2';
 
-            const result = scoresController.teamWithMoreWins(scoresArray);
+            const result = scoresController.getTeamWithMoreWins(scoresArray);
 
             expect(result).to.equal(expected);
         });
@@ -188,7 +188,7 @@ describe('Scores Controller Test', () => {
             })
             const expected = 'team1';
 
-            const result = scoresController.teamWithMoreWins(scoresArray);
+            const result = scoresController.getTeamWithMoreWins(scoresArray);
 
             expect(result).to.equal(expected);
         });
