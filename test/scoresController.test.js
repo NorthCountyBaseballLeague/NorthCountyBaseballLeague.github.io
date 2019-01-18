@@ -3,6 +3,53 @@ const scoresControllerConstructor = require('../controllers/scoresController');
 let scoresController;
 
 describe('Scores Controller Test', () => {
+    describe('getScores', () => {
+        let schedule;
+
+        beforeEach(() => {
+            schedule = [
+                {
+                    visitors: 'team2',
+                    home: 'team1',
+                    visitorsScore: 5,
+                    homeScore: 1
+                },
+                {
+                    visitors: 'team1',
+                    home: 'team2',
+                    visitorsScore: 10,
+                    homeScore: 3            
+                },
+                {
+                    visitors: 'team2',
+                    home: 'team1'
+                }
+            ];
+        
+            const schedulesFilebase = {
+                '15hello': {
+                    teams: ['team1', 'team2'],
+                    schedule
+                }
+            };
+            scoresController = scoresControllerConstructor(schedulesFilebase);
+        });
+
+        it('should get the entire standings when the season exists in the filebase', () => {
+            scoresController.getScores('15hello');
+
+            expect(JSON.stringify(scoresController.schedule)).to.equal(JSON.stringify(schedule));
+        });
+        
+        it('should return an empty object when the season does not exist in the filebase', () => {
+            const expected = {};
+            
+            scoresController.getScores('20hellno');
+
+            expect(JSON.stringify(scoresController.schedule)).to.equal(JSON.stringify(expected));
+        });
+    });
+
     describe('getScoresByTeams', function() {
         let schedule;
 
@@ -23,10 +70,17 @@ describe('Scores Controller Test', () => {
                 {
                     visitors: 'team2',
                     home: 'team1'
-                },
+                }
             ];
 
-            scoresController = scoresControllerConstructor(schedule);
+            const schedulesFilebase = {
+                '15hello': {
+                    teams: ['team1', 'team2'],
+                    schedule
+                }
+            };
+            scoresController = scoresControllerConstructor(schedulesFilebase);
+            scoresController.getScores('15hello');
         });
 
         it('should return an empty array when the two teams have not played each other', function() {

@@ -469,7 +469,7 @@ describe('Standings Controller Test', () => {
             standingsController = standingsControllerConstructor();
         });
 
-        it ('should format the games behind correctly when the team is in first', () => {
+        it ('should sort the standings correctly', () => {
             let standings = {
                 'team1': [8, 11, 0, 0, 0, 0, '0.421'],
                 'team2': [13, 6, 0, 0, 0, 0, '0.684'],

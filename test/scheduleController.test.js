@@ -74,7 +74,7 @@ describe('Schedule Controller Test', () => {
             scheduleController = scheduleControllerConstructor(schedulesFilebase);
         });
 
-        it('should get the entire standings with everything calculated and the order of the teams', () => {
+        it('should get the entire schedule when the season exists in the filebase', () => {
             const result = scheduleController.getSchedule('15hello');
 
             expect(JSON.stringify(result)).to.equal(JSON.stringify(schedule));

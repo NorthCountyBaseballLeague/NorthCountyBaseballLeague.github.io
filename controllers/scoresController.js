@@ -1,8 +1,19 @@
-function scoresController(schedule) {
+function scoresController(schedulesFilebase) {
+    function getScores(season) {
+        const scheduleObject = schedulesFilebase[season];
+
+        if (!scheduleObject) {
+            this.schedule = {};
+            return;
+        }
+
+        this.schedule = scheduleObject.schedule;
+    }
+
     function getScoresByTeams(team1, team2) {
         let scoresArray = [];
 
-        schedule.forEach(game => {
+        this.schedule.forEach(game => {
             if (!game.visitorsScore || !game.homeScore) {
                 return;
             }
@@ -62,6 +73,7 @@ function scoresController(schedule) {
     }
 
     return {
+        getScores,
         getScoresByTeams,
         teamWithMoreWins,
         didTeam1Win
