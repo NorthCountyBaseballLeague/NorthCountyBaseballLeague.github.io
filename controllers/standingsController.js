@@ -171,6 +171,11 @@ function standingsController(schedulesFilebase, scoresController) {
             const team2WinPct = parseFloat(standings[team2][winPctIndex]);
             if(team1WinPct === team2WinPct) {
                 const scoresArray = scoresController.getScoresByTeams(team1, team2);
+
+                if(scoresArray.length === 0) {
+                    return 0;
+                }
+
                 const teamWithMoreWins = scoresController.getTeamWithMoreWins(scoresArray);
                 return teamWithMoreWins === team2 ? 1 : -1;
             }

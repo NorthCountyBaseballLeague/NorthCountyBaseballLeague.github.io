@@ -63,13 +63,18 @@
     <script src='../../filebase/schedulesFilebase.js'></script>
     <script src='../../controllers/standingsController.js'></script>
     <script src='../../controllers/sidebarController.js'></script>
+    <script src='../../controllers/scoresController.js'></script>
     <script>
         const sidebarElement = document.getElementById("mySidebar");
         const overlayElement = document.getElementById("myOverlay");
         sidebarController = sidebarController(sidebarElement, overlayElement);
 
-        standingsController = standingsController(schedules);
-        const { teams, standings } = standingsController.getStandings('2018fall');
+        const season = '2018fall';
+        scoresController = scoresController(schedules);
+        scoresController.getScores(season);
+
+        standingsController = standingsController(schedules, scoresController);
+        const { teams, standings } = standingsController.getStandings(season);
         const standingsBody = document.getElementById('standings-body');
         standingsController.buildStandings(teams, standings, standingsBody, document);
     </script>
