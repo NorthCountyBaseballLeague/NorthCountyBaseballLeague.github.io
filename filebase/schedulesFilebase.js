@@ -8,7 +8,9 @@ const schedules = {
                 visitors: "A's",
                 home: 'Pauma',
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 4,
+                homeScore: 12
             },
             {
                 date: '10/21/2018',
@@ -16,7 +18,9 @@ const schedules = {
                 visitors: 'Toros',
                 home: 'Tomateros',
                 field: 'Pauma',
-                winner: 'Toros'
+                winner: 'Toros',
+                visitorsScore: 8,
+                homeScore: 5
             },
             {
                 date: '10/21/2018',
@@ -24,7 +28,9 @@ const schedules = {
                 visitors: 'Nationals',
                 home: 'Saints',
                 field: 'Orange Glen',
-                winner: 'Saints'
+                winner: 'Saints',
+                visitorsScore: 4,
+                homeScore: 5
             },
             {
                 date: '10/21/2018',
@@ -40,7 +46,9 @@ const schedules = {
                 visitors: 'Pauma',
                 home: 'Toros',
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 8,
+                homeScore: 3
             },
             {
                 date: '10/28/2018',
@@ -48,7 +56,9 @@ const schedules = {
                 visitors: 'Nationals',
                 home: 'Royals',
                 field: 'Valley Center',
-                winner: 'Nationals'
+                winner: 'Nationals',
+                visitorsScore: 11,
+                homeScore: 2
             },
             {
                 date: '10/28/2018',
@@ -56,7 +66,9 @@ const schedules = {
                 visitors: 'Saints',
                 home: 'Tomateros',
                 field: 'Orange Glen',
-                winner: 'Saints'
+                winner: 'Saints',
+                visitorsScore: 9,
+                homeScore: 8
             },
             {
                 date: '10/28/2018',
@@ -72,7 +84,9 @@ const schedules = {
                 visitors: 'Pauma',
                 home: 'Nationals',
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 10,
+                homeScore: 0
             },
             {
                 date: '11/4/2018',
@@ -80,7 +94,9 @@ const schedules = {
                 visitors: 'Tomateros',
                 home: "A's",
                 field: 'Pauma',
-                winner: 'Tomateros'
+                winner: 'Tomateros',
+                visitorsScore: 7,
+                homeScore: 4
             },
             {
                 date: '11/4/2018',
@@ -88,7 +104,9 @@ const schedules = {
                 visitors: 'Royals',
                 home: 'Saints',
                 field: 'Orange Glen',
-                winner: 'Saints'
+                winner: 'Saints',
+                visitorsScore: 7,
+                homeScore: 9
             },
             {
                 date: '11/4/2018',
@@ -104,7 +122,9 @@ const schedules = {
                 visitors: 'Tomateros',
                 home: 'Nationals',
                 field: 'Pauma',
-                winner: 'Nationals'
+                winner: 'Nationals',
+                visitorsScore: 0,
+                homeScore: 13
             },
             {
                 date: '11/11/2018',
@@ -112,7 +132,9 @@ const schedules = {
                 visitors: "A's",
                 home: 'Royals',
                 field: 'Valley Center',
-                winner: "A's"
+                winner: "A's",
+                visitorsScore: 14,
+                homeScore: 1
             },
             {
                 date: '11/11/2018',
@@ -120,7 +142,9 @@ const schedules = {
                 visitors: 'Toros',
                 home: 'Saints',
                 field: 'Orange Glen',
-                winner: 'Saints'
+                winner: 'Saints',
+                visitorsScore: 8,
+                homeScore: 10
             },
             {
                 date: '11/11/2018',
@@ -136,7 +160,9 @@ const schedules = {
                 visitors: 'Saints',
                 home: 'Pauma',
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 2,
+                homeScore: 6
             },
             {
                 date: '11/18/2018',
@@ -144,7 +170,9 @@ const schedules = {
                 visitors: 'Toros',
                 home: "A's",
                 field: 'Pauma',
-                winner: 'Toros'
+                winner: 'Toros',
+                visitorsScore: 13,
+                homeScore: 6
             },
             {
                 date: '11/18/2018',
@@ -152,7 +180,9 @@ const schedules = {
                 visitors: 'Royals',
                 home: 'Tomateros',
                 field: 'Valley Center',
-                winner: 'Tomateros'
+                winner: 'Tomateros',
+                visitorsScore: 0,
+                homeScore: 12
             },
             {
                 date: '11/18/2018',
@@ -168,7 +198,9 @@ const schedules = {
                 visitors: 'Nationals',
                 home: 'Toros',
                 field: 'Pauma',
-                winner: 'Toros'
+                winner: 'Toros',
+                visitorsScore: 0,
+                homeScore: 2
             },
             {
                 date: '12/2/2018',
@@ -176,7 +208,9 @@ const schedules = {
                 visitors: 'Pauma',
                 home: 'Royals',
                 field: 'Valley Center',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 13,
+                homeScore: 3
             },
             {
                 date: '12/2/2018',
@@ -184,7 +218,9 @@ const schedules = {
                 visitors: 'Saints',
                 home: "A's",
                 field: 'Orange Glen',
-                winner: 'Saints'
+                winner: 'Saints',
+                visitorsScore: 8,
+                homeScore: 2
             },
             {
                 date: '12/2/2018',
@@ -200,7 +236,9 @@ const schedules = {
                 visitors: 'Tomateros',
                 home: 'Pauma',
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 1,
+                homeScore: 5
             },
             {
                 date: '12/9/2018',
@@ -208,7 +246,9 @@ const schedules = {
                 visitors: "A's",
                 home: 'Nationals',
                 field: 'Pauma',
-                winner: "A's"
+                winner: "A's",
+                visitorsScore: 12,
+                homeScore: 4
             },
             {
                 date: '12/9/2018',
@@ -216,7 +256,9 @@ const schedules = {
                 visitors: 'Royals',
                 home: 'Toros',
                 field: 'Valley Center',
-                winner: 'Toros'
+                winner: 'Toros',
+                visitorsScore: 2,
+                homeScore: 11
             },
             {
                 date: '12/9/2018',
@@ -232,7 +274,9 @@ const schedules = {
                 visitors: 'Pauma',
                 home: "A's",
                 field: 'Pauma',
-                winner: 'Pauma'
+                winner: 'Pauma',
+                visitorsScore: 16,
+                homeScore: 0
             },
             {
                 date: '12/16/2018',
@@ -240,7 +284,9 @@ const schedules = {
                 visitors: 'Tomateros',
                 home: 'Toros',
                 field: 'Pauma',
-                winner: 'Toros'
+                winner: 'Toros',
+                visitorsScore: 6,
+                homeScore: 9
             },
             {
                 date: '12/16/2018',
@@ -248,7 +294,9 @@ const schedules = {
                 visitors: 'Saints',
                 home: 'Nationals',
                 field: 'Orange Glen',
-                winner: 'Nationals'
+                winner: 'Nationals',
+                visitorsScore: 3,
+                homeScore: 11
             },
             {
                 date: '12/16/2018',
