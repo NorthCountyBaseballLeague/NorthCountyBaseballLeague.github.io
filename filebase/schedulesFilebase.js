@@ -324,7 +324,7 @@ const schedules = {
             },
             {
                 date: '1/6/2019',
-                time: '9 AM',
+                time: '10 AM',
                 visitors: 'Tomateros',
                 home: 'Saints',
                 field: 'Orange Glen',
