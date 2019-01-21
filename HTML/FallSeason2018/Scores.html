@@ -53,8 +53,9 @@
                         <option value="12/2/18">12/2/18</option>
                         <option value="12/9/18">12/9/18</option>
                         <option value="12/16/18">12/16/18</option>
+                        <option value="1/20/18">1/20/18</option>
                     </select>
-            
+                    
                     <div></div>
                     <br>
             
@@ -305,6 +306,37 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <table id='1/20/18' cellpadding='5'>
+                        <thead>
+                            <tr>
+                                <th>Visitors</th>
+                                <th></th>
+                                <th></th>
+                                <th class='last_column'>Home</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Toros</td>
+                                <td class='middle-column'>0</td>
+                                <td>4</td>
+                                <td class='last_column'>Pauma</td>
+                            </tr>
+                            <tr>
+                                <td>Royals</td>
+                                <td class='middle-column'>6</td>
+                                <td>13</td>
+                                <td class='last_column'>Nationals</td>
+                            </tr>
+                            <tr class='last_row'>
+                                <td>Tomateros</td>
+                                <td class='middle-column'>0</td>
+                                <td>3</td>
+                                <td class='last_column'>Saints</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -314,7 +346,6 @@
         const sidebarElement = document.getElementById("mySidebar");
         const overlayElement = document.getElementById("myOverlay");
         sidebarController = sidebarController(sidebarElement, overlayElement);
-
 
         // Refactor out into their own file
         // Add function to bold the winner of the game
