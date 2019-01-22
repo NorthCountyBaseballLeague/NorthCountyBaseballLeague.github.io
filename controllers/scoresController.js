@@ -67,11 +67,16 @@ function scoresController(schedulesFilebase) {
         return team1Score > team2Score;
     }
 
+    function buildScores(dateSelector, scoresTables, document) {
+
+    }
+
     return {
         getScores,
         getScoresByTeams,
         getTeamWithMoreWins,
-        didTeam1Win
+        didTeam1Win,
+        buildScores
     };
 }
 
