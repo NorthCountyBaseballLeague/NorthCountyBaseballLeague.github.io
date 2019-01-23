@@ -2,7 +2,7 @@ require('approvals').mocha();
 const scoresControllerConstructor = require('../../controllers/scoresController');
 let scoresController;
 
-describe.only('Scores Controller Approvals Tests', () => {
+describe('Scores Controller Approvals Tests', () => {
     describe('buildScores', () => {
         let dateSelector;
         let scoresTables;
@@ -33,9 +33,10 @@ describe.only('Scores Controller Approvals Tests', () => {
 
             dateSelector = document.createElement();
             scoresTables = document.createElement();
+            scoresTables.appendChild(dateSelector);
         });
 
-        it('should create an empty scores table when the schedule is empty', function() {
+        it('should not create any scores table when the schedule is empty', function() {
             scoresController.schedule = [];
 
             scoresController.buildScores(dateSelector, scoresTables, document);
@@ -45,7 +46,26 @@ describe.only('Scores Controller Approvals Tests', () => {
             });
         })
 
-        it('should create an empty scores table when there are no scores', function() {
+        it('should not create any scores table when there are no scores', function() {
+            scoresController.schedule = [
+                { 
+                    visitors: 'team1',
+                    home: 'team2'
+                },
+                { 
+                    visitors: 'team2',
+                    home: 'team1'
+                }
+            ];
+
+            scoresController.buildScores(dateSelector, scoresTables, document);
+
+            this.verifyAsJSON(scoresTables, {
+                reporters: ['beyondcompare']
+            });
+        });
+
+        it('should create the scores tables when there are scores', function() {
             scoresController.schedule = [
                 { 
                     visitors: 'team1',
