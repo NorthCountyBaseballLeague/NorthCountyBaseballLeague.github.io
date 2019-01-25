@@ -48,11 +48,13 @@ describe('Scores Controller Approvals Tests', () => {
 
         it('should not create any scores table when there are no scores', function() {
             scoresController.schedule = [
-                { 
+                {
+                    date: '1/12/18',
                     visitors: 'team1',
                     home: 'team2'
                 },
                 { 
+                    date: '1/12/18',
                     visitors: 'team2',
                     home: 'team1'
                 }
@@ -65,15 +67,22 @@ describe('Scores Controller Approvals Tests', () => {
             });
         });
 
-        it('should create the scores tables when there are scores', function() {
+        it.only('should create the scores tables for the date when there are scores', function() {
             scoresController.schedule = [
                 { 
+                    date: '1/12/18',
                     visitors: 'team1',
-                    home: 'team2'
+                    home: 'team2',
+                    visitorsScore: 5,
+                    homeScore: 7
+
                 },
                 { 
+                    date: '1/12/18',
                     visitors: 'team2',
-                    home: 'team1'
+                    home: 'team1',
+                    visitorsScore: 10,
+                    homeScore: 2
                 }
             ];
 
