@@ -19,7 +19,7 @@
       }
     },
     {
-      "cellpadding": "5",
+      "cellPadding": "5",
       "children": [
         {
           "children": [

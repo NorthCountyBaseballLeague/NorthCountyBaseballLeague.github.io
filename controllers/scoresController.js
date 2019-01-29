@@ -99,13 +99,14 @@ function scoresController(schedulesFilebase) {
                 // Create a new table
                 table = document.createElement('table');
                 table.id = curDate;
-                table.cellpadding = '5';
+                table.cellPadding = '5';
 
                 // Build the header of the table
                 const tableHead = document.createElement('thead');
                 const headRow = document.createElement('tr');
                 const visitorsColumn = document.createElement('th');
-                const blankHeadColumn = document.createElement('th');
+                const visitorsScoreColumn = document.createElement('th');
+                const homeScoreColumn = document.createElement('th');
                 const homeColumn = document.createElement('th');
                 const visitorsColumnText = document.createTextNode('Visitors');
                 const homeColumnText = document.createTextNode('Home');
@@ -114,8 +115,8 @@ function scoresController(schedulesFilebase) {
                 homeColumn.appendChild(homeColumnText);
 
                 headRow.appendChild(visitorsColumn);
-                headRow.appendChild(blankHeadColumn);
-                headRow.appendChild(blankHeadColumn);
+                headRow.appendChild(visitorsScoreColumn);
+                headRow.appendChild(homeScoreColumn);
                 headRow.appendChild(homeColumn);
                 tableHead.appendChild(headRow);
                 table.appendChild(tableHead);
