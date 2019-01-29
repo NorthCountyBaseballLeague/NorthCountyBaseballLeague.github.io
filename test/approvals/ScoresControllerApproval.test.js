@@ -67,7 +67,7 @@ describe('Scores Controller Approvals Tests', () => {
             });
         });
 
-        it.only('should create the scores tables for the date when there are scores', function() {
+        it('should create the scores tables for the date when there are scores', function() {
             scoresController.schedule = [
                 { 
                     date: '1/12/18',
@@ -79,6 +79,32 @@ describe('Scores Controller Approvals Tests', () => {
                 },
                 { 
                     date: '1/12/18',
+                    visitors: 'team2',
+                    home: 'team1',
+                    visitorsScore: 10,
+                    homeScore: 2
+                }
+            ];
+
+            scoresController.buildScores(dateSelector, scoresTables, document);
+
+            this.verifyAsJSON(scoresTables, {
+                reporters: ['beyondcompare']
+            });
+        });
+
+        it('should create the scores tables for different dates when there are scores', function() {
+            scoresController.schedule = [
+                { 
+                    date: '1/12/18',
+                    visitors: 'team1',
+                    home: 'team2',
+                    visitorsScore: 5,
+                    homeScore: 7
+
+                },
+                { 
+                    date: '1/19/18',
                     visitors: 'team2',
                     home: 'team1',
                     visitorsScore: 10,

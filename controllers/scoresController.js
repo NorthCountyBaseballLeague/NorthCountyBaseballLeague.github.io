@@ -69,12 +69,13 @@ function scoresController(schedulesFilebase) {
 
     function buildScores(dateSelector, scoresTables, document) {
         let prevDate;
+        let table;
         let tableBody;
 
         for (let i = 0; i < this.schedule.length; i++) {
             const curGame = this.schedule[i];
 
-            if(!curGame.visitorsScore && !curGame.homeScore) {
+            if (!curGame.visitorsScore && !curGame.homeScore) {
                 continue;
             }
 
@@ -88,33 +89,41 @@ function scoresController(schedulesFilebase) {
                 dateSelector.appendChild(newDateOption);
 
                 prevDate = curDate;
+
+                if (table && tableBody) {
+                    // Add the table body to the table and push it onto the scores table
+                    table.appendChild(tableBody);
+                    scoresTables.appendChild(table);
+                }
+
+                // Create a new table
+                table = document.createElement('table');
+                table.id = curDate;
+                table.cellpadding = '5';
+
+                // Build the header of the table
+                const tableHead = document.createElement('thead');
+                const headRow = document.createElement('tr');
+                const visitorsColumn = document.createElement('th');
+                const blankHeadColumn = document.createElement('th');
+                const homeColumn = document.createElement('th');
+                const visitorsColumnText = document.createTextNode('Visitors');
+                const homeColumnText = document.createTextNode('Home');
+
+                visitorsColumn.appendChild(visitorsColumnText);
+                homeColumn.appendChild(homeColumnText);
+
+                headRow.appendChild(visitorsColumn);
+                headRow.appendChild(blankHeadColumn);
+                headRow.appendChild(blankHeadColumn);
+                headRow.appendChild(homeColumn);
+                tableHead.appendChild(headRow);
+                table.appendChild(tableHead);
+
+
+                // Create a new table body
+                tableBody = document.createElement('tbody');
             }
-
-            // Create a new table
-            const table = document.createElement('table');
-            // table.id = curDate;
-            // table.cellpadding = '5';
-
-            // Build the header of the table
-            const tableHead = document.createElement('thead');
-            const headRow = document.createElement('tr');
-            const visitorsColumn = document.createElement('th');
-            const blankHeadColumn = document.createElement('th');
-            const homeColumn = document.createElement('th');
-            const visitorsColumnText = document.createTextNode('Visitors');
-            const homeColumnText = document.createTextNode('Home');
-            visitorsColumn.appendChild(visitorsColumnText);
-            homeColumn.appendChild(homeColumnText);
-            homeColumn.classList.add('last_column');
-            headRow.appendChild(visitorsColumn);
-            headRow.appendChild(blankHeadColumn);
-            headRow.appendChild(blankHeadColumn);
-            headRow.appendChild(homeColumn);
-            tableHead.appendChild(headRow);
-            table.appendChild(tableHead);
-
-            // Create a new table body
-            const newTableBody = document.createElement('tbody');
 
             // Populate the table body
             const scoreRow = document.createElement('tr');
@@ -123,7 +132,29 @@ function scoresController(schedulesFilebase) {
             const homeScore = document.createElement('td');
             const homeTeam = document.createElement('td');
 
+            const visitorsTeamText = document.createTextNode(curGame.visitors);
+            const visitorsScoreText = document.createTextNode(curGame.visitorsScore);
+            const homeScoreText = document.createTextNode(curGame.homeScore);
+            const homeTeamText = document.createTextNode(curGame.home);
 
+            visitorTeam.appendChild(visitorsTeamText);
+            visitorsScore.appendChild(visitorsScoreText);
+            homeScore.appendChild(homeScoreText);
+            homeTeam.appendChild(homeTeamText);
+
+            visitorsScore.classList.add('middle-column');
+
+            scoreRow.appendChild(visitorTeam);
+            scoreRow.appendChild(visitorsScore);
+            scoreRow.appendChild(homeScore);
+            scoreRow.appendChild(homeTeam);
+
+            tableBody.appendChild(scoreRow);
+        }
+
+        if (table && tableBody) {
+            table.appendChild(tableBody);
+            scoresTables.appendChild(table);
         }
     }
 
