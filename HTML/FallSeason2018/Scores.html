@@ -56,6 +56,7 @@
     </body>
     <script src='../../filebase/schedulesFilebase.js'></script>
     <script src='../../controllers/sidebarController.js'></script>
+    <script src='../../controllers/scheduleController.js'></script>
     <script src='../../controllers/scoresController.js'></script>
     <script>
         const sidebarElement = document.getElementById("mySidebar");
@@ -82,8 +83,14 @@
         const season = '2018fall';
         const dateSelector = document.getElementById('dateSelector18-19');
         const scoresTables = document.getElementById('scoreTables18-19');
-        scoresController = scoresController(schedules);
-        scoresController.getScores(season);
+
+        scheduleController = scheduleController(schedules);
+        const schedule = scheduleController.getSchedule('2018fall');
+
+        scheduleController.addDelaysToWeeks(schedule, '1/6/2019');
+        scheduleController.addDelaysToWeeks(schedule, '1/13/2019');
+
+        scoresController = scoresController(schedule);
         scoresController.buildScores(dateSelector, scoresTables, document);
     </script>
 </html>

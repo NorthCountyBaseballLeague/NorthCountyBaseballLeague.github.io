@@ -8,17 +8,19 @@ const winPctIndex = 6;
 const gamesBehindIndex = 7;
 const last10Index = 8;
 
-function standingsController(schedulesFilebase, scoresController) {
+function standingsController(schedulesFilebase, scoresControllerConstructor) {
     function getStandings(season) {
         const scheduleObject = schedulesFilebase[season];
 
         if (!scheduleObject) {
             return {};
         }
-        
+
+        const scoresController = scoresControllerConstructor(scheduleObject.schedule);
+
         let standings = calculateWinsLossesAndStreak(scheduleObject.schedule, scheduleObject.teams);
         calculateAllWinPercentages(standings);
-        standings = sortStandings(standings);
+        standings = sortStandings(standings, scoresController);
         calculateAllGamesBehind(standings);
         formatLast10Games(standings);
         const teams = Object.keys(standings);
@@ -164,7 +166,7 @@ function standingsController(schedulesFilebase, scoresController) {
         return winPctStr;
     }
 
-    function sortStandings(standings) {
+    function sortStandings(standings, scoresController) {
         const newStandings = {};
         Object.keys(standings).sort((team1, team2) => {
             const team1WinPct = parseFloat(standings[team1][winPctIndex]);

@@ -1,19 +1,8 @@
-function scoresController(schedulesFilebase) {
-    function getScores(season) {
-        const scheduleObject = schedulesFilebase[season];
-
-        if (!scheduleObject) {
-            this.schedule = {};
-            return;
-        }
-
-        this.schedule = scheduleObject.schedule;
-    }
-
+function scoresController(schedule) {
     function getScoresByTeams(team1, team2) {
         let scoresArray = [];
 
-        this.schedule.forEach(game => {
+        schedule.forEach(game => {
             if (!game.visitorsScore && !game.homeScore) {
                 return;
             }
@@ -135,8 +124,8 @@ function scoresController(schedulesFilebase) {
         let table;
         let tableBody;
 
-        for (let i = 0; i < this.schedule.length; i++) {
-            const curGame = this.schedule[i];
+        for (let i = 0; i < schedule.length; i++) {
+            const curGame = schedule[i];
 
             if (!curGame.visitorsScore && !curGame.homeScore) {
                 continue;
@@ -167,7 +156,6 @@ function scoresController(schedulesFilebase) {
     }
 
     return {
-        getScores,
         getScoresByTeams,
         getTeamWithMoreWins,
         didTeam1Win,

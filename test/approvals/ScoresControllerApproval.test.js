@@ -29,15 +29,14 @@ describe('Scores Controller Approvals Tests', () => {
         }
 
         beforeEach(() => {
-            scoresController = scoresControllerConstructor();
-
             dateSelector = document.createElement();
             scoresTables = document.createElement();
             scoresTables.appendChild(dateSelector);
         });
 
         it('should not create any scores table when the schedule is empty', function() {
-            scoresController.schedule = [];
+            const schedule = [];
+            scoresController = scoresControllerConstructor(schedule);
 
             scoresController.buildScores(dateSelector, scoresTables, document);
 
@@ -47,7 +46,7 @@ describe('Scores Controller Approvals Tests', () => {
         })
 
         it('should not create any scores table when there are no scores', function() {
-            scoresController.schedule = [
+            const schedule = [
                 {
                     date: '1/12/18',
                     visitors: 'team1',
@@ -59,6 +58,7 @@ describe('Scores Controller Approvals Tests', () => {
                     home: 'team1'
                 }
             ];
+            scoresController = scoresControllerConstructor(schedule);
 
             scoresController.buildScores(dateSelector, scoresTables, document);
 
@@ -68,7 +68,7 @@ describe('Scores Controller Approvals Tests', () => {
         });
 
         it('should create the scores tables for the date when there are scores', function() {
-            scoresController.schedule = [
+            const schedule = [
                 { 
                     date: '1/12/18',
                     visitors: 'team1',
@@ -85,6 +85,7 @@ describe('Scores Controller Approvals Tests', () => {
                     homeScore: 2
                 }
             ];
+            scoresController = scoresControllerConstructor(schedule);
 
             scoresController.buildScores(dateSelector, scoresTables, document);
 
@@ -94,7 +95,7 @@ describe('Scores Controller Approvals Tests', () => {
         });
 
         it('should create the scores tables for different dates when there are scores', function() {
-            scoresController.schedule = [
+            const schedule = [
                 { 
                     date: '1/12/18',
                     visitors: 'team1',
@@ -111,6 +112,7 @@ describe('Scores Controller Approvals Tests', () => {
                     homeScore: 2
                 }
             ];
+            scoresController = scoresControllerConstructor(schedule);
 
             scoresController.buildScores(dateSelector, scoresTables, document);
 

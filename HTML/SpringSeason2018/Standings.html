@@ -72,9 +72,6 @@
         sidebarController = sidebarController(sidebarElement, overlayElement);
 
         const season = '2018spring';
-        scoresController = scoresController(schedules);
-        scoresController.getScores(season);
-
         standingsController = standingsController(schedules, scoresController);
         const { teams, standings } = standingsController.getStandings(season);
         const standingsBody = document.getElementById('standings-body');
