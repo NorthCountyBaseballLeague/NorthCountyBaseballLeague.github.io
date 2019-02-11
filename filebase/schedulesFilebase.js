@@ -388,7 +388,9 @@ const schedules = {
                 visitors: 'Nationals',
                 home: 'Tomateros',
                 field: 'Pauma',
-                winner: ''
+                winner: 'Nationals',
+                visitorsScore: 3,
+                homeScore: 2
             },
             {
                 date: '1/20/2019',
@@ -396,7 +398,9 @@ const schedules = {
                 visitors: 'Royals',
                 home: "A's",
                 field: 'Valley Center',
-                winner: ''
+                winner: 'Royals',
+                visitorsScore: 7,
+                homeScore: 6
             },
             {
                 date: '1/20/2019',
@@ -404,7 +408,9 @@ const schedules = {
                 visitors: 'Saints',
                 home: 'Toros',
                 field: 'Orange Glen',
-                winner: ''
+                winner: 'Saints',
+                visitorsScore: 3,
+                homeScore: 0
             },
             {
                 date: '1/20/2019',
