@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../../css/styles.css">
+        <link rel="stylesheet" href="../../css/styles.css">    
         <link rel="stylesheet" href="../../css/scheduleStyles.css">
     </head>
     <body>
@@ -29,10 +29,10 @@
                 <i class="fa fa-remove"></i>
             </a>
             <h4 class="w3-bar-item"><b>Menu</b></h4>
-            <a class="w3-bar-item selected">Schedule</a>
+            <a href="Schedule.html" class="w3-bar-item w3-button w3-hover-black">Schedule</a>
             <a href="Scores.html" class="w3-bar-item w3-button w3-hover-black">Scores</a>
             <a href="Standings.html" class="w3-bar-item w3-button w3-hover-black">Standings</a>
-            <a href="Playoffs.html" class="w3-bar-item w3-button w3-hover-black">Playoffs</a>
+            <a class="w3-bar-item selected">Playoffs</a>
         </nav>
 
         <!-- Overlay effect when opening sidebar on small screens -->
@@ -41,8 +41,8 @@
         <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
         <div class="w3-main" style="margin-left:250px">
             <div class="w3-row w3-padding-64">
-                <div class="w3-twothird w3-container">
-                    <h1 class="w3-text-black">2018-2019 Fall Schedule</h1>
+                <div class="w3-container">
+                    <h1 class="w3-text-black">2018-2019 Fall Playoffs</h1>
                     <table cellpadding="5">
                         <thead>
                             <tr>
@@ -55,28 +55,62 @@
                                 <th>Winner</th>
                             </tr>
                         </thead>
-                        <tbody id='schedule-body'></tbody>
+                        <tbody>
+                            <tr>
+                                <td class="round-column new-round">Semi</td>
+                                <td class="new-round">3/10/2019</td>
+                                <td class="new-round">TBD</td>
+                                <td class="new-round">4th Place</td>
+                                <td class="new-round">1st Place</td>
+                                <td class="new-round">TBD</td>
+                                <td class="winner-column new-round"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Finals</td>
+                                <td class="new-week">3/10/2019</td>
+                                <td class="new-week">TBD</td>
+                                <td class="new-week">3rd Place</td>
+                                <td class="new-week">2nd Place</td>
+                                <td class="new-week">TBD</td>
+                                <td class="winner-column new-week"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column new-round"></td>
+                                <td class="new-round">3/17/2019</td>
+                                <td class="new-round">9 AM</td>
+                                <td class="new-round">Lowest Seed</td>
+                                <td class="new-round">Highest Seed</td>
+                                <td class="new-round">TBD</td>
+                                <td class="winner-column new-round"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Finals</td>
+                                <td>3/24/2019</td>
+                                <td>9 AM</td>
+                                <td>Highest Seed</td>
+                                <td>Lowest Seed</td>
+                                <td>Pauma</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column last-game"></td>
+                                <td class="last-game">3/24/2019</td>
+                                <td class="last-game">12:30 PM</td>
+                                <td class="last-game">Lowest Seed</td>
+                                <td class="last-game">Highest Seed</td>
+                                <td class="last-game">Pauma</td>
+                                <td class="winner-column last-game"></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </body>
-    <script src='../../filebase/schedulesFilebase.js'></script>
-    <script src='../../controllers/scheduleController.js'></script>
     <script src='../../controllers/sidebarController.js'></script>
     <script>
         const sidebarElement = document.getElementById("mySidebar");
         const overlayElement = document.getElementById("myOverlay");
         sidebarController = sidebarController(sidebarElement, overlayElement);
-
-        scheduleController = scheduleController(schedules);
-        const schedule = scheduleController.getSchedule('2018fall');
-
-        scheduleController.addDelaysToWeeks(schedule, '1/6/2019');
-        scheduleController.addDelaysToWeeks(schedule, '1/13/2019');
-        scheduleController.addDelaysToWeeks(schedule, '2/3/2019');
-
-        const scheduleBody = document.getElementById('schedule-body');
-        scheduleController.buildSchedule(schedule, scheduleBody, document);
     </script>
 </html>
