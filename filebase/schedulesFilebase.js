@@ -475,8 +475,8 @@ const schedules = {
                 home: 'Pauma',
                 field: 'Valley Center',
                 winner: 'Pauma',
-                visitorsScore: 0,
-                homeScore: 10
+                visitorsScore: 1,
+                homeScore: 15
             },
             {
                 date: '2/3/2019',
