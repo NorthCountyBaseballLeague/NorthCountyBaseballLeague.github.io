@@ -464,7 +464,9 @@ const schedules = {
                 visitors: 'Toros',
                 home: 'Nationals',
                 field: 'Pauma',
-                winner: ''
+                winner: 'Toros',
+                visitorsScore: 4,
+                homeScore: 1
             },
             {
                 date: '2/3/2019',
@@ -472,7 +474,9 @@ const schedules = {
                 visitors: 'Royals',
                 home: 'Pauma',
                 field: 'Valley Center',
-                winner: ''
+                winner: 'Pauma',
+                visitorsScore: 0,
+                homeScore: 10
             },
             {
                 date: '2/3/2019',
@@ -480,44 +484,14 @@ const schedules = {
                 visitors: "A's",
                 home: 'Saints',
                 field: 'Orange Glen',
-                winner: ''
+                winner: 'Saints',
+                visitorsScore: 2,
+                homeScore: 8
             },
             {
                 date: '2/3/2019',
                 time: 'BYE',
                 visitors: 'Tomateros',
-                home: '',
-                field: '',
-                winner: ''
-            },
-            {
-                date: '2/10/2019',
-                time: '9 AM',
-                visitors: 'Pauma',
-                home: 'Tomateros',
-                field: 'Pauma',
-                winner: ''
-            },
-            {
-                date: '2/10/2019',
-                time: '12:30 PM',
-                visitors: 'Nationals',
-                home: "A's",
-                field: 'Pauma',
-                winner: ''
-            },
-            {
-                date: '2/10/2019',
-                time: '9 AM',
-                visitors: 'Toros',
-                home: 'Royals',
-                field: 'Valley Center',
-                winner: ''
-            },
-            {
-                date: '2/10/2019',
-                time: 'BYE',
-                visitors: 'Saints',
                 home: '',
                 field: '',
                 winner: ''
