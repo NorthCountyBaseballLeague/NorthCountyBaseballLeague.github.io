@@ -3,10 +3,14 @@
     "version": "0.2.0",
     "description": "Website for the North County Baseball League",
     "scripts": {
+        "build": "node ./services/excelToJsonConverterService.js",
         "test": "mocha test test/approvals"
     },
     "author": "eli-magallanes",
     "license": "MIT",
+    "dependencies": {
+        "convert-excel-to-json": "^1.6.1"
+    },
     "devDependencies": {
         "approvals": "^3.0.2",
         "chai": "^4.1.2",
