@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Saints Statistics</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../public/css/statsStyles.css">
+    </head>
+    <body>
+        <img id="saints-logo" src="../../public/images/saintsLogo.jpg" alt="Saints Baseball">
+        <h1 class="w3-text-black">2019 Spring Statistics</h1>
+        <table cellpadding="8">
+            <thead id='stats-header'></thead>
+            <tbody id='stats-body'></tbody>
+        </table>
+        <br>
+        <a href="https://www.instagram.com/saintsbaseball760/?utm_source=ig_profile_share&igshid=ip7ho2ifwu13" 
+        title="Follow us on Instagram">
+            <img id="instagram-logo" src="../../public/images/instagramLogo.png" alt="Instagram">
+        </a>
+    </body>
+    <script type='application/javascript' src='../../controllers/statisticsController.js'></script>
+    <script type='text/javascript' src='../../filebase/statisticsFilebase.js'></script>
+    <script>
+        const statsHeader = document.getElementById('stats-header');
+        const statsBody = document.getElementById('stats-body');
+        buildStatistics(stats['2019 Spring Stats'], statsHeader, statsBody, document);
+    </script>
+</html>

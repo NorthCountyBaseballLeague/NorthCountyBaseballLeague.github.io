@@ -1,0 +1,48 @@
+table {
+    border: 3px black solid;
+    border-collapse: collapse;
+    text-align: center;
+    width: 90%;
+    overflow: hidden;
+}
+
+th {
+    border-bottom: 2px black solid;
+    border-right: 1px black solid;
+    background-color: lightgray;
+    width: 3%;
+    position: relative;
+}
+
+td {
+    border: 1px black solid;
+    position: relative;
+}
+
+tr:hover {
+    background-color: #e3f113;
+}
+
+td:hover::after {
+    content: "";
+    position: absolute;
+    background-color: #e3f113;
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+}
+
+img {
+    height: auto;
+}
+
+#saints-logo {
+    border-radius: 10%;
+    max-width: 20%;
+}
+
+#instagram-logo {
+    max-width: 10%;
+}
