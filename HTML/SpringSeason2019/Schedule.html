@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>North County Baseball League</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../public/css/styles.css">
+        <link rel="stylesheet" href="../../public/css/scheduleStyles.css">
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="sidebarController.openSidebar()">
+                        <i class="fa fa-bars"></i>
+                </a>
+                <a href="../../index.html" class="w3-bar-item w3-button w3-theme-l1">NCBL</a>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+            <a href="javascript:void(0)" onclick="sidebarController.closeSidebar()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4 class="w3-bar-item"><b>Menu</b></h4>
+            <a class="w3-bar-item selected">Schedule</a>
+            <a href="Scores.html" class="w3-bar-item w3-button w3-hover-black">Scores</a>
+            <a href="Standings.html" class="w3-bar-item w3-button w3-hover-black">Standings</a>
+        </nav>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large" onclick="sidebarController.closeSidebar()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+        <div class="w3-main" style="margin-left:250px">
+            <div class="w3-row w3-padding-64">
+                <div class="w3-twothird w3-container">
+                    <h1 class="w3-text-black">2019 Spring Schedule</h1>
+                    <table cellpadding="5">
+                        <thead>
+                            <tr>
+                                <th id="no_border"></th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Visitors</th>
+                                <th>Home</th>
+                                <th>Field</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody id='schedule-body'></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src='../../filebase/schedulesFilebase.js'></script>
+    <script src='../../controllers/scheduleController.js'></script>
+    <script src='../../controllers/sidebarController.js'></script>
+    <script>
+        const sidebarElement = document.getElementById("mySidebar");
+        const overlayElement = document.getElementById("myOverlay");
+        sidebarController = sidebarController(sidebarElement, overlayElement);
+
+        const season = '2019spring';
+        scheduleController = scheduleController(schedules);
+        const schedule = scheduleController.getSchedule(season);
+
+        const scheduleBody = document.getElementById('schedule-body');
+        scheduleController.buildSchedule(schedule, scheduleBody, document);
+    </script>
+</html>
