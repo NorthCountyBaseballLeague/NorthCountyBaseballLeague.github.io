@@ -25,22 +25,22 @@ function scheduleController(schedulesFilebase) {
         const monthToDelayFrom = parseInt(substringDateToDelayFrom[0]);
         const dayToDelayFrom = parseInt(substringDateToDelayFrom[1]);
         const yearToDelayFrom = parseInt(substringDateToDelayFrom[2]);
-    
+
         schedule.forEach(game => {
             const substringDate = game.date.split('/');
             const month = parseInt(substringDate[0]);
             const day = parseInt(substringDate[1]);
             const year = parseInt(substringDate[2]);
-    
+
             const isLaterYear = year > yearToDelayFrom;
             const isLaterMonth = month > monthToDelayFrom && year === yearToDelayFrom;
             const isLaterDay = day >= dayToDelayFrom && month === monthToDelayFrom && year === yearToDelayFrom;
             const dateShouldBeDelayed = isLaterYear || isLaterMonth || isLaterDay;
-    
+
             addDelayToDate(dateShouldBeDelayed, day, month, year, game)
-        }) 
+        })
     };
-    
+
     function addDelayToDate(dateShouldBeDelayed, day, month, year, game) {
         if (dateShouldBeDelayed) {
             day += oneWeek;
@@ -77,7 +77,7 @@ function scheduleController(schedulesFilebase) {
                     day = day % daysInMonthsWith30Days;
                 }
             }
-    
+
             game.date = month + '/' + day + '/' + year;
         }
     };
@@ -122,15 +122,15 @@ function scheduleController(schedulesFilebase) {
                 field.classList.add('new-round');
                 winner.classList.add('new-round');
 
-                if(i !== 0) {
+                if (i !== 0) {
                     curRoundNum += 1;
                     const roundText = document.createTextNode(`Round ${curRoundNum}`);
-                    const roundIndex = Math.floor(((i-1) - firstGameInRound.index) / 2)  + firstGameInRound.index;
+                    const roundIndex = Math.floor(((i - 1) - firstGameInRound.index) / 2) + firstGameInRound.index;
                     firstGameInRound.index = i;
                     roundsArray[roundIndex].appendChild(roundText);
                 }
             }
-            else if(isAllStarGame(curGame.visitors)) {
+            else if (isAllStarGame(curGame.visitors)) {
                 round.classList.add('new-round');
                 date.classList.add('new-round');
                 time.classList.add('new-round');
@@ -139,7 +139,7 @@ function scheduleController(schedulesFilebase) {
                 field.classList.add('new-round');
                 winner.classList.add('new-round');
             }
-            else if(isNewWeek(prevDate, curGame.date)) {
+            else if (isNewWeek(prevDate, curGame.date)) {
                 date.classList.add('new-week');
                 time.classList.add('new-week');
                 visitors.classList.add('new-week');
@@ -147,7 +147,7 @@ function scheduleController(schedulesFilebase) {
                 field.classList.add('new-week');
                 winner.classList.add('new-week');
             }
-            else if (isLastWeek(i, schedule)){
+            else if (isLastWeek(i, schedule)) {
                 round.classList.add('last-game');
                 date.classList.add('last-game');
                 time.classList.add('last-game');
@@ -158,19 +158,19 @@ function scheduleController(schedulesFilebase) {
 
                 curRoundNum += 1;
                 const roundText = document.createTextNode(`Round ${curRoundNum}`);
-                const roundIndex = Math.floor((i - firstGameInRound.index) / 2)  + firstGameInRound.index;
+                const roundIndex = Math.floor((i - firstGameInRound.index) / 2) + firstGameInRound.index;
                 roundsArray[roundIndex].appendChild(roundText);
             }
 
             prevDate = curGame.date;
 
-            const dateText = document.createTextNode(curGame.date);
-            const timeText = document.createTextNode(curGame.time);
-            const visitorsText = document.createTextNode(curGame.visitors);
-            const homeText = document.createTextNode(curGame.home);
-            const fieldText = document.createTextNode(curGame.field);
-            const winnerText = document.createTextNode(curGame.winner);
-            
+            const dateText = document.createTextNode(curGame.date || '');
+            const timeText = document.createTextNode(curGame.time || '');
+            const visitorsText = document.createTextNode(curGame.visitors || '');
+            const homeText = document.createTextNode(curGame.home || '');
+            const fieldText = document.createTextNode(curGame.field || '');
+            const winnerText = document.createTextNode(curGame.winner || '');
+
             date.appendChild(dateText);
             time.appendChild(timeText);
             visitors.appendChild(visitorsText);
