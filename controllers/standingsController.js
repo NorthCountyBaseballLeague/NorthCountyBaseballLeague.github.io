@@ -33,7 +33,7 @@ function standingsController(schedulesFilebase, scoresControllerConstructor) {
 
         for (let i = schedule.length - 1; i >= 0; i--) {
             const visitorsWon = schedule[i].winner === schedule[i].visitors;
-            const homeWon = schedule[i].winner === schedule[i].home && schedule[i].home !== '';
+            const homeWon = schedule[i].winner === schedule[i].home && schedule[i].home;
             
             if (visitorsWon || homeWon) {
                 incrementWinsAndLosses(recordCounter[schedule[i].visitors], recordCounter[schedule[i].home], visitorsWon)

@@ -24,11 +24,11 @@ function appendTeamsAndFormatDateAndTime(schedulesObject) {
             schedule: currentSchedule
         };
 
-        const firstGameDate = currentSchedule.length > 0 ? dateFormat(currentSchedule[0].date, 'shortDate') : '';
+        const firstGameDate = currentSchedule.length > 0 ? dateFormat(currentSchedule[0].date, 'm/d/yyyy') : '';
 
         currentSchedule.forEach(game => {
             if (typeof game.date !== 'string') {
-                game.date = dateFormat(game.date, 'shortDate');
+                game.date = dateFormat(game.date, 'm/d/yyyy');
             }
             if (typeof game.time !== 'string') {
                 game.time = dateFormat(game.time, 'shortTime');
