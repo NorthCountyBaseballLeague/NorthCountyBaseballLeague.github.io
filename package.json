@@ -3,8 +3,8 @@
     "version": "0.2.0",
     "description": "Website for the North County Baseball League",
     "scripts": {
-        "build": "node ./services/excelToJsonConverterService.js",
-        "buildSchedule": "node ./services/scheduleFilebaseGenerator.js",
+        "buildStats": "node ./generators/statisticsFilebaseGenerator.js",
+        "buildSchedule": "node ./generators/scheduleFilebaseGenerator.js",
         "test": "mocha test test/approvals"
     },
     "author": "eli-magallanes",
