@@ -1,6 +1,12 @@
 table {
     border: 3px black solid;
     border-collapse: collapse;
+    text-align: left;
+}
+
+#stats-table {
+    border: 3px black solid;
+    border-collapse: collapse;
     text-align: center;
     width: 90%;
     overflow: hidden;
@@ -8,8 +14,11 @@ table {
 
 th {
     border-bottom: 2px black solid;
-    border-right: 1px black solid;
     background-color: lightgray;
+}
+
+#stats-table th {
+    border-right: 1px black solid;
     width: 3%;
     position: relative;
 }
@@ -19,11 +28,11 @@ td {
     position: relative;
 }
 
-tr:hover {
+#stats-table tr:hover {
     background-color: #e3f113;
 }
 
-td:hover::after {
+#stats-table td:hover::after {
     content: "";
     position: absolute;
     background-color: #e3f113;
