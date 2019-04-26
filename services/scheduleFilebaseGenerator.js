@@ -15,36 +15,44 @@ function convertToJson() {
     });
 }
 
+function formatDateAndTime(game) {
+    if (typeof game.date !== 'string') {
+        game.date = dateFormat(game.date, 'UTC:m/d/yyyy');
+    }
+    if (typeof game.time !== 'string') {
+        game.time = dateFormat(game.time, 'shortTime');
+    }
+}
+
+function appendTeams (game, firstGameDate, teams) {
+    if (game.date === firstGameDate) {
+        if (game.visitors) {
+            teams.push(game.visitors);
+        }
+        if (game.home) {
+            teams.push(game.home);
+        }
+    }
+}
+
 function appendTeamsAndFormatDateAndTime(schedulesObject) {
     let scheduleWithTeams = {};
     Object.keys(schedulesObject).forEach(schedule => {
         const currentSchedule = schedulesObject[schedule];
+        const currentTeams = [];
         scheduleWithTeams[schedule] = {
-            teams: [],
+            teams: currentTeams,
             schedule: currentSchedule
         };
 
         const firstGameDate = currentSchedule.length > 0 ? dateFormat(currentSchedule[0].date, 'UTC:m/d/yyyy') : '';
-
+ 
         currentSchedule.forEach(game => {
-            if (typeof game.date !== 'string') {
-                game.date = dateFormat(game.date, 'UTC:m/d/yyyy');
-            }
-            if (typeof game.time !== 'string') {
-                game.time = dateFormat(game.time, 'shortTime');
-            }
-
-            if (game.date === firstGameDate) {
-                if (game.visitors) {
-                    scheduleWithTeams[schedule].teams.push(game.visitors);
-                }
-                if (game.home) {
-                    scheduleWithTeams[schedule].teams.push(game.home);
-                }
-            }
+            formatDateAndTime(game)
+            appendTeams(game, firstGameDate, currentTeams);
         });
-    });
-
+    }); 
+                    
     return scheduleWithTeams;
 }
 
