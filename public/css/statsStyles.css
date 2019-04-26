@@ -1,7 +1,6 @@
 table {
     border: 3px black solid;
     border-collapse: collapse;
-    text-align: left;
 }
 
 #stats-table {
@@ -10,6 +9,11 @@ table {
     text-align: center;
     width: 90%;
     overflow: hidden;
+}
+
+#key-table {
+    text-align: left;
+    width: 50%;
 }
 
 th {
@@ -49,9 +53,9 @@ img {
 
 #saints-logo {
     border-radius: 10%;
-    max-width: 20%;
+    max-width: 25%;
 }
 
 #instagram-logo {
-    max-width: 10%;
+    max-width: 100px;
 }
