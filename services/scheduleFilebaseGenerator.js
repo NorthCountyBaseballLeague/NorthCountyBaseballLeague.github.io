@@ -24,11 +24,11 @@ function appendTeamsAndFormatDateAndTime(schedulesObject) {
             schedule: currentSchedule
         };
 
-        const firstGameDate = currentSchedule.length > 0 ? dateFormat(currentSchedule[0].date, 'm/d/yyyy') : '';
+        const firstGameDate = currentSchedule.length > 0 ? dateFormat(currentSchedule[0].date, 'UTC:m/d/yyyy') : '';
 
         currentSchedule.forEach(game => {
             if (typeof game.date !== 'string') {
-                game.date = dateFormat(game.date, 'm/d/yyyy');
+                game.date = dateFormat(game.date, 'UTC:m/d/yyyy');
             }
             if (typeof game.time !== 'string') {
                 game.time = dateFormat(game.time, 'shortTime');
@@ -51,7 +51,7 @@ function appendTeamsAndFormatDateAndTime(schedulesObject) {
 function generateFileString(jsonString) {
     const declarationString = 'const schedules = ';
     let jsFileString = declarationString + jsonString + ';';
-    const exportString = '\n\nmodule.exports = schedule;';
+    const exportString = '\n\nmodule.exports = schedules;';
     jsFileString += exportString;
     return jsFileString;
 }
@@ -59,11 +59,9 @@ function generateFileString(jsonString) {
 function writeToFile() {
     const schedulesObject = convertToJson();
     const schedulesWithTeams = appendTeamsAndFormatDateAndTime(schedulesObject);
-    // console.log('this is the object', schedulesObject);
-    console.log('this is the schedulesWithTeams', schedulesWithTeams);
     const schedulesString = JSON.stringify(schedulesWithTeams);
     const jsFileString = generateFileString(schedulesString);
-    const schedulesFilebase = 'filebase/testSchedule.js';
+    const schedulesFilebase = 'filebase/schedulesFilebase.js';
     fs.writeFile(schedulesFilebase, jsFileString, 'utf8', function (err) {
         if (err) {
             console.log('There was an error: ', err);
