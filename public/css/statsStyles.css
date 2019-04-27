@@ -25,6 +25,11 @@ th {
     border-right: 1px black solid;
     width: 3%;
     position: relative;
+    color: #010150;
+}
+
+#stats-table th:hover {
+    text-decoration: underline;
 }
 
 td {

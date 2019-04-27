@@ -39,10 +39,12 @@ function resetStatsSortedByKey() {
 }
 
 function sortStatistics(statToSortBy, stats, statsHeader, statsBody, document) {
-    if(!statsSortedByKey[statToSortBy]) {
+    if (!statsSortedByKey[statToSortBy]) {
         stats.sort((player1, player2) => {
             if (typeof player1[statToSortBy] === 'string' && typeof player2[statToSortBy] === 'string') {
                 return player1[statToSortBy].localeCompare(player2[statToSortBy]);
+            } else if(statToSortBy === '#') {
+                return player1[statToSortBy] - player2[statToSortBy];
             } else {
                 return player2[statToSortBy] - player1[statToSortBy];
             }
@@ -72,6 +74,10 @@ function buildStatistics(stats, statsHeader, statsBody, document) {
         headerElement.innerHTML = statistic;
         headerElement.onclick = sortStatistics.bind(null, statistic, stats, statsHeader, statsBody, document);
 
+        if (statsSortedByKey[statistic]) {
+            headerElement.className = 'selected';
+        }
+
         headerRow.appendChild(headerElement);
     });
 
@@ -84,6 +90,11 @@ function buildStatistics(stats, statsHeader, statsBody, document) {
         Object.keys(curPlayer).forEach(statistic => {
             const statElement = document.createElement('td');
             statElement.innerHTML = curPlayer[statistic];
+
+            if (statsSortedByKey[statistic]) {
+                statElement.className = 'selected';
+            }
+
             playerRow.appendChild(statElement);
         });
 
