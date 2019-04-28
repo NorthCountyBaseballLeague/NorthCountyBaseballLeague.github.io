@@ -41,10 +41,12 @@ function resetStatsSortedByKey() {
 function sortStatistics(statToSortBy, stats, statsHeader, statsBody, document) {
     if (!statsSortedByKey[statToSortBy]) {
         stats.sort((player1, player2) => {
-            if (typeof player1[statToSortBy] === 'string' && typeof player2[statToSortBy] === 'string') {
-                return player1[statToSortBy].localeCompare(player2[statToSortBy]);
-            } else if(statToSortBy === '#') {
+            if(statToSortBy === '#') {
                 return player1[statToSortBy] - player2[statToSortBy];
+            } else if(statToSortBy === 'Player') {
+                return player1[statToSortBy].localeCompare(player2[statToSortBy]);
+            } else if (typeof player1[statToSortBy] === 'string' && typeof player2[statToSortBy] === 'string') {
+                return player2[statToSortBy].localeCompare(player1[statToSortBy]);
             } else {
                 return player2[statToSortBy] - player1[statToSortBy];
             }
