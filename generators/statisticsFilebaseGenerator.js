@@ -1,18 +1,7 @@
 'use strict';
-const excelToJson = require('convert-excel-to-json');
-const fs = require('fs');
 
-function convertToJson () {
-    return excelToJson({
-        sourceFile: 'filebase/NCBL Statistics.xlsx',
-        header: {
-            rows: 1
-        },
-        columnToKey: {
-            '*': '{{columnHeader}}'
-        }
-    });
-}
+const convertExcelToJsonService = require('../services/convertExcelToJson.service');
+const fs = require('fs');
 
 function generateFileString(jsonString) {
     const declarationString = 'const stats = ';
@@ -23,7 +12,8 @@ function generateFileString(jsonString) {
 }
 
 function writeToFile () {
-    const jsonObject = convertToJson();
+    const sourceFile = 'filebase/NCBL Statistics.xlsx';
+    const jsonObject = convertExcelToJsonService.convert(sourceFile);
     const jsonString = JSON.stringify(jsonObject);
     const jsFileString = generateFileString(jsonString);
     const statsFile = 'filebase/statisticsFilebase.js';

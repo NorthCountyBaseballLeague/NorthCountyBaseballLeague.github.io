@@ -1,19 +1,7 @@
 'use strict';
 const dateFormat = require('dateformat');
-const excelToJson = require('convert-excel-to-json');
+const convertExcelToJsonService = require('../services/convertExcelToJson.service');
 const fs = require('fs');
-
-function convertToJson() {
-    return excelToJson({
-        sourceFile: 'filebase/NCBL Schedules.xlsx',
-        header: {
-            rows: 1
-        },
-        columnToKey: {
-            '*': '{{columnHeader}}'
-        }
-    });
-}
 
 function formatDateAndTime(game) {
     if (typeof game.date !== 'string') {
@@ -65,7 +53,8 @@ function generateFileString(jsonString) {
 }
 
 function writeToFile() {
-    const schedulesObject = convertToJson();
+    const sourceFile = 'filebase/NCBL Schedules.xlsx';
+    const schedulesObject = convertExcelToJsonService.convert(sourceFile);
     const schedulesWithTeams = appendTeamsAndFormatDateAndTime(schedulesObject);
     const schedulesString = JSON.stringify(schedulesWithTeams);
     const jsFileString = generateFileString(schedulesString);
