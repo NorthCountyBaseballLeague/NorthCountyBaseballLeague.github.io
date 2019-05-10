@@ -1,7 +1,8 @@
 'use strict';
+
 const dateFormat = require('dateformat');
 const convertExcelToJsonService = require('../services/convertExcelToJson.service');
-const fs = require('fs');
+const writeToFileService = require('../services/writeToFile.service');
 
 function formatDateAndTime(game) {
     if (typeof game.date !== 'string') {
@@ -44,26 +45,16 @@ function appendTeamsAndFormatDateAndTime(schedulesObject) {
     return scheduleWithTeams;
 }
 
-function generateFileString(jsonString) {
-    const declarationString = 'const schedules = ';
-    let jsFileString = declarationString + jsonString + ';';
-    const exportString = '\n\nmodule.exports = schedules;';
-    jsFileString += exportString;
-    return jsFileString;
-}
-
-function writeToFile() {
+function buildSchedulesFilebase() {
     const sourceFile = 'filebase/NCBL Schedules.xlsx';
-    const schedulesObject = convertExcelToJsonService.convert(sourceFile);
-    const schedulesWithTeams = appendTeamsAndFormatDateAndTime(schedulesObject);
-    const schedulesString = JSON.stringify(schedulesWithTeams);
-    const jsFileString = generateFileString(schedulesString);
+    
+    const scheduleObject = convertExcelToJsonService.convert(sourceFile);
+    const schedulesWithTeams = appendTeamsAndFormatDateAndTime(scheduleObject);
+    
+    const filebaseVarName = 'schedules';
     const schedulesFilebase = 'filebase/schedulesFilebase.js';
-    fs.writeFile(schedulesFilebase, jsFileString, 'utf8', function (err) {
-        if (err) {
-            console.log('There was an error: ', err);
-        }
-    });
+
+    writeToFileService.writeToFile(filebaseVarName, schedulesWithTeams, schedulesFilebase);
 }
 
-module.exports = writeToFile();
+module.exports = buildSchedulesFilebase();
