@@ -72,6 +72,8 @@
         scheduleController = scheduleController(schedules);
         const schedule = scheduleController.getSchedule(season);
 
+        scheduleController.addDelaysToWeeks(schedule, '5/19/2019');
+
         const scheduleBody = document.getElementById('schedule-body');
         scheduleController.buildSchedule(schedule, scheduleBody, document);
     </script>
