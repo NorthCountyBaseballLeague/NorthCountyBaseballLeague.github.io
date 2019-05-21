@@ -14,4 +14,4 @@ function buildStatsFilebase () {
     writeToFileService.writeToFile(filebaseVarName, statsObject, statsFilebase);
 }
 
-module.exports = buildStatsFilebase();
+buildStatsFilebase();
