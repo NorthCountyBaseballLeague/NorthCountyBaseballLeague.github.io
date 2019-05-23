@@ -87,8 +87,6 @@
         scheduleController = scheduleController(schedules);
         const schedule = scheduleController.getSchedule(season);
 
-        scheduleController.addDelaysToWeeks(schedule, '5/19/2019');
-
         scoresController = scoresController(schedule);
         scoresController.buildScores(dateSelector, scoresTables, document);
     </script>
