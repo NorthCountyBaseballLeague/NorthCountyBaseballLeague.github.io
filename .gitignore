@@ -2,3 +2,4 @@ node_modules/
 *.received.*
 package-lock.json
 *.xlsx
+.idea/*
