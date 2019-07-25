@@ -82,6 +82,7 @@ function delaysToScheduleService() {
         addDelaysToWeeks(schedulesWithTeams, '2018fall', '3/3/2019');
         addDelaysToWeeks(schedulesWithTeams, '2019spring', '5/19/2019');
         addDelaysToWeeks(schedulesWithTeams, '2019spring', '5/26/2019');
+        addDelaysToWeeks(schedulesWithTeams, '2019spring', '7/28/2019');
     }
 
     return {
