@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../public/css/styles.css">
-        <link rel="stylesheet" href="../../public/css/scoresStyles.css">
+        <link rel="stylesheet" href="../../public/css/scheduleStyles.css">
     </head>
     <body>
 
@@ -29,10 +29,9 @@
                 <i class="fa fa-remove"></i>
             </a>
             <h4 class="w3-bar-item"><b>Menu</b></h4>
-            <a href="Schedule.html" class="w3-bar-item w3-button w3-hover-black">Schedule</a>
-            <a class="w3-bar-item selected">Scores</a>
+            <a class="w3-bar-item selected">Schedule</a>
+            <a href="Scores.html" class="w3-bar-item w3-button w3-hover-black">Scores</a>
             <a href="Standings.html" class="w3-bar-item w3-button w3-hover-black">Standings</a>
-            <a href="Playoffs.html" class="w3-bar-item w3-button w3-hover-black">Playoffs</a>
         </nav>
 
         <!-- Overlay effect when opening sidebar on small screens -->
@@ -41,54 +40,38 @@
         <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
         <div class="w3-main" style="margin-left:250px">
             <div class="w3-row w3-padding-64">
-                <div id='scoreTables' class="w3-twothird w3-container">
-                    <h1 class="w3-text-black">2018-2019 Fall Scores</h1>
-
-                    <select id='dateSelector' name='date'>
-                        <option value='Date'>Date</option>
-                    </select>
-                    
-                    <div></div>
-                    <br>
-                    
+                <div class="w3-twothird w3-container">
+                    <h1 class="w3-text-black">2019-2020 Fall Schedule</h1>
+                    <table cellpadding="5">
+                        <thead>
+                            <tr>
+                                <th id="no_border"></th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Visitors</th>
+                                <th>Home</th>
+                                <th>Field</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody id='schedule-body'></tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </body>
     <script src='../../filebase/schedulesFilebase.js'></script>
-    <script src='../../controllers/sidebarController.js'></script>
     <script src='../../controllers/scheduleController.js'></script>
-    <script src='../../controllers/scoresController.js'></script>
+    <script src='../../controllers/sidebarController.js'></script>
     <script>
         const sidebarElement = document.getElementById("mySidebar");
         const overlayElement = document.getElementById("myOverlay");
         sidebarController = sidebarController(sidebarElement, overlayElement);
 
-        // Add function to bold the winner of the game
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('select[name="date"]').onchange=changeEventHandler;
-        },false);
-
-        function changeEventHandler(event) {            
-            var tablesToHide = document.getElementsByTagName('table');
-            for (var i = 0; i < tablesToHide.length; i++) {
-                tablesToHide[i].style.display = 'none';
-            }
-
-            var tableToShow = document.getElementById(this.value);
-            if (tableToShow) {
-                tableToShow.style.display = 'block';
-            }
-        }
-
-        const season = '2018fall';
-        const dateSelector = document.getElementById('dateSelector');
-        const scoresTables = document.getElementById('scoreTables');
-
+        const season = '2019fall';
         scheduleController = scheduleController(schedules);
-        const schedule = scheduleController.getSchedule('2018fall');
-        
-        scoresController = scoresController(schedule);
-        scoresController.buildScores(dateSelector, scoresTables, document);
+        const schedule = scheduleController.getSchedule(season);
+        const scheduleBody = document.getElementById('schedule-body');
+        scheduleController.buildSchedule(schedule, scheduleBody, document);
     </script>
 </html>
