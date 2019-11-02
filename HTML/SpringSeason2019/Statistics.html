@@ -19,80 +19,9 @@
         </script>
     </head>
     <body>
-        <img id="saints-logo" src="../../public/images/saintsLogo.jpg" alt="Saints Baseball">
-        <h1 class="w3-text-black">2019 Spring Statistics</h1>
-        <table id="stats-table" cellpadding="8">
-            <thead id='stats-header'></thead>
-            <tbody id='stats-body'></tbody>
-        </table>
-        <br>
-        <table id="key-table" cellpadding="5">
-            <thead>
-                <tr>
-                    <th>Key</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>G - Games</td>
-                    <td>AB - At Bats</td>
-                    <td>R - Runs</td>
-                </tr>
-                <tr>
-                    <td>H - Hits</td>
-                    <td>2B - Doubles</td>
-                    <td>3B - Triples</td>
-                </tr>
-                <tr>
-                    <td>HR - Homeruns</td>
-                    <td>RBI - Runs Batted In</td>
-                    <td>BB - Base on Balls</td>
-                </tr>
-                <tr>
-                    <td>SO - Strikeouts</td>
-                    <td>SB - Stolen Bases</td>
-                    <td>CS - Caught Stealing</td>
-                </tr>
-                <tr>
-                    <td>AVG - Average</td>
-                    <td>OBP - On-Base Percentage</td>
-                    <td>SLG - Slugging Percentage</td>
-                </tr>
-                <tr>
-                    <td>OPS - On-Base Plus Slugging</td>
-                    <td>IBB - Intentional Walks</td>
-                    <td>HBP - Hit By Pitch</td>
-                </tr>
-                <tr>
-                    <td>SAC - Sacrifice Bunts</td>
-                    <td>SF - Sacrifice Flys</td>
-                    <td>TB - Total Bases</td>
-                </tr>
-                <tr>
-                    <td>XBH - Extra Base Hits</td>
-                    <td>GDP - Grounded Into Double Play</td>
-                    <td>GO - Ground Outs</td>
-                </tr>
-                <tr>
-                    <td>AO - Fly Outs</td>
-                    <td>GO_AO - Ground Outs Per Fly Out</td>
-                    <td>PA - Plate Appearances</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <a href="https://www.instagram.com/saints.baseball/" 
-        title="Follow us on Instagram">
-            <img id="instagram-logo" src="../../public/images/instagramLogo.png" alt="Instagram">
+        <h1 class="w3-text-black">Saints Baseball has a new home.</h1>
+        <a href="https://SaintsBaseball.github.io" title="Saints Baseball">
+            https://SaintsBaseball.github.io
         </a>
     </body>
-    <script type='application/javascript' src='../../controllers/statisticsController.js'></script>
-    <script type='text/javascript' src='../../filebase/statisticsFilebase.js'></script>
-    <script>
-        const statsHeader = document.getElementById('stats-header');
-        const statsBody = document.getElementById('stats-body');
-        buildStatistics(stats['2019spring'], statsHeader, statsBody, document);
-    </script>
 </html>

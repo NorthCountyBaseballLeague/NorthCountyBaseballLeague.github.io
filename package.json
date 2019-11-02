@@ -1,9 +1,8 @@
 {
     "name": "ncbl_website",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Website for the North County Baseball League",
     "scripts": {
-        "buildStats": "node ./generators/statisticsFilebaseGenerator.js",
         "buildSchedules": "node ./generators/scheduleFilebaseGenerator.js",
         "test": "mocha test test/approvals"
     },
