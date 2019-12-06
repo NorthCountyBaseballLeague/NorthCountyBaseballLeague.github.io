@@ -519,21 +519,6 @@ describe('Standings Controller Test', () => {
             expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
         });
 
-        it ('should sort the standings correctly when two teams have the same record', () => {
-            let standings = {
-                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team2': [8, 11, 0, 0, 0, 0, '0.421']
-            };
-            const expectedStandings = {
-                'team2': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
-            };
-
-            standings = standingsController.sortStandings(standings, scoresController);
-            
-            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
-        });
-
         it ('should sort the standings correctly when two teams have the same record but different runs', () => {
             schedule.push({
                 visitors: 'team1',
@@ -567,43 +552,7 @@ describe('Standings Controller Test', () => {
                 'team2': [8, 11, 0, 0, 0, 0, '0.421']
             };
             const expectedStandings = {
-                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
                 'team2': [8, 11, 0, 0, 0, 0, '0.421'],
-            };
-
-            standings = standingsController.sortStandings(standings, scoresController);
-            
-            expect(JSON.stringify(standings)).to.equal(JSON.stringify(expectedStandings));
-        });
-
-        it ('should sort the standings correctly when three teams have the same record', () => {
-            schedule.push({
-                visitors: 'team3',
-                home: 'team2',
-                visitorsScore: 1,
-                homeScore: 0  
-            });
-            schedule.push({
-                visitors: 'team3',
-                home: 'team1',
-                visitorsScore: 4,
-                homeScore: 0  
-            });
-            schedule.push({
-                visitors: 'team2',
-                home: 'team3',
-                visitorsScore: 4,
-                homeScore: 0  
-            });
-
-            let standings = {
-                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team2': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team3': [8, 11, 0, 0, 0, 0, '0.421']
-            };
-            const expectedStandings = {
-                'team2': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team3': [8, 11, 0, 0, 0, 0, '0.421'],
                 'team1': [8, 11, 0, 0, 0, 0, '0.421'],
             };
 
@@ -698,9 +647,9 @@ describe('Standings Controller Test', () => {
                 'team3': [8, 11, 0, 0, 0, 0, '0.421']
             };
             const expectedStandings = {
-                'team1': [8, 11, 0, 0, 0, 0, '0.421'],
+                'team3': [8, 11, 0, 0, 0, 0, '0.421'],
                 'team2': [8, 11, 0, 0, 0, 0, '0.421'],
-                'team3': [8, 11, 0, 0, 0, 0, '0.421']
+                'team1': [8, 11, 0, 0, 0, 0, '0.421']
             };
 
             standings = standingsController.sortStandings(standings, scoresController);
