@@ -46,7 +46,7 @@ function appendTeamsAndFormatDateAndTime(schedulesObject) {
     return scheduleWithTeams;
 }
 
-function buildSchedulesFilebase() {
+(function buildSchedulesFilebase() {
     const sourceFile = 'filebase/NCBL Schedules.xlsx';
 
     const scheduleObject = convertExcelToJsonService.convert(sourceFile);
@@ -58,6 +58,4 @@ function buildSchedulesFilebase() {
     const schedulesFilebase = 'filebase/schedulesFilebase.js';
 
     writeToFileService.writeToFile(filebaseVarName, schedulesWithTeams, schedulesFilebase);
-}
-
-buildSchedulesFilebase();
+})();
