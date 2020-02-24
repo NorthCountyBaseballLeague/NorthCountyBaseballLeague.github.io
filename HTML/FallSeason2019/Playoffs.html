@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>North County Baseball League</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../public/css/styles.css">    
+        <link rel="stylesheet" href="../../public/css/scheduleStyles.css">
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150825268-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-150825268-1');
+        </script>
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="sidebarController.openSidebar()">
+                        <i class="fa fa-bars"></i>
+                </a>
+                <a href="../../index.html" class="w3-bar-item w3-button w3-theme-l1">NCBL</a>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-right" id="mySidebar">
+            <a href="javascript:void(0)" onclick="sidebarController.closeSidebar()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4 class="w3-bar-item"><b>Menu</b></h4>
+            <a href="Schedule.html" class="w3-bar-item w3-button w3-hover-black">Schedule</a>
+            <a href="Scores.html" class="w3-bar-item w3-button w3-hover-black">Scores</a>
+            <a href="Standings.html" class="w3-bar-item w3-button w3-hover-black">Standings</a>
+            <a class="w3-bar-item selected">Playoffs</a>
+        </nav>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large" onclick="sidebarController.closeSidebar()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+        <div class="w3-main">
+            <div class="w3-row w3-padding-64">
+                <div class="w3-container">
+                    <h1 class="w3-text-black">2019-2020 Fall Playoffs</h1>
+                    <table cellpadding="5">
+                        <thead>
+                            <tr>
+                                <th id="no_border"></th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Visitors</th>
+                                <th>Home</th>
+                                <th>Field</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="round-column new-round">Wild</td>
+                                <td class="new-round">3/1/2020</td>
+                                <td class="new-round">9:00 AM</td>
+                                <td class="new-round">A's</td>
+                                <td class="new-round">Toros</td>
+                                <td class="new-round">Pauma</td>
+                                <td class="winner-column new-round"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Card</td>
+                                <td class="new-week">3/1/2020</td>
+                                <td class="new-week">9:00 AM</td>
+                                <td class="new-week">Braves</td>
+                                <td class="new-week">Nationals</td>
+                                <td class="new-week">Orange Glen H.S.</td>
+                                <td class="winner-column new-week"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column new-round"></td>
+                                <td class="new-round">3/8/2020</td>
+                                <td class="new-round">9:00 AM</td>
+                                <td class="new-round">Lower Seed</td>
+                                <td class="new-round">Storm</td>
+                                <td class="new-round">Pauma</td>
+                                <td class="winner-column new-round"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column"></td>
+                                <td>3/15/2020</td>
+                                <td>9:00 AM</td>
+                                <td>Storm</td>
+                                <td>Lower Seed</td>
+                                <td>Pauma</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Semi</td>
+                                <td>3/15/2020</td>
+                                <td>12:30 PM</td>
+                                <td>Lower Seed</td>
+                                <td>Storm</td>
+                                <td>Pauma</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Finals</td>
+                                <td class="new-week">3/8/2020</td>
+                                <td class="new-week">9:00 AM</td>
+                                <td class="new-week">Higher Seed</td>
+                                <td class="new-week">Saints</td>
+                                <td class="new-week">Orange Glen H.S.</td>
+                                <td class="winner-column new-week"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column"></td>
+                                <td>3/15/2020</td>
+                                <td>9:00 AM</td>
+                                <td>Saints</td>
+                                <td>Higher Seed</td>
+                                <td>Orange Glen H.S.</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column"></td>
+                                <td>3/15/2020</td>
+                                <td>12:30 PM</td>
+                                <td>Higher Seed</td>
+                                <td>Saints</td>
+                                <td>Orange Glen H.S.</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column new-round"></td>
+                                <td class="new-round">3/22/2020</td>
+                                <td class="new-round">9:00 AM</td>
+                                <td class="new-round">Lower Seed</td>
+                                <td class="new-round">Higher Seed</td>
+                                <td class="new-round">TBD</td>
+                                <td class="winner-column new-round"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column">Finals</td>
+                                <td>3/29/2020</td>
+                                <td>9:00 AM</td>
+                                <td>Higher Seed</td>
+                                <td>Lower Seed</td>
+                                <td>Pauma</td>
+                                <td class="winner-column"></td>
+                            </tr>
+                            <tr>
+                                <td class="round-column last-game"></td>
+                                <td class="last-game">3/29/2020</td>
+                                <td class="last-game">12:30 PM</td>
+                                <td class="last-game">Lower Seed</td>
+                                <td class="last-game">Higher Seed</td>
+                                <td class="last-game">Pauma</td>
+                                <td class="winner-column last-game"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src='../../controllers/sidebarController.js'></script>
+    <script>
+        const sidebarElement = document.getElementById("mySidebar");
+        const overlayElement = document.getElementById("myOverlay");
+        sidebarController = sidebarController(sidebarElement, overlayElement);
+    </script>
+</html>
